@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img">
+  <rect width="800" height="1000" fill="#f6f1e7"/>
+  <rect x="48" y="48" width="704" height="904" fill="none" stroke="#241f1c" stroke-opacity="0.15"/>
+  
+    <circle cx="239.6" cy="465.5" r="8" fill="#8e2a22"/><circle cx="246.8" cy="457.0" r="8" fill="#241f1c"/><circle cx="255.0" cy="448.9" r="8" fill="#241f1c"/><circle cx="264.2" cy="441.3" r="8" fill="#241f1c"/><circle cx="274.2" cy="434.2" r="8" fill="#8e2a22"/><circle cx="285.1" cy="427.6" r="8" fill="#241f1c"/><circle cx="296.8" cy="421.7" r="8" fill="#241f1c"/><circle cx="309.1" cy="416.4" r="8" fill="#241f1c"/><circle cx="322.0" cy="411.8" r="8" fill="#8e2a22"/><circle cx="335.5" cy="408.0" r="8" fill="#241f1c"/><circle cx="349.4" cy="404.8" r="8" fill="#241f1c"/><circle cx="363.6" cy="402.5" r="8" fill="#241f1c"/><circle cx="378.1" cy="400.9" r="8" fill="#8e2a22"/><circle cx="392.7" cy="400.1" r="8" fill="#241f1c"/><circle cx="407.3" cy="400.1" r="8" fill="#241f1c"/><circle cx="421.9" cy="400.9" r="8" fill="#241f1c"/><circle cx="436.4" cy="402.5" r="8" fill="#8e2a22"/><circle cx="450.6" cy="404.8" r="8" fill="#241f1c"/><circle cx="464.5" cy="408.0" r="8" fill="#241f1c"/><circle cx="478.0" cy="411.8" r="8" fill="#241f1c"/><circle cx="490.9" cy="416.4" r="8" fill="#8e2a22"/><circle cx="503.2" cy="421.7" r="8" fill="#241f1c"/><circle cx="514.9" cy="427.6" r="8" fill="#241f1c"/><circle cx="525.8" cy="434.2" r="8" fill="#241f1c"/><circle cx="535.8" cy="441.3" r="8" fill="#8e2a22"/><circle cx="545.0" cy="448.9" r="8" fill="#241f1c"/><circle cx="553.2" cy="457.0" r="8" fill="#241f1c"/><circle cx="560.4" cy="465.5" r="8" fill="#241f1c"/>
+  
+  <text x="72" y="900" fill="#241f1c" font-family="Georgia, serif" font-size="32">Sample illustration</text>
+  <text x="560" y="140" fill="#8e2a22" font-family="Georgia, serif" font-size="22" letter-spacing="3">SAMPLE</text>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img">
+  <rect width="800" height="1000" fill="#f6f1e7"/>
+  <rect x="48" y="48" width="704" height="904" fill="none" stroke="#241f1c" stroke-opacity="0.15"/>
+  
+    <path d="M160 560c40-40 80-20 80 20s40 60 80 20 80-20 80 20 40 60 80 20 70-30 90 10" fill="none" stroke="#241f1c" stroke-width="4"/>
+    <circle cx="170" cy="502" r="28" fill="#fbf7f0" stroke="#241f1c" stroke-width="3"/><circle cx="218" cy="538" r="20" fill="#241f1c" stroke="#241f1c" stroke-width="3"/><circle cx="266" cy="502" r="20" fill="#8e2a22" stroke="#241f1c" stroke-width="3"/><circle cx="314" cy="538" r="28" fill="#e7d7c3" stroke="#241f1c" stroke-width="3"/><circle cx="362" cy="502" r="20" fill="#fbf7f0" stroke="#241f1c" stroke-width="3"/><circle cx="410" cy="538" r="20" fill="#241f1c" stroke="#241f1c" stroke-width="3"/><circle cx="458" cy="502" r="28" fill="#8e2a22" stroke="#241f1c" stroke-width="3"/><circle cx="506" cy="538" r="20" fill="#e7d7c3" stroke="#241f1c" stroke-width="3"/><circle cx="554" cy="502" r="20" fill="#fbf7f0" stroke="#241f1c" stroke-width="3"/><circle cx="602" cy="538" r="28" fill="#241f1c" stroke="#241f1c" stroke-width="3"/>
+  
+  <text x="72" y="900" fill="#241f1c" font-family="Georgia, serif" font-size="32">Sample illustration</text>
+  <text x="560" y="140" fill="#8e2a22" font-family="Georgia, serif" font-size="22" letter-spacing="3">SAMPLE</text>
+</svg>
