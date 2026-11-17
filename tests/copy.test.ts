@@ -19,7 +19,6 @@ const banned = [
   /\bcountdown\b/i,
   /\breviews?\b/i,
   /\btestimonials?\b/i,
-  /\bcustomers?\b/i,
   /\bwealth\b/i,
   /\bfortune\b/i,
   /\bmoney\b/i,

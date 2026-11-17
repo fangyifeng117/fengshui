@@ -2,6 +2,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { CheckoutDesk } from "@/components/CheckoutDesk";
 import { Footer } from "@/components/Footer";
+import PrivacyPage from "@/app/legal/privacy/page";
+import TermsPage from "@/app/legal/terms/page";
+import { publicConfig } from "@/lib/public-config";
 import { ProductDetail, PRODUCT_MODULE_ORDER } from "@/components/ProductDetail";
 import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
@@ -48,6 +51,20 @@ describe("page structure", () => {
     expect(footer).toContain("For decorative &amp; cultural use only — no results guaranteed.");
     expect(footer).toContain("Full disclaimer.");
     expect(footer).toContain("TODO");
+    expect(footer).toContain(`mailto:${publicConfig.supportEmail}`);
+    expect(footer).toContain("Customer support:");
+    expect(footer).toContain("Legal entity");
+  });
+
+  it("uses the support address for shop questions and does not appoint a privacy contact", () => {
+    expect(publicConfig.supportEmail).toBe("fangyifeng117@gmail.com");
+    const terms = renderToStaticMarkup(<TermsPage />);
+    expect(terms).toContain(`mailto:${publicConfig.supportEmail}`);
+    expect(terms).toContain("TODO");
+    const privacy = renderToStaticMarkup(<PrivacyPage />);
+    expect(privacy).toContain("Draft, awaiting confirmation");
+    expect(privacy).toContain("not designated as a privacy contact or a DPO");
+    expect(privacy).toContain("No privacy contact and no data-protection officer have been appointed");
   });
 
   it("renders the disabled sandbox checkout state", () => {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SupportEmail } from "@/components/SupportEmail";
 import { getCollections } from "@/lib/catalog";
 
 export function Footer() {
@@ -26,7 +27,11 @@ export function Footer() {
         </section>
         <section>
           <h2>Contact</h2>
-          <p>TODO. No email address, phone number, or street address has been confirmed for publication.</p>
+          <p>
+            Customer support: <SupportEmail />
+          </p>
+          <p>Temporary public address for shop questions.</p>
+          <p>TODO. Legal entity, phone number, street address, and domain are not confirmed.</p>
         </section>
       </div>
       <p className="footer-disclaimer">

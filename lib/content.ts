@@ -119,6 +119,12 @@ export const contentPages: ContentPage[] = [
         ],
       },
       {
+        heading: "Where do I ask a shop question?",
+        paragraphs: [
+          "Use the customer-support address shown on this page and in the footer. It is a temporary public address for shop questions. Phone, street address, domain, and legal entity remain TODO.",
+        ],
+      },
+      {
         heading: "What does the mock button do?",
         paragraphs: [
           "It writes a record marked MOCK so the return page can be previewed. It does not contact PayPal and it cannot mark an order paid.",

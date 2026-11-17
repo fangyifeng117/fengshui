@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExactDisclaimer } from "@/components/ExactDisclaimer";
+import { SupportEmail } from "@/components/SupportEmail";
 import { getContentPage } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
@@ -54,6 +55,11 @@ export default async function ContentPage({ params }: { params: Promise<{ slug: 
             <Link href="/content/shipping-returns">Shipping and returns (TODO)</Link>
           </li>
         </ul>
+      ) : null}
+      {page.slug === "faq" || page.slug === "guide" ? (
+        <p>
+          Customer support: <SupportEmail />
+        </p>
       ) : null}
       <ExactDisclaimer />
     </article>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HeroArt } from "@/components/HeroArt";
+import { SupportEmail } from "@/components/SupportEmail";
 import { ProductCard } from "@/components/ProductCard";
 import { getFeaturedProducts } from "@/lib/catalog";
 import { homeCopy } from "@/lib/home-copy";
@@ -55,7 +56,9 @@ export default function HomePage() {
           {homeCopy.faq.map((item) => (
             <details key={item.question}>
               <summary>{item.question}</summary>
-              <p>{item.answer}</p>
+              <p>
+                {item.answer} {item.supportEmail ? <SupportEmail /> : null}
+              </p>
             </details>
           ))}
         </div>

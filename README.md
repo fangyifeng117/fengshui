@@ -1,6 +1,6 @@
 # 文化饰品示范店
 
-英文界面、美元标价的 Next.js 示范店。品牌名尚未确认，代码里的默认名称是 **Cultural Jewelry — Demo**，可以用环境变量改掉。页面结构参考的是普通饰品店的浏览方式（首页、系列、商品、购物车、结账），文案、配色和插画都是为这个示范单独写的。这里没有借用其他商店的名称、商标、图片或商品文案。
+英文界面、美元标价的 Next.js 示范店。品牌名尚未确认，代码里的默认名称仍是 **Cultural Jewelry — Demo**。千愿 / QIANYUAN 只是一个未定稿的建议，没有写成当前品牌。页面结构参考的是普通饰品店的浏览方式（首页、系列、商品、购物车、结账），文案、配色和插画都是为这个示范单独写的。这里没有借用其他商店的名称、商标、图片或商品文案。
 
 这不是一家正在营业的商店。商品名称、材质、价格和图片都标明为 sample。结账不会真正收款。
 
@@ -36,6 +36,7 @@ npm run build
 | `NEXT_PUBLIC_BRAND_NAME` | `Cultural Jewelry — Demo` |
 | `NEXT_PUBLIC_BASE_URL` | `http://localhost:3000`，用于 canonical 和 Open Graph |
 | `NEXT_PUBLIC_ANNOUNCEMENT` | 显示默认的示范公告 |
+| `NEXT_PUBLIC_SUPPORT_EMAIL` | 空白时使用已批准的临时公开客服邮箱 `fangyifeng117@gmail.com`。只用于店铺问题，不是隐私或 DPO 联系人 |
 | `SITE_INDEXING_APPROVED` | 只有精确写成 `true` 才允许索引。默认 `noindex`，`robots.txt` 禁止抓取 |
 | `PAYPAL_MODE` | `sandbox`。写成 `live` 时，只要 `NODE_ENV` 不是 `production` 就拒绝，不会向正式环境发请求 |
 | `PAYPAL_CLIENT_ID` | 空白表示沙箱未连接 |
@@ -63,7 +64,8 @@ npm run build
 - `PENDING`、取消和 MOCK 都不会显示为已支付
 - 不提供卡号表单，不自动退款，不打款，不发邮件
 - sitemap、robots、canonical、Open Graph。结构化数据没有评分和评论
-- 配送、退货和联系方式明确写成 draft / TODO
+- 配送、退货、法律主体、电话、街道地址和域名仍是 TODO
+- 临时公开客服邮箱集中在 `publicConfig.supportEmail`，页脚、首页问题、指南、问答和条款里用 `mailto:` 链接。隐私页写明该地址尚未被指定为隐私联系人或 DPO
 
 ## 未验证
 
@@ -95,7 +97,11 @@ PayPal 账户已经开立，但 client id、secret、webhook id 和要使用的�
 - 库存数字只为了演示扣减，不是仓库库存
 - 没有获得使用权的商品照片，页面上是原创 SVG，并标明 sample
 - 配送和退货政策仍是 TODO，没有运费、时效或退货地址
-- 没有可公开的联系邮箱、电话或地址
+- 客服邮箱只是临时公开地址，法律主体、电话、街道地址和域名仍未确认
+- 隐私联系人和数据保护负责人尚未指定
+- 商品照片和视频尚未替换；本仓库没有导入历史素材
+- 广告未投放，也没有做广告测试或花费
+- 内容发布授权还没有下来，这个仓库不会替你发帖
 - 商户身份尚未核验
 - PayPal API 凭据和 webhook 未配置
 - 搜索引擎索引未批准，默认 noindex

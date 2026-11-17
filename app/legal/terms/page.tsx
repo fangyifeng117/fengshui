@@ -1,4 +1,5 @@
 import { ExactDisclaimer } from "@/components/ExactDisclaimer";
+import { SupportEmail } from "@/components/SupportEmail";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -17,8 +18,12 @@ export default function TermsPage() {
         Checkout capture is disabled for demo items. Shipping and returns are unfinished and promise nothing.
       </p>
       <p>
-        A future operator would need a confirmed legal name, a contact method, and reviewed terms before accepting a
-        payment. Nothing on this site creates that contract.
+        Customer support for questions about this demonstration: <SupportEmail />. This is a temporary public address
+        for shop questions. It is not a legal entity, a registered office, or a phone line.
+      </p>
+      <p>
+        TODO. Legal name, street address, phone number, and domain are not confirmed. A future operator would still
+        need those, plus reviewed terms, before accepting a payment. Nothing on this site creates that contract.
       </p>
       <ExactDisclaimer />
     </article>

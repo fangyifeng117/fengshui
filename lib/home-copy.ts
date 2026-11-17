@@ -22,7 +22,7 @@ export const homeCopy = {
     },
     {
       title: "Policies are drafts",
-      body: "Shipping, returns, and a public contact method are still TODO.",
+      body: "Shipping and returns are still TODO. Shop questions use the customer-support address in the footer.",
     },
   ],
   faqTitle: "Before you browse",
@@ -38,7 +38,8 @@ export const homeCopy = {
     },
     {
       question: "Where do I ask a question?",
-      answer: "A public contact address has not been published. The footer marks contact as TODO.",
+      answer: "Use the customer-support address. It is for shop questions only.",
+      supportEmail: true,
     },
   ],
 };
