@@ -1,0 +1,166 @@
+import type { ReactNode } from "react";
+import Link from "next/link";
+import { ExactDisclaimer } from "@/components/ExactDisclaimer";
+import { Gallery } from "@/components/Gallery";
+import { PurchaseActions } from "@/components/PurchaseActions";
+import { ProductCard } from "@/components/ProductCard";
+import { getCollection } from "@/lib/catalog";
+import { ZH_EXACT_DISCLAIMER } from "@/lib/disclaimer";
+import { formatMoney } from "@/lib/format";
+import { trustBadges } from "@/lib/home-copy";
+import {
+  displayAlt,
+  displayBenefits,
+  displayCollectionTitle,
+  displayDescription,
+  displayFaq,
+  displayPhrase,
+  displayTitle,
+  displayUseNotes,
+  zhTrustBadges,
+} from "@/lib/i18n/display";
+import { copy } from "@/lib/i18n/messages";
+import { hrefFor } from "@/lib/locale";
+import type { Product } from "@/lib/types";
+
+export const PRODUCT_MODULE_ORDER = [
+  "breadcrumb",
+  "gallery",
+  "purchase",
+  "benefits",
+  "trust",
+  "specs",
+  "use",
+  "disclaimer",
+  "faq",
+  "related",
+] as const;
+
+export function ProductDetail({
+  product,
+  related,
+  locale = "en",
+}: {
+  product: Product;
+  related: Product[];
+  locale?: "en" | "zh";
+}) {
+  const text = copy(locale);
+  const collection = getCollection(product.collection);
+  const title = displayTitle(product, locale);
+  const images = product.images.map((image, index) => ({ src: image.src, alt: displayAlt(product, index, locale) }));
+  const modules: Record<(typeof PRODUCT_MODULE_ORDER)[number], ReactNode> = {
+    breadcrumb: (
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <Link href={hrefFor(locale, "/")}>{text.product.home}</Link>
+        <span aria-hidden="true">/</span>
+        <Link href={hrefFor(locale, "/products")}>{text.nav.shop}</Link>
+        <span aria-hidden="true">/</span>
+        <Link href={hrefFor(locale, `/collections/${product.collection}`)}>
+          {collection ? displayCollectionTitle(collection, locale) : product.collection}
+        </Link>
+        <span aria-hidden="true">/</span>
+        <span>{title}</span>
+      </nav>
+    ),
+    gallery: <Gallery images={images} sampleLabel={text.product.sample} showLabel={text.product.showImage} />,
+    purchase: (
+      <div className="purchase-block">
+        <h1>{title}</h1>
+        <p className="price price-large">{formatMoney(product.price, product.currency)}</p>
+        <PurchaseActions
+          productId={product.id}
+          locale={locale}
+          addLabel={text.product.add}
+          buyLabel={text.product.view}
+          pendingAdd={text.product.adding}
+          pendingBuy={text.product.opening}
+          errorLabel={text.product.error}
+        />
+        <p>{displayDescription(product, locale)}</p>
+      </div>
+    ),
+    benefits: (
+      <div>
+        <h2>{text.product.about}</h2>
+        <ul className="plain-list">
+          {displayBenefits(product, locale).map((benefit) => (
+            <li key={benefit}>{benefit}</li>
+          ))}
+        </ul>
+      </div>
+    ),
+    trust: (
+      <div>
+        <h2>{text.product.trust}</h2>
+        <ul className="badge-list">
+          {(locale === "zh" ? zhTrustBadges : trustBadges).map((badge) => (
+            <li key={badge}>{badge}</li>
+          ))}
+        </ul>
+      </div>
+    ),
+    specs: (
+      <div>
+        <h2>{text.product.specs}</h2>
+        <dl className="spec-list">
+          {product.specs.map((spec) => (
+            <div key={spec.label}>
+              <dt>{displayPhrase(spec.label, product, locale)}</dt>
+              <dd>{displayPhrase(spec.value, product, locale)}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    ),
+    use: (
+      <div>
+        <h2>{text.product.use}</h2>
+        <ul className="plain-list">
+          {displayUseNotes(product, locale).map((note) => (
+            <li key={note}>{note}</li>
+          ))}
+        </ul>
+      </div>
+    ),
+    disclaimer: (
+      <div>
+        <h2>{text.product.disclaimer}</h2>
+        <ExactDisclaimer translation={locale === "zh" ? ZH_EXACT_DISCLAIMER : undefined} />
+      </div>
+    ),
+    faq: (
+      <div>
+        <h2>{text.product.questions}</h2>
+        <div className="faq-list">
+          {displayFaq(product, locale).map((item) => (
+            <details key={item.question}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    ),
+    related: (
+      <div>
+        <h2>{text.product.related}</h2>
+        <div className="product-grid">
+          {related.map((item) => (
+            <ProductCard key={item.id} product={item} locale={locale} />
+          ))}
+        </div>
+      </div>
+    ),
+  };
+
+  return (
+    <article className="product-detail">
+      {PRODUCT_MODULE_ORDER.map((id) => (
+        <section key={id} data-module={id} className="product-module">
+          {modules[id]}
+        </section>
+      ))}
+    </article>
+  );
+}

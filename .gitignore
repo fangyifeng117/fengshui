@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+dist
+coverage
+.vercel
+.env
+.env.local
+.env.*.local
+data/*.sqlite
+data/*.sqlite-*
+*.tsbuildinfo
+.DS_Store
+playwright-report
+test-results
+/tmp
