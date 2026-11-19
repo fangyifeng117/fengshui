@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { products } from "@/lib/catalog";
+import { refuseCollection } from "@/lib/commerce/gate";
 import { describeCheckout, presentOrder } from "@/lib/commerce/present";
 import { applyVerifiedCapture } from "@/lib/commerce/fulfill";
 import {
@@ -138,9 +139,15 @@ describe("paypal mode, connection, and retries", () => {
     expect(result.code).toBe("sandbox_not_connected");
     expect(result.order?.status).toBe("sandbox_not_connected");
     expect(result.order?.mode).toBe("unconfigured");
-    expect(describeCheckout({ configured: false, demoBlocked: true, liveDenied: false, empty: false }).buttonLabel).toBe(
-      "Sandbox not connected",
-    );
+    expect(describeCheckout({ configured: true, demoBlocked: false, liveDenied: false, empty: false })).toMatchObject({
+      state: "payments_closed",
+      buttonLabel: "Payment is off",
+      disabled: true,
+    });
+    expect(refuseCollection("create")).toEqual({ ok: false, code: "payments_closed", paid: false });
+    expect(refuseCollection("capture")).toEqual({ ok: false, code: "payments_closed", paid: false });
+    expect(refuseCollection("mock")).toEqual({ ok: false, code: "payments_closed", paid: false });
+    expect(refuseCollection("cancel")).toBeNull();
     cleanup();
   });
 

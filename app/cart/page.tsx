@@ -37,9 +37,7 @@ export default async function CartPage() {
   return (
     <div className="page narrow">
       <header className="section-head">
-        <p className="kicker">Cart</p>
-        <h1>Your samples</h1>
-        <p>Prices come from the server catalog. A browser-supplied price is ignored.</p>
+        <h1>Cart</h1>
       </header>
       {lines.length === 0 ? (
         <p className="empty">
@@ -49,9 +47,9 @@ export default async function CartPage() {
         <>
           <CartEditor items={lines} />
           <aside className="summary">
-            <h2>Sample total</h2>
+            <h2>Total</h2>
             <p className="price price-large">{formatMoney(quote.amountCents, quote.currency)}</p>
-            <p className="fine">Shipping — TODO, not calculated. No delivery promise is attached to this total.</p>
+            <p className="fine">Shipping and returns are drafts. This total is the sample item total only.</p>
             <Link className="button" href="/checkout">
               Continue to checkout
             </Link>

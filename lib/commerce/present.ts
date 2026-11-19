@@ -48,7 +48,7 @@ export function presentOrder(
 }
 
 export type CheckoutDeskState = {
-  state: "empty" | "live_denied" | "sandbox_not_connected" | "demo_blocked" | "ready";
+  state: "empty" | "payments_closed";
   buttonLabel: string;
   disabled: boolean;
   detail: string;
@@ -60,43 +60,21 @@ export function describeCheckout(input: {
   liveDenied: boolean;
   empty: boolean;
 }): CheckoutDeskState {
+  void input.configured;
+  void input.demoBlocked;
+  void input.liveDenied;
   if (input.empty) {
     return {
       state: "empty",
-      buttonLabel: "Cart empty",
+      buttonLabel: "Cart is empty",
       disabled: true,
-      detail: "Add a sample before opening payment.",
-    };
-  }
-  if (input.liveDenied) {
-    return {
-      state: "live_denied",
-      buttonLabel: "Live mode blocked",
-      disabled: true,
-      detail: "Live PayPal mode is denied outside production. No payment was sent.",
-    };
-  }
-  if (!input.configured) {
-    return {
-      state: "sandbox_not_connected",
-      buttonLabel: "Sandbox not connected",
-      disabled: true,
-      detail:
-        "PayPal Orders API credentials are not configured. This control does not start a payment. No approval or capture has been run.",
-    };
-  }
-  if (input.demoBlocked) {
-    return {
-      state: "demo_blocked",
-      buttonLabel: "Demo items cannot be captured",
-      disabled: true,
-      detail: "Sample SKUs are blocked from genuine PayPal capture. Replace them with real products before taking payment.",
+      detail: "Test preview. Payment is off.",
     };
   }
   return {
-    state: "ready",
-    buttonLabel: "Continue to PayPal",
-    disabled: false,
-    detail: "You would leave this site for PayPal to approve the order. Card numbers are not collected here.",
+    state: "payments_closed",
+    buttonLabel: "Payment is off",
+    disabled: true,
+    detail: "This test preview cannot take payment.",
   };
 }

@@ -27,10 +27,9 @@ export function HeroArt() {
         <path d="M412 390h96" stroke="#8e2a22" strokeWidth="8" />
         <rect x="430" y="530" width="60" height="16" fill="#241f1c" />
         <text x="56" y="690" fill="#241f1c" fontFamily="Georgia, serif" fontSize="26">
-          Sample illustration
+          Sample
         </text>
       </svg>
-      <figcaption>Original drawing for the demo. Not a product photo.</figcaption>
     </figure>
   );
 }

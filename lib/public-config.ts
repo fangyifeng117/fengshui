@@ -11,8 +11,7 @@ export type PublicConfig = {
 const DEFAULT_BRAND = "Cultural Jewelry — Demo";
 const DEFAULT_SUPPORT_EMAIL = "fangyifeng117@gmail.com";
 const DEFAULT_BASE = "http://localhost:3000";
-const DEFAULT_ANNOUNCEMENT =
-  "Demonstration storefront. Sample items only. PayPal sandbox is not connected.";
+const DEFAULT_ANNOUNCEMENT = "Sample catalog. Payment is off.";
 
 function supportEmailFromEnv(value: string | undefined): string {
   const trimmed = value?.trim() ?? "";

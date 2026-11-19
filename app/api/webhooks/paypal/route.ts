@@ -1,3 +1,4 @@
+import { PAYMENTS_OPEN } from "@/lib/commerce/gate";
 import { handlePayPalWebhook } from "@/lib/commerce/webhook";
 import { getDb } from "@/lib/db";
 import { createPayPalClientFromEnv } from "@/lib/paypal/client";
@@ -8,6 +9,9 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  if (!PAYMENTS_OPEN) {
+    return Response.json({ ok: false, code: "payments_closed", fulfilled: false, paid: false }, { status: 403 });
+  }
   const raw = await request.text();
   if (raw.length > 1_000_000) {
     return Response.json({ ok: false, code: "payload_too_large", fulfilled: false }, { status: 413 });

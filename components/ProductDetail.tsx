@@ -48,14 +48,13 @@ export function ProductDetail({
             <div className="gallery-frame">
               <Image src={image.src} alt={image.alt} fill sizes="(max-width: 700px) 80vw, 480px" />
             </div>
-            <figcaption>Sample illustration</figcaption>
+            <figcaption>Sample</figcaption>
           </figure>
         ))}
       </div>
     ),
     purchase: (
       <div className="purchase-block">
-        <p className="kicker">{collectionTitle(product.collection)} · Sample listing</p>
         <h1>{product.title}</h1>
         <p className="price price-large">{formatMoney(product.price, product.currency)}</p>
         <p className="lede">{product.description}</p>

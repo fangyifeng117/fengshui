@@ -52,22 +52,34 @@ export function CartEditor({ items }: { items: CartItem[] }) {
             <h2>
               <Link href={`/products/${item.slug}`}>{item.title}</Link>
             </h2>
-            <p className="fine">Sample · {formatMoney(item.unitAmountCents, item.currency)} each</p>
+            <p className="fine">{formatMoney(item.unitAmountCents, item.currency)} each</p>
             <div className="qty-row">
-              <label htmlFor={`qty-${item.productId}`}>Quantity</label>
-              <select
-                id={`qty-${item.productId}`}
-                value={item.quantity}
-                disabled={pendingId != null}
-                onChange={(event) => update(item.productId, Number(event.target.value))}
+              <button
+                type="button"
+                className="step"
+                aria-label={`Decrease quantity of ${item.title}`}
+                onClick={() => update(item.productId, item.quantity - 1)}
+                disabled={pendingId != null || item.quantity <= 1}
               >
-                {Array.from({ length: 9 }, (_, index) => index + 1).map((qty) => (
-                  <option key={qty} value={qty}>
-                    {qty}
-                  </option>
-                ))}
-              </select>
-              <button type="button" className="text-button" onClick={() => update(item.productId, 0)} disabled={pendingId != null}>
+                −
+              </button>
+              <span aria-live="polite">{item.quantity}</span>
+              <button
+                type="button"
+                className="step"
+                aria-label={`Increase quantity of ${item.title}`}
+                onClick={() => update(item.productId, item.quantity + 1)}
+                disabled={pendingId != null || item.quantity >= 9}
+              >
+                +
+              </button>
+              <button
+                type="button"
+                className="text-button"
+                aria-label={`Remove ${item.title}`}
+                onClick={() => update(item.productId, 0)}
+                disabled={pendingId != null}
+              >
                 Remove
               </button>
             </div>

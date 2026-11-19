@@ -5,14 +5,13 @@ import { products } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
 import { getDb } from "@/lib/db";
 import { formatMoney } from "@/lib/format";
-import { PayPalModeError, resolvePayPalMode } from "@/lib/paypal/mode";
 import { existingCartId } from "@/lib/request";
 import { readServerEnv } from "@/lib/server-config";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Checkout",
-  description: "PayPal handoff only. Sandbox is not connected, and sample items cannot be captured.",
+  description: "Test preview. Payment is off.",
   path: "/checkout",
 });
 
@@ -21,26 +20,18 @@ export default async function CheckoutPage() {
   const cartId = await existingCartId();
   const cart = cartId ? readCart(getDb(), cartId) : { id: "", version: 0, lines: [] };
   const quote = quoteCart(products, cart);
-  let liveDenied = false;
-  try {
-    resolvePayPalMode(env.paypalMode, env.nodeEnv);
-  } catch (error) {
-    liveDenied = error instanceof PayPalModeError && error.code === "live_mode_denied";
-    if (!(error instanceof PayPalModeError)) throw error;
-  }
   const state = describeCheckout({
     configured: env.paypalConfigured,
     demoBlocked: quote.demoBlocked,
-    liveDenied,
+    liveDenied: false,
     empty: quote.items.length === 0,
   });
 
   return (
     <div className="page narrow">
       <header className="section-head">
-        <p className="kicker">Checkout</p>
-        <h1>Payment handoff</h1>
-        <p>There is no card form on this site. The only processor path is PayPal, and it is disabled in this demo.</p>
+        <h1>Checkout</h1>
+        <p>Test preview. Payment is off.</p>
       </header>
       {quote.items.length === 0 ? (
         <p className="empty">
@@ -59,14 +50,9 @@ export default async function CheckoutPage() {
               ))}
             </ul>
             <p className="price price-large">{formatMoney(quote.amountCents, quote.currency)}</p>
-            <p className="fine">Shipping — TODO, not calculated. Tax is not calculated. This is a sample item total only.</p>
+            <p className="fine">Shipping and returns are drafts. Tax is not calculated.</p>
           </section>
-          <CheckoutDesk
-            state={state}
-            clientId={state.state === "ready" ? env.paypalClientId : null}
-            currency="USD"
-            demoBlocked={quote.demoBlocked}
-          />
+          <CheckoutDesk state={state} />
         </div>
       )}
     </div>

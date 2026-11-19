@@ -28,7 +28,6 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
   return (
     <div className="page">
       <header className="section-head">
-        <p className="kicker">Collection · Sample</p>
         <h1>{collection.title}</h1>
         <p>{collection.description}</p>
       </header>

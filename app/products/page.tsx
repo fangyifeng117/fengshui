@@ -32,9 +32,7 @@ export default async function ProductsPage({
   return (
     <div className="page">
       <header className="section-head">
-        <p className="kicker">Shop</p>
-        <h1>Sample catalog</h1>
-        <p>Every listing is an original drawing with an illustrative price. Filters only change this sample set.</p>
+        <h1>Shop</h1>
       </header>
       <form className="filters" action="/products" method="get">
         <label>

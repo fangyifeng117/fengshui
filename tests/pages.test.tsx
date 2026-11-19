@@ -67,14 +67,12 @@ describe("page structure", () => {
     expect(privacy).toContain("No privacy contact and no data-protection officer have been appointed");
   });
 
-  it("renders the disabled sandbox checkout state", () => {
-    const state = describeCheckout({ configured: false, demoBlocked: true, liveDenied: false, empty: false });
-    const html = renderToStaticMarkup(
-      <CheckoutDesk state={state} clientId={null} currency="USD" demoBlocked />,
-    );
-    expect(html).toContain('data-payment-state="sandbox_not_connected"');
-    expect(html).toContain("Sandbox not connected");
-    expect(html).toContain("MOCK");
+  it("renders checkout as a closed test preview", () => {
+    const closed = describeCheckout({ configured: true, demoBlocked: false, liveDenied: false, empty: false });
+    const html = renderToStaticMarkup(<CheckoutDesk state={closed} />);
+    expect(html).toContain('data-payment-state="payments_closed"');
+    expect(html).toContain("Payment is off");
+    expect(html).toContain("This test preview cannot take payment.");
     expect(html).not.toContain("paypal.com/sdk");
   });
 });

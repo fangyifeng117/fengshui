@@ -53,9 +53,9 @@ npm run build
 - 订单、捕获、webhook 事件写在 SQLite 文件里，不是进程内存
 - PayPal Orders API v2 的创建和捕获都在服务器上，并用内部订单号加购物车版本组成 `PayPal-Request-Id`，同一版本的重试沿用同一个请求号
 - `client_secret` 只出现在服务器代码路径里
-- 凭据缺失时，结账按钮是禁用的 **Sandbox not connected**。页面不会声称已经做过真实的 PayPal 批准或捕获
-- 目录里的样品 `sample: true` 且 `captureAllowed: false`，不能做真正的 capture
-- MOCK 按钮单独写一条 `mock_demonstration` 记录，不联系 PayPal，也不能把订单标成已支付
+- 这一轮预览里，`/api/checkout` 的 create、capture、mock 和 `/api/webhooks/paypal` 在进 PayPal 之前直接返回 `payments_closed`，`paid` 为 false。即使环境里误填了凭据，这些入口也不会向 PayPal 发请求，也不会把订单标成已支付
+- 结账页写明 **Test preview. Payment is off.** 禁用按钮是 **Payment is off**。没有 MOCK 成功按钮
+- 目录里的样品 `sample: true` 且 `captureAllowed: false`。订单库函数仍留在 `lib/commerce`，单元测试仍覆盖那些函数，但本轮不验收、不接入任何支付
 - webhook 在有凭据和 webhook id 时，每次都请求 PayPal 的 `verify-webhook-signature`，并带上服务器保存的 webhook id。核验不是 `SUCCESS` 的事件不会履约
 - 处理 `CHECKOUT.ORDER.APPROVED`、`PAYMENT.CAPTURE.COMPLETED`、`DENIED`、`PENDING`、`REFUNDED`
 - 同一事件只处理一次。已支付标记和库存扣减放在同一个立即事务里，重复事件或并发投递只扣一次库存

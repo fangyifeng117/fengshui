@@ -8,7 +8,7 @@ export const contentPages: ContentPage[] = [
     kicker: "Draft",
     paragraphs: [
       "This guide explains how to read the demonstration shop. Every product page is a sample. Names, materials, prices, and drawings are placeholders, not a merchant catalog.",
-      "Checkout does not capture a payment. PayPal sandbox credentials are not configured, and sample SKUs are blocked from genuine capture even if credentials are added later.",
+      "This test preview cannot take payment. Creating or capturing an order is closed on the server.",
     ],
     sections: [
       {
@@ -103,7 +103,7 @@ export const contentPages: ContentPage[] = [
       {
         heading: "Are the products for sale?",
         paragraphs: [
-          "No. Titles, materials, prices, and pictures are samples. The PayPal button is disabled because sandbox API credentials are not configured, and the catalog is also blocked from genuine capture.",
+          "No. Titles, materials, prices, and pictures are samples. This test preview cannot take payment.",
         ],
       },
       {
@@ -115,7 +115,7 @@ export const contentPages: ContentPage[] = [
       {
         heading: "Can I pay with a card form on this site?",
         paragraphs: [
-          "No. There is no card form. The only payment handoff designed here is PayPal, and it stays disabled until sandbox credentials exist and real SKUs replace the samples.",
+          "No. There is no card form, and payment is off.",
         ],
       },
       {
@@ -125,9 +125,9 @@ export const contentPages: ContentPage[] = [
         ],
       },
       {
-        heading: "What does the mock button do?",
+        heading: "Can this preview mark an order paid?",
         paragraphs: [
-          "It writes a record marked MOCK so the return page can be previewed. It does not contact PayPal and it cannot mark an order paid.",
+          "No. Checkout does not start a payment, and a return URL is not proof of payment.",
         ],
       },
     ],

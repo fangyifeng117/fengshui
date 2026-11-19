@@ -36,7 +36,6 @@ export function PurchaseActions({ productId }: { productId: string }) {
         {pending === "buy" ? "Opening checkout…" : "Buy now"}
       </button>
       {error ? <p className="form-error">{error}</p> : null}
-      <p className="fine">Buy now opens the disabled sandbox checkout. It does not capture a payment.</p>
     </div>
   );
 }
