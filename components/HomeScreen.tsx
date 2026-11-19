@@ -3,21 +3,18 @@ import { HeroArt } from "@/components/HeroArt";
 import { SupportEmail } from "@/components/SupportEmail";
 import { ProductCard } from "@/components/ProductCard";
 import { getFeaturedProducts } from "@/lib/catalog";
-import { homeCopy } from "@/lib/home-copy";
 import { copy } from "@/lib/i18n/messages";
 import { hrefFor, type Locale } from "@/lib/locale";
+import { places } from "@/lib/places";
 
 export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
   const text = copy(locale);
   const featured = getFeaturedProducts();
-  const questions =
-    locale === "zh"
-      ? [
-          { question: text.faq.pay, answer: text.faq.payAnswer, supportEmail: false },
-          { question: text.faq.pictures, answer: text.faq.picturesAnswer, supportEmail: false },
-          { question: "去哪里问问题？", answer: "使用客户支持地址。", supportEmail: true },
-        ]
-      : homeCopy.faq;
+  const questions = [
+    { question: text.faq.pay, answer: text.faq.payAnswer, supportEmail: false },
+    { question: text.faq.pictures, answer: text.faq.picturesAnswer, supportEmail: false },
+    { question: text.faq.ask, answer: text.faq.askAnswer, supportEmail: true },
+  ];
   return (
     <div className="page">
       <section className="hero" data-section="hero">
@@ -29,7 +26,7 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
             </Link>
           </div>
         </div>
-        <HeroArt />
+        <HeroArt label={text.product.sample} />
       </section>
       <section data-section="featured" aria-label={text.home.title}>
         <div className="product-grid">
@@ -37,6 +34,19 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
             <ProductCard key={product.id} product={product} locale={locale} />
           ))}
         </div>
+      </section>
+      <section data-section="places" aria-label={text.places.title}>
+        <div className="section-head">
+          <h2>{text.places.title}</h2>
+          <p>{text.places.notATemple}</p>
+        </div>
+        <ul className="place-links">
+          {places.map((place) => (
+            <li key={place.slug}>
+              <Link href={hrefFor(locale, `/temples/${place.slug}`)}>{place.name[locale]}</Link>
+            </li>
+          ))}
+        </ul>
       </section>
       <section data-section="faq" className="faq-teaser">
         <div className="section-head">

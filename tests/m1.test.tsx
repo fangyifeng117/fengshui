@@ -2,9 +2,17 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { BlessingDetail } from "@/components/BlessingDetail";
 import { BlessingIndex } from "@/components/BlessingIndex";
+import { CartEditor } from "@/components/CartEditor";
+import { Footer } from "@/components/Footer";
+import { HomeScreen } from "@/components/HomeScreen";
 import { PlaceDetail } from "@/components/PlaceDetail";
 import { PlacesIndex } from "@/components/PlacesIndex";
-import { SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
+import { ProductDetail } from "@/components/ProductDetail";
+import { getProductBySlug, getProducts, getRelatedProducts, collections } from "@/lib/catalog";
+import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER, SHORT_FOOTER_DISCLAIMER, ZH_EXACT_DISCLAIMER } from "@/lib/disclaimer";
+import { displayPhrase, zhCatalogCovers } from "@/lib/i18n/display";
+import { copy } from "@/lib/i18n/messages";
+import { homeCopy } from "@/lib/home-copy";
 import { routing } from "@/i18n/routing";
 import { hrefFor } from "@/lib/locale";
 import { getPlace, places, serviceDrafts } from "@/lib/places";
@@ -54,5 +62,87 @@ describe("M1 bilingual skeleton", () => {
     expect(detail).not.toContain("<form");
     const blob = JSON.stringify({ places, serviceDrafts, blessing, detail });
     for (const pattern of forbidden) expect(blob.match(pattern)).toBeNull();
+    expect(blessing).toContain("Not for sale");
+    expect(blessing).toContain("Draft: not on sale yet.");
+    expect(detail).toContain("尚未开售");
+    expect(detail).toContain("不能购买");
+  });
+
+  it("shows five mountain links on both homepages and keeps the FAQ meanings aligned", () => {
+    const english = renderToStaticMarkup(<HomeScreen />);
+    const chinese = renderToStaticMarkup(<HomeScreen locale="zh" />);
+    for (const name of ["Wutai Mountain", "Emei Mountain", "Putuo Mountain", "Jiuhua Mountain", "Xuedou Mountain"]) {
+      expect(english).toContain(name);
+    }
+    for (const name of ["五台山", "峨眉山", "普陀山", "九华山", "雪窦山"]) {
+      expect(chinese).toContain(name);
+      expect(chinese).toContain(`>${name}</a>`);
+    }
+    expect(chinese).toContain('href="/zh/temples/xuedou"');
+    expect(chinese).toContain("不是具体寺院");
+    expect(chinese).not.toContain("大雄宝殿");
+    expect(copy("en").faq.pictures).toBe(homeCopy.faq[1]?.question);
+    expect(copy("en").faq.picturesAnswer).toBe(homeCopy.faq[1]?.answer);
+    expect(copy("zh").faq.pictures).toBe("图片是真实库存吗？");
+    expect(copy("zh").faq.pictures).not.toContain("真实地方");
+    expect(copy("zh").faq.picturesAnswer).toContain("原创图稿");
+    expect(chinese).toContain("图片是真实库存吗？");
+    expect(english).toContain("Are the pictures of real stock?");
+  });
+
+  it("translates the Chinese catalog and keeps the fixed disclaimers", () => {
+    expect(SHORT_FOOTER_DISCLAIMER).toBe("For decorative & cultural use only — no results guaranteed. Full disclaimer.");
+    expect(EXACT_DISCLAIMER.startsWith("Disclaimer: Products and content on this site")).toBe(true);
+    expect(SERVICE_DRAFT_DISCLAIMER.startsWith("Sold as a cultural craft")).toBe(true);
+    expect(zhCatalogCovers(getProducts().map((product) => product.id), collections.map((item) => item.slug))).toBe(true);
+    const product = getProductBySlug("sample-red-cord-bracelet");
+    if (!product) throw new Error("missing product");
+    const english = renderToStaticMarkup(<ProductDetail product={product} related={getRelatedProducts(product)} />);
+    const chinese = renderToStaticMarkup(
+      <ProductDetail product={product} related={getRelatedProducts(product)} locale="zh" />,
+    );
+    expect(english).toContain("Sample Red Cord Bracelet");
+    expect(english).toContain("About this sample");
+    expect(english).toContain(EXACT_DISCLAIMER);
+    expect(english).not.toContain(ZH_EXACT_DISCLAIMER);
+    expect(chinese).toContain("样品红绳手串");
+    expect(chinese).toContain("绳编手串");
+    expect(chinese).toContain("样品");
+    expect(chinese).toContain(EXACT_DISCLAIMER);
+    expect(chinese).toContain(ZH_EXACT_DISCLAIMER);
+    expect(chinese).not.toContain("About this sample");
+    for (const item of getProducts()) {
+      for (const spec of item.specs) {
+        expect(displayPhrase(spec.label, item, "zh")).not.toBe(spec.label);
+        expect(displayPhrase(spec.value, item, "zh")).not.toBe(spec.value);
+      }
+    }
+    const footer = renderToStaticMarkup(<Footer locale="zh" />);
+    expect(footer).toContain("For decorative &amp; cultural use only — no results guaranteed.");
+    expect(footer).toContain("Full disclaimer.");
+    expect(footer).toContain("仅供装饰与文化用途，不保证任何结果。");
+    expect(footer).toContain("完整免责声明。");
+    expect(footer).toContain("绳编手串");
+    expect(footer).not.toContain("Cord bracelets");
+    const cart = renderToStaticMarkup(
+      <CartEditor
+        locale="zh"
+        items={[
+          {
+            productId: product.id,
+            slug: product.slug,
+            title: "样品红绳手串",
+            quantity: 1,
+            unitAmountCents: 2800,
+            currency: "USD",
+            image: product.images[0]?.src ?? "",
+            imageAlt: "样品图稿",
+          },
+        ]}
+      />,
+    );
+    expect(cart).toContain("移除");
+    expect(cart).toContain("每件");
+    expect(cart).toContain("样品红绳手串");
   });
 });

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { SupportEmail } from "@/components/SupportEmail";
 import { getCollections } from "@/lib/catalog";
-import { SHORT_FOOTER_DISCLAIMER } from "@/lib/disclaimer";
+import { SHORT_FOOTER_DISCLAIMER, ZH_SHORT_FOOTER_DISCLAIMER } from "@/lib/disclaimer";
+import { displayCollectionTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale, hrefFor, type Locale } from "@/lib/locale";
 
@@ -17,7 +18,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <Link href={hrefFor(locale, "/products")}>{text.footer.allSamples}</Link>
           {collections.map((collection) => (
             <Link key={collection.slug} href={hrefFor(locale, `/collections/${collection.slug}`)}>
-              {collection.title}
+              {displayCollectionTitle(collection, locale)}
             </Link>
           ))}
           <Link href={hrefFor(locale, "/temples")}>{text.footer.places}</Link>
@@ -47,8 +48,14 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
         </section>
       </div>
       <p className="footer-disclaimer">
-        {sentence} <Link href={hrefFor(locale, "/legal/disclaimer")}>{text.footer.fullDisclaimer}</Link>
+        {sentence} <Link href={hrefFor(locale, "/legal/disclaimer")}>Full disclaimer.</Link>
       </p>
+      {locale === "zh" ? (
+        <p className="footer-disclaimer" lang="zh">
+          {ZH_SHORT_FOOTER_DISCLAIMER.replace("完整免责声明。", "")}
+          <Link href={hrefFor(locale, "/legal/disclaimer")}>完整免责声明。</Link>
+        </p>
+      ) : null}
     </footer>
   );
 }

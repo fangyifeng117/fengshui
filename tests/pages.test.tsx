@@ -42,9 +42,14 @@ describe("page structure", () => {
     const html = renderToStaticMarkup(<HomeScreen />);
     const hero = html.indexOf('data-section="hero"');
     const featured = html.indexOf('data-section="featured"');
+    const places = html.indexOf('data-section="places"');
     const faq = html.indexOf('data-section="faq"');
     expect(hero).toBeLessThan(featured);
-    expect(featured).toBeLessThan(faq);
+    expect(featured).toBeLessThan(places);
+    expect(places).toBeLessThan(faq);
+    expect(html).toContain("Wutai Mountain");
+    expect(html).toContain("Not a specific temple, and not an authorized partnership.");
+    expect(html).toContain("Are the pictures of real stock?");
     const footer = renderToStaticMarkup(<Footer />);
     expect(footer).toContain("For decorative &amp; cultural use only — no results guaranteed.");
     expect(footer).toContain("Full disclaimer.");

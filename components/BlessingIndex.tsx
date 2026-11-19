@@ -24,6 +24,7 @@ export function BlessingIndex({ locale }: { locale: Locale }) {
           </Link>
         ))}
       </div>
+      <p>{text.blessing.draftNote}</p>
       <ServiceDisclaimer />
     </div>
   );

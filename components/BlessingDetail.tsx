@@ -12,10 +12,12 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
         <p>{text.demo}</p>
         <h1>{service.title[locale]}</h1>
         <p>{text.comingSoon}</p>
+        <p>{text.blessing.lede}</p>
         <p>{service.summary[locale]}</p>
         <p>{text.blessing.noForm}</p>
       </header>
       <AbstractMark label={text.demo} />
+      <p>{text.blessing.draftNote}</p>
       <ServiceDisclaimer />
     </div>
   );

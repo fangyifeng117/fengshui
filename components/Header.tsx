@@ -3,6 +3,7 @@ import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { quoteCart, readCart } from "@/lib/cart";
 import { getCollections, products } from "@/lib/catalog";
 import { getDb } from "@/lib/db";
+import { displayCollectionTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale, hrefFor, type Locale } from "@/lib/locale";
 import { DEFAULT_ANNOUNCEMENT, publicConfig } from "@/lib/public-config";
@@ -35,7 +36,7 @@ export async function Header({ locale = "en" }: { locale?: Locale }) {
             <div className="collection-menu">
               {collections.map((collection) => (
                 <Link key={collection.slug} href={hrefFor(locale, `/collections/${collection.slug}`)}>
-                  {collection.title}
+                  {displayCollectionTitle(collection, locale)}
                 </Link>
               ))}
             </div>

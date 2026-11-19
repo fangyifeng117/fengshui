@@ -5,7 +5,15 @@ import Image from "next/image";
 
 type GalleryImage = { src: string; alt: string };
 
-export function Gallery({ images }: { images: GalleryImage[] }) {
+export function Gallery({
+  images,
+  sampleLabel = "Sample",
+  showLabel = "Show sample illustration",
+}: {
+  images: GalleryImage[];
+  sampleLabel?: string;
+  showLabel?: string;
+}) {
   const [active, setActive] = useState(0);
   const current = images[active] ?? images[0];
   if (!current) return null;
@@ -15,7 +23,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
       <figure className="gallery-main">
         <div className="gallery-frame">
           <Image src={current.src} alt={current.alt} fill sizes="(max-width: 700px) 100vw, 50vw" priority />
-          <span className="pill">Sample</span>
+          <span className="pill">{sampleLabel}</span>
         </div>
       </figure>
       {images.length > 1 ? (
@@ -26,7 +34,7 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
               type="button"
               className="thumb"
               aria-pressed={index === active}
-              aria-label={`Show sample illustration ${index + 1}`}
+              aria-label={`${showLabel} ${index + 1}`}
               onClick={() => setActive(index)}
             >
               <Image src={image.src} alt="" fill sizes="80px" />

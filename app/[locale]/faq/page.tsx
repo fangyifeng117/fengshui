@@ -29,9 +29,9 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
           <p>{text.faq.picturesAnswer}</p>
         </details>
         <details>
-          <summary>{locale === "zh" ? "去哪里问问题？" : "Where do I ask a question?"}</summary>
+          <summary>{text.faq.ask}</summary>
           <p>
-            {locale === "zh" ? "使用客户支持地址。" : "Use the customer-support address."} <SupportEmail />
+            {text.faq.askAnswer} <SupportEmail />
           </p>
         </details>
       </div>

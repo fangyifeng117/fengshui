@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { formatMoney } from "@/lib/format";
+import { copy } from "@/lib/i18n/messages";
 import { hrefFor, type Locale } from "@/lib/locale";
 
 type CartItem = {
@@ -18,6 +19,7 @@ type CartItem = {
 };
 
 export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale?: Locale }) {
+  const text = copy(locale);
   const [pendingId, setPendingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,13 +33,13 @@ export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale
         body: JSON.stringify({ productId, quantity }),
       });
       if (!response.ok) {
-        setError("The cart could not be updated.");
+        setError(text.cart.error);
         setPendingId(null);
         return;
       }
       window.location.reload();
     } catch {
-      setError("The cart could not be updated.");
+      setError(text.cart.error);
       setPendingId(null);
     }
   }
@@ -53,12 +55,14 @@ export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale
             <h2>
               <Link href={hrefFor(locale, `/products/${item.slug}`)}>{item.title}</Link>
             </h2>
-            <p className="fine">{formatMoney(item.unitAmountCents, item.currency)} each</p>
+            <p className="fine">
+              {formatMoney(item.unitAmountCents, item.currency)} {text.cart.each}
+            </p>
             <div className="qty-row">
               <button
                 type="button"
                 className="step"
-                aria-label={`Decrease quantity of ${item.title}`}
+                aria-label={`${text.cart.decrease} ${item.title}`}
                 onClick={() => update(item.productId, item.quantity - 1)}
                 disabled={pendingId != null || item.quantity <= 1}
               >
@@ -68,7 +72,7 @@ export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale
               <button
                 type="button"
                 className="step"
-                aria-label={`Increase quantity of ${item.title}`}
+                aria-label={`${text.cart.increase} ${item.title}`}
                 onClick={() => update(item.productId, item.quantity + 1)}
                 disabled={pendingId != null || item.quantity >= 9}
               >
@@ -77,11 +81,11 @@ export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale
               <button
                 type="button"
                 className="text-button"
-                aria-label={`Remove ${item.title}`}
+                aria-label={`${text.cart.remove} ${item.title}`}
                 onClick={() => update(item.productId, 0)}
                 disabled={pendingId != null}
               >
-                Remove
+                {text.cart.remove}
               </button>
             </div>
           </div>

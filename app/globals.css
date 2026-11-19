@@ -118,6 +118,8 @@ p { margin: 0; }
 .product-grid, .place-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem 1.2rem; margin-top: 1.2rem; }
 .place-grid h2 { font-size: 1.5rem; }
 .abstract-mark { width: 100%; height: auto; border: 1px solid var(--line); background: var(--paper); }
+.place-links { display: flex; flex-wrap: wrap; gap: 0.2rem 1.25rem; list-style: none; padding: 0; margin: 0.2rem 0 0; }
+.place-links a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .lang-switch { display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; }
 .lang-switch a { text-decoration: none; }
 .lang-switch a[aria-current="page"] { border-bottom: 1px solid currentColor; }

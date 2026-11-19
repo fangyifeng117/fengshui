@@ -4,6 +4,7 @@ import { quoteCart, readCart } from "@/lib/cart";
 import { getProductById, products } from "@/lib/catalog";
 import { getDb } from "@/lib/db";
 import { formatMoney } from "@/lib/format";
+import { displayAlt, displayTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale, hrefFor } from "@/lib/locale";
 import { existingCartId } from "@/lib/request";
@@ -33,12 +34,12 @@ export default async function CartPage({ params }: { params: Promise<{ locale: s
       {
         productId: item.productId,
         slug: item.slug,
-        title: item.title,
+        title: displayTitle(product, locale),
         quantity: item.quantity,
         unitAmountCents: item.unitAmountCents,
         currency: item.currency,
         image: product.images[0]?.src ?? "",
-        imageAlt: product.images[0]?.alt ?? "",
+        imageAlt: displayAlt(product, 0, locale),
       },
     ];
   });
