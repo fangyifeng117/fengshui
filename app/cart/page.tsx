@@ -50,8 +50,8 @@ export default async function CartPage() {
             <h2>Total</h2>
             <p className="price price-large">{formatMoney(quote.amountCents, quote.currency)}</p>
             <p className="fine">Shipping and returns are drafts. This total is the sample item total only.</p>
-            <Link className="button" href="/checkout">
-              Continue to checkout
+            <Link className="button button-ghost" href="/checkout">
+              View demo checkout
             </Link>
           </aside>
         </>

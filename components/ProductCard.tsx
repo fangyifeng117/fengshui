@@ -8,7 +8,9 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <Link className="card" href={`/products/${product.slug}`}>
       <div className="card-media">
-        {image ? <Image src={image.src} alt={image.alt} fill sizes="(max-width: 700px) 100vw, 33vw" /> : null}
+        {image ? (
+          <Image src={image.src} alt={image.alt} fill sizes="(max-width: 700px) 100vw, 33vw" loading="eager" />
+        ) : null}
         <span className="pill">Sample</span>
       </div>
       <h3>{product.title}</h3>

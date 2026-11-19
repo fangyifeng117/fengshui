@@ -27,14 +27,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      <section className="trust-strip" data-section="trust">
-        <h2>{homeCopy.trustTitle}</h2>
-        <ul className="trust-grid">
-          {homeCopy.trust.map((item) => (
-            <li key={item.title}>{item.title}</li>
-          ))}
-        </ul>
-      </section>
       <section data-section="faq" className="faq-teaser">
         <div className="section-head">
           <h2>{homeCopy.faqTitle}</h2>

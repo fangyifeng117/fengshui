@@ -6,7 +6,4 @@
     <path d="M250 480c30-190 270-190 300 0" fill="none" stroke="#241f1c" stroke-width="26" stroke-linecap="round"/>
     <path d="M270 490c50 80 90 70 130 0" fill="none" stroke="#241f1c" stroke-width="14"/>
     <circle cx="400" cy="310" r="18" fill="#8e2a22"/>
-  
-  <text x="72" y="900" fill="#241f1c" font-family="Georgia, serif" font-size="32">Sample illustration</text>
-  <text x="560" y="140" fill="#8e2a22" font-family="Georgia, serif" font-size="22" letter-spacing="3">SAMPLE</text>
 </svg>

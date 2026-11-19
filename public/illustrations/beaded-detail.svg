@@ -7,7 +7,4 @@
     <circle cx="400" cy="520" r="84" fill="#8e2a22" stroke="#241f1c" stroke-width="4"/>
     <circle cx="560" cy="450" r="62" fill="#241f1c"/>
     <circle cx="400" cy="500" r="10" fill="#f6f1e7"/>
-  
-  <text x="72" y="900" fill="#241f1c" font-family="Georgia, serif" font-size="32">Sample detail</text>
-  <text x="560" y="140" fill="#8e2a22" font-family="Georgia, serif" font-size="22" letter-spacing="3">SAMPLE</text>
 </svg>

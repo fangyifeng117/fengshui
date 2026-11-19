@@ -1,13 +1,6 @@
 export const homeCopy = {
   title: "Samples",
   primaryCta: "Shop",
-  trustTitle: "This preview",
-  trust: [
-    { title: "Sample prices" },
-    { title: "Payment is off" },
-    { title: "No promised results" },
-    { title: "Shipping and returns are drafts" },
-  ],
   faqTitle: "Questions",
   faq: [
     {

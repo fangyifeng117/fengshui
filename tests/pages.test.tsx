@@ -35,22 +35,21 @@ describe("page structure", () => {
     ]);
     expect(html).toContain(EXACT_DISCLAIMER);
     expect(html).toContain("Add to cart");
-    expect(html).toContain("Buy now");
+    expect(html).toContain("View demo checkout");
   });
 
   it("orders the home page and shows the short footer disclaimer", () => {
     const html = renderToStaticMarkup(<HomePage />);
     const hero = html.indexOf('data-section="hero"');
     const featured = html.indexOf('data-section="featured"');
-    const trust = html.indexOf('data-section="trust"');
     const faq = html.indexOf('data-section="faq"');
     expect(hero).toBeLessThan(featured);
-    expect(featured).toBeLessThan(trust);
-    expect(trust).toBeLessThan(faq);
+    expect(featured).toBeLessThan(faq);
     const footer = renderToStaticMarkup(<Footer />);
     expect(footer).toContain("For decorative &amp; cultural use only — no results guaranteed.");
     expect(footer).toContain("Full disclaimer.");
-    expect(footer).toContain("TODO");
+    expect(footer).toContain("Draft. Legal entity, phone number, street address, and domain are not confirmed.");
+    expect(footer).not.toContain("TODO");
     expect(footer).toContain(`mailto:${publicConfig.supportEmail}`);
     expect(footer).toContain("Customer support:");
     expect(footer).toContain("Legal entity");

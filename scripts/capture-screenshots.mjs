@@ -28,6 +28,18 @@ for (const viewport of viewports) {
   if (modules.join(",") !== expected.join(",")) {
     throw new Error(`module order ${modules.join(",")}`);
   }
+  const blankRelated = await page.locator("[data-module=related] img").evaluateAll((imgs) =>
+    imgs.filter((img) => !img.complete || img.naturalWidth === 0).map((img) => img.alt),
+  );
+  if (blankRelated.length) throw new Error(`blank related images: ${blankRelated.join(", ")}`);
+  if (viewport.name === "desktop") {
+    const title = await page.getByRole("heading", { level: 1 }).boundingBox();
+    const price = await page.locator(".price-large").boundingBox();
+    const add = await page.getByRole("button", { name: "Add to cart" }).boundingBox();
+    for (const [name, box] of [["title", title], ["price", price], ["add", add]]) {
+      if (!box || box.y > 900) throw new Error(`${name} is outside the first desktop screen`);
+    }
+  }
   await page.screenshot({ path: path.join(outDir, `review-product-${viewport.name}.png`), fullPage: true });
 
   await page.getByRole("button", { name: "Add to cart" }).click();
@@ -44,7 +56,7 @@ for (const viewport of viewports) {
   await changeQty("Decrease quantity", "1");
   await page.screenshot({ path: path.join(outDir, `review-cart-${viewport.name}.png`), fullPage: true });
 
-  await page.getByRole("link", { name: "Continue to checkout" }).click();
+  await page.getByRole("link", { name: "View demo checkout" }).click();
   await page.waitForURL("**/checkout");
   const disabled = page.getByRole("button", { name: "Payment is off" });
   await disabled.waitFor();

@@ -16,7 +16,7 @@ export function Footer() {
             </Link>
           ))}
           <Link href="/cart">Cart</Link>
-          <Link href="/content/shipping-returns">Shipping and returns (TODO)</Link>
+          <Link href="/content/shipping-returns">Shipping and returns</Link>
         </section>
         <section>
           <h2>Legal</h2>
@@ -31,7 +31,7 @@ export function Footer() {
             Customer support: <SupportEmail />
           </p>
           <p>Temporary public address for shop questions.</p>
-          <p>TODO. Legal entity, phone number, street address, and domain are not confirmed.</p>
+          <p>Draft. Legal entity, phone number, street address, and domain are not confirmed.</p>
         </section>
       </div>
       <p className="footer-disclaimer">

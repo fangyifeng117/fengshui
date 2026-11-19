@@ -33,7 +33,7 @@ export function PurchaseActions({ productId }: { productId: string }) {
         {pending === "add" ? "Adding…" : "Add to cart"}
       </button>
       <button type="button" className="button button-ghost" onClick={() => submit("buy")} disabled={pending != null}>
-        {pending === "buy" ? "Opening checkout…" : "Buy now"}
+        {pending === "buy" ? "Opening…" : "View demo checkout"}
       </button>
       {error ? <p className="form-error">{error}</p> : null}
     </div>

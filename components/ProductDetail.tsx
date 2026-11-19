@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ExactDisclaimer } from "@/components/ExactDisclaimer";
+import { Gallery } from "@/components/Gallery";
 import { PurchaseActions } from "@/components/PurchaseActions";
 import { ProductCard } from "@/components/ProductCard";
 import { collectionTitle } from "@/lib/catalog";
@@ -41,24 +41,13 @@ export function ProductDetail({
         <span>{product.title}</span>
       </nav>
     ),
-    gallery: (
-      <div className="gallery-scroll" aria-label="Sample illustrations">
-        {product.images.map((image) => (
-          <figure key={image.src}>
-            <div className="gallery-frame">
-              <Image src={image.src} alt={image.alt} fill sizes="(max-width: 700px) 80vw, 480px" />
-            </div>
-            <figcaption>Sample</figcaption>
-          </figure>
-        ))}
-      </div>
-    ),
+    gallery: <Gallery images={product.images} />,
     purchase: (
       <div className="purchase-block">
         <h1>{product.title}</h1>
         <p className="price price-large">{formatMoney(product.price, product.currency)}</p>
-        <p className="lede">{product.description}</p>
         <PurchaseActions productId={product.id} />
+        <p>{product.description}</p>
       </div>
     ),
     benefits: (
