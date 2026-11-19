@@ -7,6 +7,8 @@ import { ProductCard } from "@/components/ProductCard";
 import { collectionTitle } from "@/lib/catalog";
 import { formatMoney } from "@/lib/format";
 import { trustBadges } from "@/lib/home-copy";
+import { copy } from "@/lib/i18n/messages";
+import { hrefFor } from "@/lib/locale";
 import type { Product } from "@/lib/types";
 
 export const PRODUCT_MODULE_ORDER = [
@@ -25,18 +27,21 @@ export const PRODUCT_MODULE_ORDER = [
 export function ProductDetail({
   product,
   related,
+  locale = "en",
 }: {
   product: Product;
   related: Product[];
+  locale?: "en" | "zh";
 }) {
+  const text = copy(locale);
   const modules: Record<(typeof PRODUCT_MODULE_ORDER)[number], ReactNode> = {
     breadcrumb: (
       <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link href="/">Home</Link>
+        <Link href={hrefFor(locale, "/")}>{text.product.home}</Link>
         <span aria-hidden="true">/</span>
-        <Link href="/products">Shop</Link>
+        <Link href={hrefFor(locale, "/products")}>{text.nav.shop}</Link>
         <span aria-hidden="true">/</span>
-        <Link href={`/collections/${product.collection}`}>{collectionTitle(product.collection)}</Link>
+        <Link href={hrefFor(locale, `/collections/${product.collection}`)}>{collectionTitle(product.collection)}</Link>
         <span aria-hidden="true">/</span>
         <span>{product.title}</span>
       </nav>
@@ -46,7 +51,15 @@ export function ProductDetail({
       <div className="purchase-block">
         <h1>{product.title}</h1>
         <p className="price price-large">{formatMoney(product.price, product.currency)}</p>
-        <PurchaseActions productId={product.id} />
+        <PurchaseActions
+          productId={product.id}
+          locale={locale}
+          addLabel={text.product.add}
+          buyLabel={text.product.view}
+          pendingAdd={text.product.adding}
+          pendingBuy={text.product.opening}
+          errorLabel={text.product.error}
+        />
         <p>{product.description}</p>
       </div>
     ),
@@ -117,7 +130,7 @@ export function ProductDetail({
         <h2>Related samples</h2>
         <div className="product-grid">
           {related.map((item) => (
-            <ProductCard key={item.id} product={item} />
+            <ProductCard key={item.id} product={item} locale={locale} />
           ))}
         </div>
       </div>

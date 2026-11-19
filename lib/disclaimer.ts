@@ -3,3 +3,6 @@ export const EXACT_DISCLAIMER =
 
 export const SHORT_FOOTER_DISCLAIMER =
   "For decorative & cultural use only — no results guaranteed. Full disclaimer.";
+
+export const SERVICE_DRAFT_DISCLAIMER =
+  "Sold as a cultural craft and ceremonial keepsake. Traditional beliefs are shared for cultural interest only; no spiritual, health, or fortune outcomes are claimed or guaranteed. Blessing experience service is a cultural and ceremonial documentation service, not a religious intermediary service.";

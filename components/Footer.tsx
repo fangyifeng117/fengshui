@@ -1,41 +1,53 @@
 import Link from "next/link";
 import { SupportEmail } from "@/components/SupportEmail";
 import { getCollections } from "@/lib/catalog";
+import { SHORT_FOOTER_DISCLAIMER } from "@/lib/disclaimer";
+import { copy } from "@/lib/i18n/messages";
+import { asLocale, hrefFor, type Locale } from "@/lib/locale";
 
-export function Footer() {
+export function Footer({ locale = "en" }: { locale?: Locale }) {
+  const text = copy(asLocale(locale));
   const collections = getCollections();
+  const sentence = SHORT_FOOTER_DISCLAIMER.replace(" Full disclaimer.", "");
   return (
     <footer className="site-footer">
       <div className="footer-grid">
         <section>
-          <h2>Shop</h2>
-          <Link href="/products">All samples</Link>
+          <h2>{text.footer.shop}</h2>
+          <Link href={hrefFor(locale, "/products")}>{text.footer.allSamples}</Link>
           {collections.map((collection) => (
-            <Link key={collection.slug} href={`/collections/${collection.slug}`}>
+            <Link key={collection.slug} href={hrefFor(locale, `/collections/${collection.slug}`)}>
               {collection.title}
             </Link>
           ))}
-          <Link href="/cart">Cart</Link>
-          <Link href="/content/shipping-returns">Shipping and returns</Link>
+          <Link href={hrefFor(locale, "/temples")}>{text.footer.places}</Link>
+          <Link href={hrefFor(locale, "/blessing")}>{text.footer.blessing}</Link>
+          <Link href={hrefFor(locale, "/cart")}>{text.nav.cart}</Link>
+          <Link href={hrefFor(locale, "/shipping")}>{text.footer.shipping}</Link>
         </section>
         <section>
-          <h2>Legal</h2>
-          <Link href="/legal/disclaimer">Disclaimer</Link>
-          <Link href="/legal/privacy">Privacy</Link>
-          <Link href="/legal/terms">Terms</Link>
-          <Link href="/content/cultural-notes">Cultural notes</Link>
+          <h2>{text.footer.legal}</h2>
+          <Link href={hrefFor(locale, "/legal/disclaimer")}>{text.footer.disclaimer}</Link>
+          <Link href={hrefFor(locale, "/legal/privacy")}>{text.footer.privacy}</Link>
+          <Link href={hrefFor(locale, "/legal/terms")}>{text.footer.terms}</Link>
+          <Link href={hrefFor(locale, "/content/cultural-notes")}>{text.footer.notes}</Link>
+          <Link href={hrefFor(locale, "/about")}>{text.footer.about}</Link>
+          <Link href={hrefFor(locale, "/faq")}>{text.footer.faq}</Link>
         </section>
         <section>
-          <h2>Contact</h2>
+          <h2>{text.footer.contact}</h2>
           <p>
-            Customer support: <SupportEmail />
+            {text.footer.supportLead} <SupportEmail />
           </p>
-          <p>Temporary public address for shop questions.</p>
-          <p>Draft. Legal entity, phone number, street address, and domain are not confirmed.</p>
+          <p>{text.footer.supportNote}</p>
+          <p>{text.footer.draftFacts}</p>
+          <Link href={hrefFor(locale, "/videos")}>{text.footer.videos}</Link>
+          <Link href={hrefFor(locale, "/stories")}>{text.footer.stories}</Link>
+          <Link href={hrefFor(locale, "/account")}>{text.footer.account}</Link>
         </section>
       </div>
       <p className="footer-disclaimer">
-        For decorative & cultural use only — no results guaranteed. <Link href="/legal/disclaimer">Full disclaimer.</Link>
+        {sentence} <Link href={hrefFor(locale, "/legal/disclaimer")}>{text.footer.fullDisclaimer}</Link>
       </p>
     </footer>
   );

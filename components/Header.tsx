@@ -1,11 +1,15 @@
 import Link from "next/link";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { quoteCart, readCart } from "@/lib/cart";
 import { getCollections, products } from "@/lib/catalog";
 import { getDb } from "@/lib/db";
-import { publicConfig } from "@/lib/public-config";
+import { copy } from "@/lib/i18n/messages";
+import { asLocale, hrefFor, type Locale } from "@/lib/locale";
+import { DEFAULT_ANNOUNCEMENT, publicConfig } from "@/lib/public-config";
 import { existingCartId } from "@/lib/request";
 
-export async function Header() {
+export async function Header({ locale = "en" }: { locale?: Locale }) {
+  const text = copy(asLocale(locale));
   const collections = getCollections();
   let count = 0;
   const cartId = await existingCartId();
@@ -13,31 +17,37 @@ export async function Header() {
     const cart = readCart(getDb(), cartId);
     count = quoteCart(products, cart).items.reduce((sum, item) => sum + item.quantity, 0);
   }
+  const announcement =
+    publicConfig.announcement === DEFAULT_ANNOUNCEMENT ? text.announcement : publicConfig.announcement;
 
   return (
     <header className="site-header">
-      {publicConfig.announcement ? <p className="announcement">{publicConfig.announcement}</p> : null}
+      {announcement ? <p className="announcement">{announcement}</p> : null}
       <div className="header-inner">
-        <Link className="wordmark" href="/">
-          <span>{publicConfig.brandName.replace(" — Demo", "")}</span>
-          <small>Demo</small>
+        <Link className="wordmark" href={hrefFor(locale, "/")}>
+          <span>{publicConfig.brandName}</span>
+          <small>{text.demo}</small>
         </Link>
         <nav className="nav" aria-label="Primary">
-          <Link href="/products">Shop</Link>
+          <Link href={hrefFor(locale, "/products")}>{text.nav.shop}</Link>
           <details>
-            <summary>Collections</summary>
+            <summary>{text.nav.collections}</summary>
             <div className="collection-menu">
               {collections.map((collection) => (
-                <Link key={collection.slug} href={`/collections/${collection.slug}`}>
+                <Link key={collection.slug} href={hrefFor(locale, `/collections/${collection.slug}`)}>
                   {collection.title}
                 </Link>
               ))}
             </div>
           </details>
-          <Link href="/content/guide">Guide</Link>
-          <Link href="/cart" data-cart-count={count}>
-            Cart{count > 0 ? ` (${count})` : ""}
+          <Link href={hrefFor(locale, "/temples")}>{text.nav.places}</Link>
+          <Link href={hrefFor(locale, "/blessing")}>{text.nav.blessing}</Link>
+          <Link href={hrefFor(locale, "/content/guide")}>{text.nav.guide}</Link>
+          <Link href={hrefFor(locale, "/cart")} data-cart-count={count}>
+            {text.nav.cart}
+            {count > 0 ? ` (${count})` : ""}
           </Link>
+          <LanguageSwitch label={text.nav.language} />
         </nav>
       </div>
     </header>

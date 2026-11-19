@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Fraunces, Outfit } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { headers } from "next/headers";
 import { publicConfig } from "@/lib/public-config";
 import { pageMetadata } from "@/lib/seo";
 import "./globals.css";
@@ -23,17 +22,16 @@ export const metadata: Metadata = {
   }),
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const locale = (await headers()).get("X-NEXT-INTL-LOCALE") === "zh" ? "zh" : "en";
   return (
-    <html lang="en" className={`${outfit.variable} ${fraunces.variable}`}>
-      <body>
-        <a className="skip" href="#content">
-          Skip to content
-        </a>
-        <Header />
-        <main id="content">{children}</main>
-        <Footer />
-      </body>
+    <html lang={locale} className={`${outfit.variable} ${fraunces.variable}`}>
+      {publicConfig.indexingApproved ? null : (
+        <head>
+          <meta name="robots" content="noindex, nofollow, nocache" />
+        </head>
+      )}
+      <body>{children}</body>
     </html>
   );
 }

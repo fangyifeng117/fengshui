@@ -1,6 +1,6 @@
 # 文化饰品示范店
 
-英文界面、美元标价的 Next.js 示范店。品牌名尚未确认，代码里的默认名称仍是 **Cultural Jewelry — Demo**。千愿 / QIANYUAN 只是一个未定稿的建议，没有写成当前品牌。页面结构参考的是普通饰品店的浏览方式（首页、系列、商品、购物车、结账），文案、配色和插画都是为这个示范单独写的。这里没有借用其他商店的名称、商标、图片或商品文案。
+英文为主、中文为 `/zh` 的 Next.js 示范店。品牌名尚未确认，页内占位是 **BRAND_NAME**，并标明 Demo。千愿 / QIANYUAN 只是一个未定稿的建议，没有写成当前品牌。本轮只加了双语骨架和五处名山的文化分类草稿，没有接入支付、数据库或追踪。页面结构参考的是普通饰品店的浏览方式（首页、系列、商品、购物车、结账），文案、配色和插画都是为这个示范单独写的。这里没有借用其他商店的名称、商标、图片或商品文案。
 
 这不是一家正在营业的商店。商品名称、材质、价格和图片都标明为 sample。结账不会真正收款。
 
@@ -33,7 +33,7 @@ npm run build
 
 | 变量 | 空白时的行为 |
 | --- | --- |
-| `NEXT_PUBLIC_BRAND_NAME` | `Cultural Jewelry — Demo` |
+| `NEXT_PUBLIC_BRAND_NAME` | `BRAND_NAME`。未设置时页面显示这个占位，并另标 Demo |
 | `NEXT_PUBLIC_BASE_URL` | `http://localhost:3000`，用于 canonical 和 Open Graph |
 | `NEXT_PUBLIC_ANNOUNCEMENT` | 显示默认的示范公告 |
 | `NEXT_PUBLIC_SUPPORT_EMAIL` | 空白时使用已批准的临时公开客服邮箱 `fangyifeng117@gmail.com`。只用于店铺问题，不是隐私或 DPO 联系人 |
@@ -46,9 +46,10 @@ npm run build
 
 ## 已实现
 
-- 固定路由：`/`、`/products`、`/products/[slug]`、`/collections/[slug]`、`/cart`、`/checkout`、`/order/success`、`/order/cancel`、`/content/[slug]`、`/legal/disclaimer`、`/legal/privacy`、`/legal/terms`、`/api/webhooks/paypal`
-- 首页顺序：主视觉、精选样品、说明条、问题预告
-- 商品页顺序：面包屑、图库、标题与价格及加入购物车/立即购买、合规说明、信任备注、规格、日常使用与摆放、免责声明原文、问答、相关样品
+- 固定路由仍可用：`/`、`/products`、`/products/[slug]`、`/collections/[slug]`、`/cart`、`/checkout`、`/order/success`、`/order/cancel`、`/content/[slug]`、`/legal/disclaimer`、`/legal/privacy`、`/legal/terms`、`/api/webhooks/paypal`。英文不带前缀。中文是 `/zh` 下的同一路径
+- M1 草稿页：`/temples`、`/temples/[slug]`、`/blessing`、`/blessing/[slug]`、`/videos`、`/stories`、`/account`、`/about`、`/faq`、`/shipping`，以及对应的 `/zh` 路径。五处名山只是文化分类，雪窦山地域标成待核实。相关样品写 inspired-by，不是真实来源。祈福服务是 Coming soon，不能购买，也没有收集表单
+- 首页顺序：主视觉、精选样品、问题预告
+- 商品页顺序：面包屑、图库、标题与价格及加入购物车 / View demo checkout、合规说明、信任备注、规格、日常使用与摆放、免责声明原文、问答、相关样品。桌面把图库和购买信息排在同一屏，模块顺序没有改
 - 价格和库存以服务器上的商品目录为准。浏览器里自带的单价会被忽略
 - 订单、捕获、webhook 事件写在 SQLite 文件里，不是进程内存
 - PayPal Orders API v2 的创建和捕获都在服务器上，并用内部订单号加购物车版本组成 `PayPal-Request-Id`，同一版本的重试沿用同一个请求号
@@ -63,7 +64,8 @@ npm run build
 - 返回 URL 上的 `paid`、`status` 等参数不能当作付款证明
 - `PENDING`、取消和 MOCK 都不会显示为已支付
 - 不提供卡号表单，不自动退款，不打款，不发邮件
-- sitemap、robots、canonical、Open Graph。结构化数据没有评分和评论
+- sitemap、robots、canonical、hreflang、Open Graph。未批准收录时 robots 是 `Disallow: /`，页面是 noindex。结构化数据没有评分和评论
+- 没有接入 Stripe、Prisma、PostgreSQL、对象存储、邮件、分析或订阅。支付入口继续关闭
 - 配送、退货、法律主体、电话、街道地址和域名仍是 TODO
 - 临时公开客服邮箱集中在 `publicConfig.supportEmail`，页脚、首页问题、指南、问答和条款里用 `mailto:` 链接。隐私页写明该地址尚未被指定为隐私联系人或 DPO
 

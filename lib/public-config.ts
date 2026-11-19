@@ -8,10 +8,12 @@ export type PublicConfig = {
   supportEmail: string;
 };
 
-const DEFAULT_BRAND = "Cultural Jewelry — Demo";
+/** Unconfirmed brand. The visible name stays this placeholder until a brand is chosen. */
+export const BRAND_NAME = "BRAND_NAME";
+const DEFAULT_BRAND = BRAND_NAME;
 const DEFAULT_SUPPORT_EMAIL = "fangyifeng117@gmail.com";
 const DEFAULT_BASE = "http://localhost:3000";
-const DEFAULT_ANNOUNCEMENT = "Sample catalog. Payment is off.";
+export const DEFAULT_ANNOUNCEMENT = "Sample catalog. Payment is off.";
 
 function supportEmailFromEnv(value: string | undefined): string {
   const trimmed = value?.trim() ?? "";

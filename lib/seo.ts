@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { hrefFor } from "@/lib/locale";
 import { absoluteUrl, publicConfig } from "@/lib/public-config";
 
 export function robotsMetadata(): Metadata["robots"] {
@@ -12,20 +13,27 @@ export function pageMetadata(input: {
   title: string;
   description: string;
   path: string;
+  locale?: string;
   absoluteTitle?: boolean;
 }): Metadata {
-  const canonical = absoluteUrl(input.path);
+  const locale = input.locale === "zh" ? "zh" : "en";
+  const canonical = absoluteUrl(hrefFor(locale, input.path));
+  const en = absoluteUrl(hrefFor("en", input.path));
+  const zh = absoluteUrl(hrefFor("zh", input.path));
   return {
     title: input.absoluteTitle ? { absolute: input.title } : input.title,
     description: input.description,
-    alternates: { canonical },
+    alternates: {
+      canonical,
+      languages: { en, zh, "x-default": en },
+    },
     robots: robotsMetadata(),
     openGraph: {
       title: input.title,
       description: input.description,
       url: canonical,
       siteName: publicConfig.brandName,
-      locale: "en_US",
+      locale: locale === "zh" ? "zh_CN" : "en_US",
       type: "website",
     },
   };

@@ -2,14 +2,14 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { CheckoutDesk } from "@/components/CheckoutDesk";
 import { Footer } from "@/components/Footer";
-import PrivacyPage from "@/app/legal/privacy/page";
-import TermsPage from "@/app/legal/terms/page";
+import PrivacyPage from "@/app/[locale]/legal/privacy/page";
+import TermsPage from "@/app/[locale]/legal/terms/page";
 import { publicConfig } from "@/lib/public-config";
 import { ProductDetail, PRODUCT_MODULE_ORDER } from "@/components/ProductDetail";
 import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
 import { EXACT_DISCLAIMER } from "@/lib/disclaimer";
-import HomePage from "@/app/page";
+import { HomeScreen } from "@/components/HomeScreen";
 
 describe("page structure", () => {
   it("keeps the product modules in the required order and prints the exact disclaimer", () => {
@@ -39,7 +39,7 @@ describe("page structure", () => {
   });
 
   it("orders the home page and shows the short footer disclaimer", () => {
-    const html = renderToStaticMarkup(<HomePage />);
+    const html = renderToStaticMarkup(<HomeScreen />);
     const hero = html.indexOf('data-section="hero"');
     const featured = html.indexOf('data-section="featured"');
     const faq = html.indexOf('data-section="faq"');

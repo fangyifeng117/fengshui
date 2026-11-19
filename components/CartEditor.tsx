@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { formatMoney } from "@/lib/format";
+import { hrefFor, type Locale } from "@/lib/locale";
 
 type CartItem = {
   productId: string;
@@ -16,7 +17,7 @@ type CartItem = {
   imageAlt: string;
 };
 
-export function CartEditor({ items }: { items: CartItem[] }) {
+export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale?: Locale }) {
   const [pendingId, setPendingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,7 +51,7 @@ export function CartEditor({ items }: { items: CartItem[] }) {
           </div>
           <div>
             <h2>
-              <Link href={`/products/${item.slug}`}>{item.title}</Link>
+              <Link href={hrefFor(locale, `/products/${item.slug}`)}>{item.title}</Link>
             </h2>
             <p className="fine">{formatMoney(item.unitAmountCents, item.currency)} each</p>
             <div className="qty-row">
