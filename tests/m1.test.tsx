@@ -86,7 +86,8 @@ describe("M1 bilingual skeleton", () => {
     expect(copy("en").faq.picturesAnswer).toBe(homeCopy.faq[1]?.answer);
     expect(copy("zh").faq.pictures).toBe("图片是真实库存吗？");
     expect(copy("zh").faq.pictures).not.toContain("真实地方");
-    expect(copy("zh").faq.picturesAnswer).toContain("原创图稿");
+    expect(copy("zh").faq.picturesAnswer).toContain("参考照片");
+    expect(copy("zh").faq.picturesAnswer).toContain("不是在售商品");
     expect(chinese).toContain("图片是真实库存吗？");
     expect(english).toContain("Are the pictures of real stock?");
   });

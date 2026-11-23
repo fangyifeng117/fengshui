@@ -11,7 +11,7 @@ import { getProductBySlug, getProducts, getRelatedProducts, products } from "@/l
 import { copy } from "@/lib/i18n/messages";
 import { productJsonLd } from "@/lib/seo";
 
-const priceLeak = /\$\d|\b\d+\.\d{2}\b|\/illustrations\/|<img|unitAmountCents|amountCents|"price"/;
+const priceLeak = /\$\d|\b\d+\.\d{2}\b|\/illustrations\/|unitAmountCents|amountCents|"price"/;
 
 describe("withheld sample pictures and prices", () => {
   it("keeps the catalog prices and image paths while the public pages omit both", async () => {
@@ -54,10 +54,24 @@ describe("withheld sample pictures and prices", () => {
     expect(pages[5]).toContain("商品资料待确认");
     expect(pages[8]).toContain("Sample Decorative Object");
     expect(pages[8]).not.toContain("$30");
+    expect(pages[0]).toContain("/media/themes/roof.jpg");
+    expect(pages[0]).toContain("/media/themes/beads.jpg");
+    expect(pages[0]).toContain("/media/themes/lamps.jpg");
+    expect(pages[0]).toContain("Style reference");
+    expect(pages[0]).toContain("Not a sample for sale");
+    expect(pages[1]).toContain("风格示意");
+    expect(pages[1]).toContain("不是在售样品");
+    expect(pages[1]).toContain("供灯服务没有开通");
+    for (const html of pages.slice(2)) {
+      expect(html).not.toContain("<img");
+      expect(html).not.toContain("/media/themes/");
+    }
     for (const html of pages) {
       expect(html).not.toMatch(priceLeak);
       expect(html).not.toContain("free");
       expect(html).not.toContain("免费");
+      expect(html).not.toContain("BRAND_NAME");
+      expect(html).not.toContain("大雄宝殿");
     }
 
     const quote = quoteCart(products, { id: "cart_test", version: 0, lines: [{ productId: product.id, quantity: 1 }] });

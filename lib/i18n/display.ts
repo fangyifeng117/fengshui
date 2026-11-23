@@ -223,7 +223,7 @@ export function displayFaq(product: Product, locale: Locale): Product["faq"] {
     },
     {
       question: questions[2] ?? "",
-      answer: "这个示范没有获授权的照片。图片是标成样品的原创 SVG 图稿。",
+      answer: "这个列表不展示商品照片。保存的图是原创 SVG 图稿，前台不渲染。首页的参考照片不是这件样品。",
     },
   ];
 }

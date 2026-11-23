@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { SupportEmail } from "@/components/SupportEmail";
-import { ProductCard } from "@/components/ProductCard";
-import { getFeaturedProducts } from "@/lib/catalog";
+import { ThemeCard } from "@/components/ThemeCard";
 import { copy } from "@/lib/i18n/messages";
 import { hrefFor, type Locale } from "@/lib/locale";
 import { places } from "@/lib/places";
+import { themeImages } from "@/lib/theme-images";
 
 export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
   const text = copy(locale);
-  const featured = getFeaturedProducts();
   const questions = [
     { question: text.faq.pay, answer: text.faq.payAnswer, supportEmail: false },
     { question: text.faq.pictures, answer: text.faq.picturesAnswer, supportEmail: false },
@@ -29,8 +28,8 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
       </section>
       <section data-section="featured" aria-label={text.home.title}>
         <div className="product-grid">
-          {featured.map((product) => (
-            <ProductCard key={product.id} product={product} locale={locale} />
+          {themeImages.map((image) => (
+            <ThemeCard key={image.id} image={image} locale={locale} />
           ))}
         </div>
       </section>

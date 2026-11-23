@@ -1,6 +1,6 @@
 # 文化饰品示范店
 
-英文为主、中文为 `/zh` 的 Next.js 示范店。品牌名尚未确认，页内占位是 **BRAND_NAME**，并标明 Demo。千愿 / QIANYUAN 只是一个未定稿的建议，没有写成当前品牌。本轮只加了双语骨架和五处名山的文化分类草稿，没有接入支付、数据库或追踪。页面结构参考的是普通饰品店的浏览方式（首页、系列、商品、购物车、结账），文案、配色和插画都是为这个示范单独写的。这里没有借用其他商店的名称、商标、图片或商品文案。
+英文为主、中文为 `/zh` 的 Next.js 示范店。前台名称是 **神秘东方**，并标明 Demo。这不是商标注册结论。千愿 / QIANYUAN 没有写成当前品牌。本轮只加了双语骨架、五处名山的文化分类草稿，以及首页三张已许可的参考图。没有接入支付、数据库或追踪。商品页仍不展示样品图和价格。
 
 这不是一家正在营业的商店。商品名称、材质、价格和图片都标明为 sample。结账不会真正收款。
 
@@ -33,8 +33,8 @@ npm run build
 
 | 变量 | 空白时的行为 |
 | --- | --- |
-| `NEXT_PUBLIC_BRAND_NAME` | `BRAND_NAME`。未设置时页面显示这个占位，并另标 Demo |
-| `NEXT_PUBLIC_BASE_URL` | `http://localhost:3000`，用于 canonical 和 Open Graph |
+| `NEXT_PUBLIC_BRAND_NAME` | 空白时显示「神秘东方」，并另标 Demo |
+| `NEXT_PUBLIC_BASE_URL` | 空白时 canonical 使用 `https://furuiqifu.com` |
 | `NEXT_PUBLIC_ANNOUNCEMENT` | 显示默认的示范公告 |
 | `NEXT_PUBLIC_SUPPORT_EMAIL` | 空白时使用已批准的临时公开客服邮箱 `fangyifeng117@gmail.com`。只用于店铺问题，不是隐私或 DPO 联系人 |
 | `SITE_INDEXING_APPROVED` | 只有精确写成 `true` 才允许索引。默认 `noindex`，`robots.txt` 禁止抓取 |

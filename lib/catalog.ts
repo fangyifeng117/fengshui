@@ -62,7 +62,7 @@ const sharedFaq = (noun: string): Product["faq"] => [
   {
     question: "Why is there no product photo?",
     answer:
-      "No photography has been licensed for this demo. The image is an original SVG illustration marked as a sample.",
+      "This listing does not show a product photo. The stored image is an original SVG illustration and is not rendered here. Home-page reference photos are not this item.",
   },
 ];
 

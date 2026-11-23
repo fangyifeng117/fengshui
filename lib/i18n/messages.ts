@@ -120,7 +120,7 @@ const en = {
   },
   about: {
     title: "About",
-    lede: "BRAND_NAME is an unconfirmed placeholder. This site is a demo.",
+    lede: "The site name is 神秘东方. This site is a demo.",
     places: "The five places are cultural groupings, not partner monasteries.",
   },
   faq: {
@@ -129,7 +129,8 @@ const en = {
     pay: "Can I pay?",
     payAnswer: "No. This test preview cannot take payment.",
     pictures: "Are the pictures of real stock?",
-    picturesAnswer: "No. They are original drawings marked as samples.",
+    picturesAnswer:
+      "No. The three home-page pictures are licensed reference photos, not items for sale. Product pages do not show sample photos.",
     ask: "Where do I ask a question?",
     askAnswer: "Use the customer-support address.",
     more: "Longer question draft",
@@ -263,7 +264,7 @@ const zh: typeof en = {
   },
   about: {
     title: "关于",
-    lede: "BRAND_NAME 是未确认的占位名。这个网站是示范。",
+    lede: "网站名称是神秘东方。这个网站是示范。",
     places: "五处名山是文化分组，不是合作寺院。",
   },
   faq: {
@@ -272,7 +273,7 @@ const zh: typeof en = {
     pay: "可以付款吗？",
     payAnswer: "不能。这个测试预览不能付款。",
     pictures: "图片是真实库存吗？",
-    picturesAnswer: "不是。它们是标成样品的原创图稿。",
+    picturesAnswer: "不是。首页三张是已许可的参考照片，不是在售商品。商品页不展示样品图。",
     ask: "去哪里问问题？",
     askAnswer: "使用客户支持地址。",
     more: "较长的问题草稿",

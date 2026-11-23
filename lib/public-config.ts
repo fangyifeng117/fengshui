@@ -8,11 +8,11 @@ export type PublicConfig = {
   supportEmail: string;
 };
 
-/** Unconfirmed brand. The visible name stays this placeholder until a brand is chosen. */
-export const BRAND_NAME = "BRAND_NAME";
+/** User-chosen site name. Both locales show these characters. This is not a trademark clearance. */
+export const BRAND_NAME = "神秘东方";
 const DEFAULT_BRAND = BRAND_NAME;
 const DEFAULT_SUPPORT_EMAIL = "fangyifeng117@gmail.com";
-const DEFAULT_BASE = "http://localhost:3000";
+const DEFAULT_BASE = "https://furuiqifu.com";
 export const DEFAULT_ANNOUNCEMENT = "Sample catalog. Payment is off.";
 
 function supportEmailFromEnv(value: string | undefined): string {
