@@ -55,7 +55,11 @@ describe("withheld sample pictures and prices", () => {
     expect(pages[8]).toContain("Sample Decorative Object");
     expect(pages[8]).not.toContain("$30");
     expect(pages[0]).toContain("/media/themes/roof.jpg");
-    expect(pages[0]).toContain("/media/themes/beads.jpg");
+    expect(pages[0]).toContain("/media/themes/bracelet.jpg");
+    expect(pages[0]).toContain("wrist-sized bead bracelet");
+    expect(pages[0]).not.toContain("hanging from a stick");
+    expect(pages[1]).toContain("手腕尺寸珠串");
+    expect(pages[1]).not.toContain("木珠串");
     expect(pages[0]).toContain("/media/themes/lamps.jpg");
     expect(pages[0]).toContain("Style reference");
     expect(pages[0]).toContain("Not a sample for sale");

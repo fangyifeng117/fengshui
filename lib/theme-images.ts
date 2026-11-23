@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/locale";
 
 export type ThemeImage = {
-  id: "roof" | "beads" | "lamps";
+  id: "roof" | "bracelet" | "lamps";
   href: string;
   src: string;
   small: string;
@@ -36,23 +36,23 @@ export const themeImages: ThemeImage[] = [
     credit: "Bernard Spragg. NZ, CC0",
   },
   {
-    id: "beads",
+    id: "bracelet",
     href: "/products",
-    src: "/media/themes/beads.jpg",
-    small: "/media/themes/beads-640.jpg",
+    src: "/media/themes/bracelet.jpg",
+    small: "/media/themes/bracelet-640.jpg",
     width: 960,
     height: 1200,
     label: { en: "Style reference", zh: "风格示意" },
-    title: { en: "Bead strand", zh: "木珠串" },
+    title: { en: "Beaded bracelet", zh: "珠串手镯" },
     note: {
-      en: "Style reference of a wooden bead strand. Not a sample for sale.",
-      zh: "木珠串的风格示意，不是在售样品。",
+      en: "Style reference of a wrist-sized bead bracelet. Not a sample for sale.",
+      zh: "手腕尺寸珠串的风格示意，不是在售样品。",
     },
     alt: {
-      en: "A strand of round wooden beads hanging from a stick",
-      zh: "挂在木棍上的一串圆木珠",
+      en: "A closed loop of small blue-green beads, shaped as a bracelet",
+      zh: "一圈蓝绿色小珠组成的手镯",
     },
-    credit: "Fauwaz Alhassan, CC0",
+    credit: "The Metropolitan Museum of Art, CC0",
   },
   {
     id: "lamps",

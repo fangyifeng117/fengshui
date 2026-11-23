@@ -14,16 +14,17 @@
 - 本地文件：`public/media/themes/roof.jpg`，`public/media/themes/roof-640.jpg`
 - 前台说明：建筑屋檐的参考照片，不是合作场所
 
-## 木珠串
+## 珠串手镯
 
 - 位置：首页第二格，链到 `/products`（中文 `/zh/products`）
-- 文件页：https://commons.wikimedia.org/wiki/File:Tasbih_or_prayer_beads.jpg
-- 作者：Fauwaz Alhassan
-- 许可：CC0。`AttributionRequired` 为 false
-- 画面：挂在木棍上的圆木珠。没有佛像，没有可辨认的人，没有祈愿文字
-- 文件说明把它称为 tasbih / 木念珠，不是本店样品。前台写成风格示意，不写成在售 SKU
-- 曾查看过其他 CC0 手镯照片（考古珠串、其他地区珠饰、插画）。它们要么不像木珠串，要么不适合作为这格的风格示意。这张是已核对、可合法使用、且没有佛像的木珠照片
-- 本地文件：`public/media/themes/beads.jpg`，`public/media/themes/beads-640.jpg`
+- 文件页：https://commons.wikimedia.org/wiki/File:Beaded_Bracelet_from_Baki%27s_Burial_MET_LC-35_3_63_EGDP025367.jpg
+- 来源机构：The Metropolitan Museum of Art。Commons 记录该文件由博物馆开放访问项目捐出
+- 许可：CC0。`LicenseUrl` 为 `http://creativecommons.org/publicdomain/zero/1.0/deed.en`。`AttributionRequired` 为 false。`Restrictions` 为空
+- 文件说明：Bracelet or armlet。画面是一圈闭合的蓝绿色小珠，尺寸是手腕手镯，不是挂着的长念珠
+- 已核对画面：没有佛像，没有可辨认的人，四角没有水印或馆藏编号条
+- 前台标明风格示意，不是在售样品
+- 上一张长念珠（`File:Tasbih_or_prayer_beads.jpg`）已撤下，不再用作手串
+- 本地文件：`public/media/themes/bracelet.jpg`，`public/media/themes/bracelet-640.jpg`。在原图四周补了与背景相近的空白，使整圈手镯落在 4:5 卡片里，没有加其他画面元素
 
 ## 灯火
 
@@ -34,4 +35,5 @@
 - 画面：成排点着的小油灯。没有神像，没有人物，没有可读的祈愿文字
 - 前台只称氛围参考，并写明供灯服务没有开通。不把拍摄地点写成合作场所
 - 未使用大都会艺术博物馆的一对灯，因为灯身有小型坐像
-- 本地文件：`public/media/themes/lamps.jpg`，`public/media/themes/lamps-640.jpg`
+- 本地文件：`public/media/themes/lamps.jpg`，`public/media/themes/lamps-640.jpg`。两张都能打开，画面是灯火
+- 手机整页截图里这一格曾是空白。文件没有损坏。图片当时用绝对定位，视口外的层在整页截图里可能不绘制。现改为在格子内铺满，并设置 `loading="eager"`

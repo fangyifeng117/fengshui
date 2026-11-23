@@ -15,7 +15,8 @@ export function ThemeCard({ image, locale }: { image: ThemeImage; locale: Locale
           width={image.width}
           height={image.height}
           alt={image.alt[locale]}
-          decoding="async"
+          loading="eager"
+          decoding="sync"
         />
         <span className="pill">{image.label[locale]}</span>
       </div>
