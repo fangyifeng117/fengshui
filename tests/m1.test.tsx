@@ -9,7 +9,7 @@ import { PlaceDetail } from "@/components/PlaceDetail";
 import { PlacesIndex } from "@/components/PlacesIndex";
 import { ProductDetail } from "@/components/ProductDetail";
 import { getProductBySlug, getProducts, getRelatedProducts, collections } from "@/lib/catalog";
-import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER, SHORT_FOOTER_DISCLAIMER, ZH_EXACT_DISCLAIMER } from "@/lib/disclaimer";
+import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER, SHORT_FOOTER_DISCLAIMER, ZH_EXACT_DISCLAIMER, ZH_SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { displayPhrase, zhCatalogCovers } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
 import { homeCopy } from "@/lib/home-copy";
@@ -66,6 +66,7 @@ describe("M1 bilingual skeleton", () => {
     expect(blessing).toContain("Draft: not on sale yet.");
     expect(detail).toContain("尚未开售");
     expect(detail).toContain("不能购买");
+    expect(detail).toContain(ZH_SERVICE_DRAFT_DISCLAIMER);
   });
 
   it("shows five mountain links on both homepages and keeps the FAQ meanings aligned", () => {
@@ -104,12 +105,16 @@ describe("M1 bilingual skeleton", () => {
     expect(english).toContain("Sample Red Cord Bracelet");
     expect(english).toContain("About this sample");
     expect(english).toContain(EXACT_DISCLAIMER);
+    expect(english).toContain(SERVICE_DRAFT_DISCLAIMER);
     expect(english).not.toContain(ZH_EXACT_DISCLAIMER);
+    expect(english).not.toContain(ZH_SERVICE_DRAFT_DISCLAIMER);
     expect(chinese).toContain("样品红绳手串");
     expect(chinese).toContain("绳编手串");
     expect(chinese).toContain("样品");
     expect(chinese).toContain(EXACT_DISCLAIMER);
+    expect(chinese).toContain(SERVICE_DRAFT_DISCLAIMER);
     expect(chinese).toContain(ZH_EXACT_DISCLAIMER);
+    expect(chinese).toContain(ZH_SERVICE_DRAFT_DISCLAIMER);
     expect(chinese).not.toContain("About this sample");
     for (const item of getProducts()) {
       for (const spec of item.specs) {

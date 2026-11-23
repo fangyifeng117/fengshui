@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AbstractMark } from "@/components/AbstractMark";
 import { ServiceDisclaimer } from "@/components/ServiceDisclaimer";
+import { ZH_SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { copy } from "@/lib/i18n/messages";
 import { hrefFor, type Locale } from "@/lib/locale";
 import { serviceDrafts } from "@/lib/places";
@@ -25,7 +26,7 @@ export function BlessingIndex({ locale }: { locale: Locale }) {
         ))}
       </div>
       <p>{text.blessing.draftNote}</p>
-      <ServiceDisclaimer />
+      <ServiceDisclaimer translation={locale === "zh" ? ZH_SERVICE_DRAFT_DISCLAIMER : undefined} />
     </div>
   );
 }

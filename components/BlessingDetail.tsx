@@ -1,5 +1,6 @@
 import { AbstractMark } from "@/components/AbstractMark";
 import { ServiceDisclaimer } from "@/components/ServiceDisclaimer";
+import { ZH_SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { copy } from "@/lib/i18n/messages";
 import type { Locale } from "@/lib/locale";
 import type { ServiceDraft } from "@/lib/places";
@@ -18,7 +19,7 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
       </header>
       <AbstractMark label={text.demo} />
       <p>{text.blessing.draftNote}</p>
-      <ServiceDisclaimer />
+      <ServiceDisclaimer translation={locale === "zh" ? ZH_SERVICE_DRAFT_DISCLAIMER : undefined} />
     </div>
   );
 }

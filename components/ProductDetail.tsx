@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ExactDisclaimer } from "@/components/ExactDisclaimer";
+import { ServiceDisclaimer } from "@/components/ServiceDisclaimer";
 import { Gallery } from "@/components/Gallery";
 import { ProductCard } from "@/components/ProductCard";
 import { getCollection } from "@/lib/catalog";
-import { ZH_EXACT_DISCLAIMER } from "@/lib/disclaimer";
+import { ZH_EXACT_DISCLAIMER, ZH_SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { trustBadges } from "@/lib/home-copy";
 import {
   displayBenefits,
@@ -116,6 +117,7 @@ export function ProductDetail({
       <div>
         <h2>{text.product.disclaimer}</h2>
         <ExactDisclaimer translation={locale === "zh" ? ZH_EXACT_DISCLAIMER : undefined} />
+        <ServiceDisclaimer translation={locale === "zh" ? ZH_SERVICE_DRAFT_DISCLAIMER : undefined} />
       </div>
     ),
     faq: (

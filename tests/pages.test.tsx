@@ -8,7 +8,7 @@ import { publicConfig } from "@/lib/public-config";
 import { ProductDetail, PRODUCT_MODULE_ORDER } from "@/components/ProductDetail";
 import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
-import { EXACT_DISCLAIMER } from "@/lib/disclaimer";
+import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { HomeScreen } from "@/components/HomeScreen";
 
 describe("page structure", () => {
@@ -34,6 +34,7 @@ describe("page structure", () => {
       "related",
     ]);
     expect(html).toContain(EXACT_DISCLAIMER);
+    expect(html).toContain(SERVICE_DRAFT_DISCLAIMER);
     expect(html).toContain("Details to be confirmed");
     expect(html).not.toContain("Add to cart");
     expect(html).not.toContain("/illustrations/");
