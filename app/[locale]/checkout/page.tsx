@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { CheckoutDesk } from "@/components/CheckoutDesk";
-import { quoteCart, readCart } from "@/lib/cart";
+import { quoteCart } from "@/lib/cart";
 import { products } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
-import { getDb } from "@/lib/db";
 import { formatMoney } from "@/lib/format";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale, hrefFor } from "@/lib/locale";
-import { existingCartId } from "@/lib/request";
+import { readCartDocument } from "@/lib/request";
 import { readServerEnv } from "@/lib/server-config";
 import { pageMetadata } from "@/lib/seo";
 
@@ -26,8 +25,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ local
   const locale = asLocale((await params).locale);
   const text = copy(locale);
   const env = readServerEnv();
-  const cartId = await existingCartId();
-  const cart = cartId ? readCart(getDb(), cartId) : { id: "", version: 0, lines: [] };
+  const cart = await readCartDocument();
   const quote = quoteCart(products, cart);
   const state = describeCheckout({
     configured: env.paypalConfigured,

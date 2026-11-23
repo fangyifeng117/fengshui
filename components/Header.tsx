@@ -1,23 +1,18 @@
 import Link from "next/link";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
-import { quoteCart, readCart } from "@/lib/cart";
+import { quoteCart } from "@/lib/cart";
 import { getCollections, products } from "@/lib/catalog";
-import { getDb } from "@/lib/db";
 import { displayCollectionTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale, hrefFor, type Locale } from "@/lib/locale";
 import { DEFAULT_ANNOUNCEMENT, publicConfig } from "@/lib/public-config";
-import { existingCartId } from "@/lib/request";
+import { readCartDocument } from "@/lib/request";
 
 export async function Header({ locale = "en" }: { locale?: Locale }) {
   const text = copy(asLocale(locale));
   const collections = getCollections();
-  let count = 0;
-  const cartId = await existingCartId();
-  if (cartId) {
-    const cart = readCart(getDb(), cartId);
-    count = quoteCart(products, cart).items.reduce((sum, item) => sum + item.quantity, 0);
-  }
+  const cart = await readCartDocument();
+  const count = quoteCart(products, cart).items.reduce((sum, item) => sum + item.quantity, 0);
   const announcement =
     publicConfig.announcement === DEFAULT_ANNOUNCEMENT ? text.announcement : publicConfig.announcement;
 

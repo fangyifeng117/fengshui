@@ -82,7 +82,7 @@ PayPal 账户已经开立，但 client id、secret、webhook id 和要使用的�
 
 默认数据库是工作目录下的 `data/store.sqlite`，使用 WAL，并用 `BEGIN IMMEDIATE` 把“标记已支付”和“扣库存”放在同一个事务里。事件 id 和 capture id 有唯一约束。
 
-这是单机文件库。适合一台长期开着的 Node 进程，并且磁盘必须是持久的。如果部署到会清空磁盘的无服务器环境，订单会丢。那种环境需要把 `DATABASE_PATH` 指到持久卷，或者换成支持事务和条件更新的 Postgres，并保留同样的规则：事件去重、捕获去重、只有库存还够时才扣减。
+购物车行存在浏览器的 httpOnly cookie `cjd_lines` 里，服务器仍用目录价格计算合计。这样在只读的 serverless 文件系统上，加购不会因为创建 `data/` 失败而把页面打成 500。订单库仍是 SQLite。默认路径 `data/store.sqlite` 写不了时，才改用临时目录里的 `fengshui-store.sqlite`。临时文件不跨实例共享，所以未付款订单不能当成持久记录。支付入口仍然关闭。
 
 应用拒绝把数据库开成 `:memory:`。不要把 SQLite 文件提交进仓库。
 

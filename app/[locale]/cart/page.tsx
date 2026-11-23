@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { CartEditor } from "@/components/CartEditor";
-import { quoteCart, readCart } from "@/lib/cart";
+import { quoteCart } from "@/lib/cart";
 import { getProductById, products } from "@/lib/catalog";
-import { getDb } from "@/lib/db";
 import { formatMoney } from "@/lib/format";
 import { displayAlt, displayTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale, hrefFor } from "@/lib/locale";
-import { existingCartId } from "@/lib/request";
+import { readCartDocument } from "@/lib/request";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,8 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function CartPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = asLocale((await params).locale);
   const text = copy(locale);
-  const cartId = await existingCartId();
-  const cart = cartId ? readCart(getDb(), cartId) : { id: "", version: 0, lines: [] };
+  const cart = await readCartDocument();
   const quote = quoteCart(products, cart);
   const lines = quote.items.flatMap((item) => {
     const product = getProductById(item.productId);

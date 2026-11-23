@@ -29,7 +29,14 @@ export default async function CancelPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const query = queryMap(await searchParams);
-  const order = query.order ? getOrder(getDb(), query.order) : null;
+  let order = null;
+  if (query.order) {
+    try {
+      order = getOrder(getDb(), query.order);
+    } catch {
+      order = null;
+    }
+  }
   const view = presentOrder(order, query);
   return (
     <div className="page narrow">

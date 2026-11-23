@@ -1,9 +1,8 @@
-import { readCart } from "@/lib/cart";
 import { refuseCollection } from "@/lib/commerce/gate";
 import { cancelIfUnpaid } from "@/lib/commerce/orders";
 import { CommerceError } from "@/lib/commerce/quote";
 import { getDb } from "@/lib/db";
-import { existingCartId, isCrossSite } from "@/lib/request";
+import { isCrossSite, readCartDocument } from "@/lib/request";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -37,12 +36,11 @@ export async function POST(request: Request) {
   const body = await readBody(request);
   if (!body?.action) return Response.json({ ok: false, code: "invalid_body" }, { status: 400 });
   const acceptsJson = (request.headers.get("content-type") ?? "").includes("application/json");
-  const db = getDb();
 
   try {
     if (body.action === "cancel") {
       if (!body.orderId) return Response.json({ ok: false, code: "not_found" }, { status: 404 });
-      const result = cancelIfUnpaid(db, body.orderId);
+      const result = cancelIfUnpaid(getDb(), body.orderId);
       if (!acceptsJson) {
         return Response.redirect(new URL(`/order/cancel?order=${encodeURIComponent(body.orderId)}`, request.url), 303);
       }
@@ -52,9 +50,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const cartId = await existingCartId();
-    if (!cartId) return Response.json({ ok: false, code: "empty_cart" }, { status: 400 });
-    const cart = readCart(db, cartId);
+    const cart = await readCartDocument();
     if (cart.lines.length === 0) return Response.json({ ok: false, code: "empty_cart" }, { status: 400 });
 
     const closed = refuseCollection(body.action);

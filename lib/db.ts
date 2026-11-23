@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { products } from "@/lib/catalog";
@@ -68,12 +69,38 @@ CREATE INDEX IF NOT EXISTS idx_captures_order ON captures(order_id);
 
 export type AppDatabase = DatabaseSync;
 
-export function resolveDatabasePath(raw: string | undefined): string {
-  const trimmed = raw?.trim();
-  if (!trimmed || trimmed === ":memory:") {
-    return path.join(process.cwd(), "data", "store.sqlite");
+export function databaseFile(input: {
+  configured?: string;
+  cwd: string;
+  tmpdir: string;
+  writable: (directory: string) => boolean;
+}): string {
+  const trimmed = input.configured?.trim();
+  if (trimmed && trimmed !== ":memory:") return trimmed;
+  const preferred = path.join(input.cwd, "data");
+  if (input.writable(preferred)) return path.join(preferred, "store.sqlite");
+  return path.join(input.tmpdir, "fengshui-store.sqlite");
+}
+
+export function directoryIsWritable(directory: string): boolean {
+  try {
+    fs.mkdirSync(directory, { recursive: true });
+    const probe = path.join(directory, `.write-probe-${process.pid}`);
+    fs.writeFileSync(probe, "1");
+    fs.unlinkSync(probe);
+    return true;
+  } catch {
+    return false;
   }
-  return trimmed;
+}
+
+export function resolveDatabasePath(raw: string | undefined): string {
+  return databaseFile({
+    configured: raw,
+    cwd: process.cwd(),
+    tmpdir: os.tmpdir(),
+    writable: directoryIsWritable,
+  });
 }
 
 export function openDatabase(filePath: string): AppDatabase {

@@ -32,6 +32,48 @@ function writeCart(db: AppDatabase, cart: ServerCart): ServerCart {
   return { ...cart, version: nextVersion };
 }
 
+export function parseCartLines(raw: string | undefined): CartLine[] {
+  if (!raw) return [];
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return [];
+  }
+  if (!Array.isArray(parsed)) return [];
+  const lines: CartLine[] = [];
+  for (const item of parsed) {
+    if (!item || typeof item !== "object") continue;
+    const productId = "productId" in item ? String(item.productId) : "";
+    const quantity = "quantity" in item ? item.quantity : null;
+    if (!productId || !Number.isInteger(quantity) || quantity < 1 || quantity > 9) continue;
+    lines.push({ productId, quantity });
+  }
+  return lines;
+}
+
+export function nextCartLines(
+  current: CartLine[],
+  productId: string,
+  quantity: number,
+  catalog: Product[],
+): CartLine[] {
+  if (!catalog.some((product) => product.id === productId)) {
+    throw new Error("unknown_product");
+  }
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 9) {
+    throw new Error("invalid_quantity");
+  }
+  const lines = current.map((line) => ({ ...line }));
+  const existing = lines.find((line) => line.productId === productId);
+  if (existing) {
+    existing.quantity = Math.min(9, existing.quantity + quantity);
+  } else {
+    lines.push({ productId, quantity });
+  }
+  return lines;
+}
+
 export function addToCart(
   db: AppDatabase,
   cartId: string,
@@ -39,21 +81,8 @@ export function addToCart(
   quantity: number,
   catalog: Product[],
 ): ServerCart {
-  if (!catalog.some((product) => product.id === productId)) {
-    throw new Error("unknown_product");
-  }
-  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 9) {
-    throw new Error("invalid_quantity");
-  }
   const cart = readCart(db, cartId);
-  const lines = cart.lines.map((line) => ({ ...line }));
-  const existing = lines.find((line) => line.productId === productId);
-  if (existing) {
-    existing.quantity = Math.min(9, existing.quantity + quantity);
-  } else {
-    lines.push({ productId, quantity });
-  }
-  return writeCart(db, { ...cart, lines });
+  return writeCart(db, { ...cart, lines: nextCartLines(cart.lines, productId, quantity, catalog) });
 }
 
 export function setCartQuantity(
