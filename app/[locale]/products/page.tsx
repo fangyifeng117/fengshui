@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const text = copy(asLocale(locale));
   return pageMetadata({
     title: text.shop.title,
-    description: "Sample jewelry and decorative objects with illustrative USD prices.",
+    description: text.product.pending,
     path: "/products",
     locale,
   });
@@ -32,21 +32,12 @@ export default async function ProductsPage({
   const query = await searchParams;
   const collection = one(query.collection);
   const q = one(query.q);
-  const underRaw = one(query.under);
-  const underDollars = underRaw ? Number(underRaw) : undefined;
   const catalog = getProducts();
-  const filtered = filterProducts(catalog, {
-    collection,
-    q,
-    underDollars: underDollars != null && Number.isFinite(underDollars) ? underDollars : undefined,
-  });
+  const filtered = filterProducts(catalog, { collection, q });
   const visible =
     locale === "zh" && q
       ? catalog.filter((product) => {
           if (collection && product.collection !== collection) return false;
-          if (underDollars != null && Number.isFinite(underDollars) && underDollars > 0 && product.price > Math.round(underDollars * 100)) {
-            return false;
-          }
           const haystack = `${displayTitle(product, "zh")} ${displayDescription(product, "zh")}`;
           return haystack.toLowerCase().includes(q.trim().toLowerCase()) || filtered.some((item) => item.id === product.id);
         })
@@ -73,15 +64,6 @@ export default async function ProductsPage({
         <label>
           {text.shop.search}
           <input name="q" defaultValue={q} placeholder={text.shop.searchPlaceholder} />
-        </label>
-        <label>
-          {text.shop.price}
-          <select name="under" defaultValue={underRaw}>
-            <option value="">{text.shop.anyPrice}</option>
-            <option value="30">$30</option>
-            <option value="40">$40</option>
-            <option value="60">$60</option>
-          </select>
         </label>
         <button className="button" type="submit">
           {text.shop.apply}

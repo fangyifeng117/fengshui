@@ -34,8 +34,10 @@ describe("page structure", () => {
       "related",
     ]);
     expect(html).toContain(EXACT_DISCLAIMER);
-    expect(html).toContain("Add to cart");
-    expect(html).toContain("View demo checkout");
+    expect(html).toContain("Details to be confirmed");
+    expect(html).not.toContain("Add to cart");
+    expect(html).not.toContain("/illustrations/");
+    expect(html).not.toMatch(/\$\d/);
   });
 
   it("orders the home page and shows the short footer disclaimer", () => {

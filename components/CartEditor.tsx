@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { formatMoney } from "@/lib/format";
 import { copy } from "@/lib/i18n/messages";
 import { hrefFor, type Locale } from "@/lib/locale";
 
@@ -12,10 +10,6 @@ type CartItem = {
   slug: string;
   title: string;
   quantity: number;
-  unitAmountCents: number;
-  currency: "USD";
-  image: string;
-  imageAlt: string;
 };
 
 export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale?: Locale }) {
@@ -48,16 +42,14 @@ export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale
     <div className="cart-lines">
       {items.map((item) => (
         <article key={item.productId} className="cart-line">
-          <div className="cart-thumb">
-            <Image src={item.image} alt={item.imageAlt} fill sizes="160px" />
+          <div className="cart-thumb media-hold">
+            <p>{text.product.pending}</p>
           </div>
           <div>
             <h2>
               <Link href={hrefFor(locale, `/products/${item.slug}`)}>{item.title}</Link>
             </h2>
-            <p className="fine">
-              {formatMoney(item.unitAmountCents, item.currency)} {text.cart.each}
-            </p>
+            <p>{text.product.pending}</p>
             <div className="qty-row">
               <button
                 type="button"
@@ -89,7 +81,6 @@ export function CartEditor({ items, locale = "en" }: { items: CartItem[]; locale
               </button>
             </div>
           </div>
-          <p className="price">{formatMoney(item.unitAmountCents * item.quantity, item.currency)}</p>
         </article>
       ))}
       {error ? <p className="form-error">{error}</p> : null}

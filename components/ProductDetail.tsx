@@ -2,14 +2,11 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ExactDisclaimer } from "@/components/ExactDisclaimer";
 import { Gallery } from "@/components/Gallery";
-import { PurchaseActions } from "@/components/PurchaseActions";
 import { ProductCard } from "@/components/ProductCard";
 import { getCollection } from "@/lib/catalog";
 import { ZH_EXACT_DISCLAIMER } from "@/lib/disclaimer";
-import { formatMoney } from "@/lib/format";
 import { trustBadges } from "@/lib/home-copy";
 import {
-  displayAlt,
   displayBenefits,
   displayCollectionTitle,
   displayDescription,
@@ -48,7 +45,6 @@ export function ProductDetail({
   const text = copy(locale);
   const collection = getCollection(product.collection);
   const title = displayTitle(product, locale);
-  const images = product.images.map((image, index) => ({ src: image.src, alt: displayAlt(product, index, locale) }));
   const modules: Record<(typeof PRODUCT_MODULE_ORDER)[number], ReactNode> = {
     breadcrumb: (
       <nav className="breadcrumb" aria-label="Breadcrumb">
@@ -63,20 +59,11 @@ export function ProductDetail({
         <span>{title}</span>
       </nav>
     ),
-    gallery: <Gallery images={images} sampleLabel={text.product.sample} showLabel={text.product.showImage} />,
+    gallery: <Gallery label={text.product.pending} />,
     purchase: (
       <div className="purchase-block">
         <h1>{title}</h1>
-        <p className="price price-large">{formatMoney(product.price, product.currency)}</p>
-        <PurchaseActions
-          productId={product.id}
-          locale={locale}
-          addLabel={text.product.add}
-          buyLabel={text.product.view}
-          pendingAdd={text.product.adding}
-          pendingBuy={text.product.opening}
-          errorLabel={text.product.error}
-        />
+        <p>{text.product.pending}</p>
         <p>{displayDescription(product, locale)}</p>
       </div>
     ),
@@ -94,9 +81,11 @@ export function ProductDetail({
       <div>
         <h2>{text.product.trust}</h2>
         <ul className="badge-list">
-          {(locale === "zh" ? zhTrustBadges : trustBadges).map((badge) => (
-            <li key={badge}>{badge}</li>
-          ))}
+          {(locale === "zh" ? zhTrustBadges : trustBadges)
+            .filter((badge) => badge !== "Illustrative USD price" && badge !== "示意美元价格")
+            .map((badge) => (
+              <li key={badge}>{badge}</li>
+            ))}
         </ul>
       </div>
     ),
@@ -104,7 +93,7 @@ export function ProductDetail({
       <div>
         <h2>{text.product.specs}</h2>
         <dl className="spec-list">
-          {product.specs.map((spec) => (
+          {product.specs.filter((spec) => spec.label !== "Price type").map((spec) => (
             <div key={spec.label}>
               <dt>{displayPhrase(spec.label, product, locale)}</dt>
               <dd>{displayPhrase(spec.value, product, locale)}</dd>

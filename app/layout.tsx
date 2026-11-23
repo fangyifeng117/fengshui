@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   ...pageMetadata({
     title: publicConfig.brandName,
     description:
-      "Demonstration shop for cultural jewelry and small decorative objects. Sample listings, illustrative USD prices, and no live checkout.",
+      "Demonstration shop for cultural jewelry and small decorative objects. Details to be confirmed. No live checkout.",
     path: "/",
     absoluteTitle: true,
   }),

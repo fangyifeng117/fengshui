@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
 import { getCollection, getProductsByCollection } from "@/lib/catalog";
 import { displayCollectionDescription, displayCollectionTitle } from "@/lib/i18n/display";
+import { copy } from "@/lib/i18n/messages";
 import { asLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
 
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const active = asLocale(locale);
   return pageMetadata({
     title: displayCollectionTitle(collection, active),
-    description: active === "zh" ? displayCollectionDescription(collection, active) : collection.seo.description,
+    description: copy(active).product.pending,
     path: `/collections/${collection.slug}`,
     locale,
   });

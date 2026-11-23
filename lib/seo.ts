@@ -43,9 +43,6 @@ export function productJsonLd(input: {
   name: string;
   description: string;
   sku: string;
-  images: string[];
-  price: string;
-  currency: "USD";
   url: string;
   brandName: string;
 }): Record<string, unknown> {
@@ -55,18 +52,10 @@ export function productJsonLd(input: {
     name: input.name,
     description: input.description,
     sku: input.sku,
-    image: input.images,
+    url: input.url,
     brand: {
       "@type": "Brand",
       name: input.brandName,
-    },
-    offers: {
-      "@type": "Offer",
-      url: input.url,
-      priceCurrency: input.currency,
-      price: input.price,
-      availability: "https://schema.org/OutOfStock",
-      description: "Illustrative sample price. Demo capture is disabled, so this is not a live offer.",
     },
   };
 }

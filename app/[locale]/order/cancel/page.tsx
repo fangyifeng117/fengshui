@@ -3,6 +3,8 @@ import { OrderStatusPanel } from "@/components/OrderStatusPanel";
 import { presentOrder } from "@/lib/commerce/present";
 import { getOrder } from "@/lib/commerce/orders";
 import { getDb } from "@/lib/db";
+import { copy } from "@/lib/i18n/messages";
+import { asLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,10 +26,13 @@ function queryMap(params: Record<string, string | string[] | undefined>): Record
 }
 
 export default async function CancelPage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const locale = asLocale((await params).locale);
   const query = queryMap(await searchParams);
   let order = null;
   if (query.order) {
@@ -40,7 +45,7 @@ export default async function CancelPage({
   const view = presentOrder(order, query);
   return (
     <div className="page narrow">
-      <OrderStatusPanel view={view} heading="Checkout was not completed" />
+      <OrderStatusPanel view={view} heading="Checkout was not completed" pendingLabel={copy(locale).product.pending} />
       {view.found && !view.paid && !view.mock ? (
         <form className="stack-form" action="/api/checkout" method="post">
           <p className="fine">

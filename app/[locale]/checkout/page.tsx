@@ -3,7 +3,6 @@ import { CheckoutDesk } from "@/components/CheckoutDesk";
 import { quoteCart } from "@/lib/cart";
 import { products } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
-import { formatMoney } from "@/lib/format";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale, hrefFor } from "@/lib/locale";
 import { readCartDocument } from "@/lib/request";
@@ -47,16 +46,14 @@ export default async function CheckoutPage({ params }: { params: Promise<{ local
       ) : (
         <div className="checkout-layout">
           <section className="summary">
-            <h2>{text.checkout.total}</h2>
             <ul className="plain-list">
               {quote.items.map((item) => (
                 <li key={item.productId}>
                   {item.title} × {item.quantity}
-                  <span>{formatMoney(item.unitAmountCents * item.quantity, item.currency)}</span>
                 </li>
               ))}
             </ul>
-            <p className="price price-large">{formatMoney(quote.amountCents, quote.currency)}</p>
+            <p>{text.product.pending}</p>
             <p className="fine">{text.checkout.shipping}</p>
           </section>
           <CheckoutDesk

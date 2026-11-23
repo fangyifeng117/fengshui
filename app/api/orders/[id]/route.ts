@@ -16,14 +16,10 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
     status: view.status,
     paid: view.paid,
     mock: view.mock,
-    currency: view.currency,
-    amountCents: view.amountCents,
     mode: view.mode,
     items: view.items.map((item) => ({
       title: item.title,
       quantity: item.quantity,
-      unitAmountCents: item.unitAmountCents,
-      currency: item.currency,
     })),
   });
 }

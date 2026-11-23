@@ -66,6 +66,7 @@ const en = {
     related: "Related samples",
     sample: "Sample",
     showImage: "Show sample illustration",
+    pending: "Details to be confirmed",
   },
   cart: {
     title: "Cart",
@@ -208,6 +209,7 @@ const zh: typeof en = {
     related: "相关样品",
     sample: "样品",
     showImage: "显示样品图稿",
+    pending: "商品资料待确认",
   },
   cart: {
     title: "购物车",

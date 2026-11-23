@@ -106,6 +106,22 @@ export function setCartQuantity(
   return writeCart(db, { ...cart, lines });
 }
 
+export function publicCartPayload(quote: ReturnType<typeof quoteCart>, id: string | null, version: number) {
+  return {
+    id,
+    version,
+    items: quote.items.map((item) => ({
+      productId: item.productId,
+      slug: item.slug,
+      title: item.title,
+      quantity: item.quantity,
+      sample: item.sample,
+      captureAllowed: item.captureAllowed,
+    })),
+    demoBlocked: quote.demoBlocked,
+  };
+}
+
 export function quoteCart(catalog: Product[], cart: ServerCart) {
   if (cart.lines.length === 0) {
     return { items: [], amountCents: 0, currency: "USD" as const, demoBlocked: false };

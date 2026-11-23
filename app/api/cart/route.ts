@@ -1,4 +1,4 @@
-import { nextCartLines, quoteCart, type ServerCart } from "@/lib/cart";
+import { nextCartLines, publicCartPayload, quoteCart, type ServerCart } from "@/lib/cart";
 import { products } from "@/lib/catalog";
 import { isCrossSite, readCartDocument, writeCartDocument } from "@/lib/request";
 
@@ -6,7 +6,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 function quoted(cart: ServerCart) {
-  return { id: cart.id === "cart_cookie" ? null : cart.id, version: cart.version, ...quoteCart(products, cart) };
+  const id = cart.id === "cart_cookie" ? null : cart.id;
+  return publicCartPayload(quoteCart(products, cart), id, cart.version);
 }
 
 export async function GET() {

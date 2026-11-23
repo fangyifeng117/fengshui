@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { HeroArt } from "@/components/HeroArt";
 import { SupportEmail } from "@/components/SupportEmail";
 import { ProductCard } from "@/components/ProductCard";
 import { getFeaturedProducts } from "@/lib/catalog";
@@ -26,7 +25,7 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
             </Link>
           </div>
         </div>
-        <HeroArt label={text.product.sample} />
+        <p className="hero-note">{text.product.pending}</p>
       </section>
       <section data-section="featured" aria-label={text.home.title}>
         <div className="product-grid">

@@ -456,15 +456,14 @@ describe("paypal client and public safety", () => {
     expect(env.every((line) => line.endsWith("="))).toBe(true);
     const data = productJsonLd({
       name: "Sample",
-      description: "Sample listing",
+      description: "Details to be confirmed",
       sku: "smp",
-      images: [],
-      price: "28.00",
-      currency: "USD",
       url: "http://localhost:3000/products/sample",
       brandName: "Cultural Jewelry — Demo",
     });
-    expect(JSON.stringify(data)).not.toMatch(/aggregateRating|reviewCount/i);
+    const serialized = JSON.stringify(data);
+    expect(serialized).not.toMatch(/aggregateRating|reviewCount|offers|price|image/i);
+    expect(serialized).not.toContain("28.00");
     expect(robotsMetadata()).toMatchObject({ index: false, follow: false });
   });
 });

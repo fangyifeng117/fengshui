@@ -133,16 +133,14 @@ describe("M1 bilingual skeleton", () => {
             slug: product.slug,
             title: "样品红绳手串",
             quantity: 1,
-            unitAmountCents: 2800,
-            currency: "USD",
-            image: product.images[0]?.src ?? "",
-            imageAlt: "样品图稿",
           },
         ]}
       />,
     );
     expect(cart).toContain("移除");
-    expect(cart).toContain("每件");
+    expect(cart).toContain("商品资料待确认");
     expect(cart).toContain("样品红绳手串");
+    expect(cart).not.toContain("28.00");
+    expect(cart).not.toContain("/illustrations/");
   });
 });

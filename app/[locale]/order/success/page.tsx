@@ -3,6 +3,8 @@ import { OrderStatusPanel } from "@/components/OrderStatusPanel";
 import { presentOrder } from "@/lib/commerce/present";
 import { getOrder } from "@/lib/commerce/orders";
 import { getDb } from "@/lib/db";
+import { copy } from "@/lib/i18n/messages";
+import { asLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,10 +26,13 @@ function queryMap(params: Record<string, string | string[] | undefined>): Record
 }
 
 export default async function SuccessPage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  const locale = asLocale((await params).locale);
   const query = queryMap(await searchParams);
   let order = null;
   if (query.order) {
@@ -41,7 +46,7 @@ export default async function SuccessPage({
   const heading = view.mock ? "MOCK preview" : view.paid ? "Payment recorded" : "Not paid";
   return (
     <div className="page narrow">
-      <OrderStatusPanel view={view} heading={heading} />
+      <OrderStatusPanel view={view} heading={heading} pendingLabel={copy(locale).product.pending} />
       <p>
         <Link href="/products">Back to samples</Link>
       </p>
