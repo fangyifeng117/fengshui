@@ -47,7 +47,7 @@ npm run build
 ## 已实现
 
 - 固定路由仍可用：`/`、`/products`、`/products/[slug]`、`/collections/[slug]`、`/cart`、`/checkout`、`/order/success`、`/order/cancel`、`/content/[slug]`、`/legal/disclaimer`、`/legal/privacy`、`/legal/terms`、`/api/webhooks/paypal`。英文不带前缀。中文是 `/zh` 下的同一路径
-- M1 草稿页：`/temples`、`/temples/[slug]`、`/blessing`、`/blessing/[slug]`、`/videos`、`/stories`、`/account`、`/about`、`/faq`、`/shipping`，以及对应的 `/zh` 路径。五处名山只是文化分类，雪窦山地域标成待核实。相关样品写 inspired-by，不是真实来源。祈福服务是 Coming soon，不能购买，也没有收集表单
+- M1 草稿页：`/temples`、`/temples/[slug]`、`/blessing`、`/blessing/[slug]`、`/videos`、`/stories`、`/account`、`/about`、`/faq`、`/shipping`，以及对应的 `/zh` 路径。五处名山只是文化分类，雪窦山地域标成待核实。相关样品写 inspired-by，不是真实来源。祈福供灯在 `/blessing/offering-lamps` 展示两个价格，预约和支付未开放，没有收集表单。其余祈福草稿仍是 Coming soon
 - 首页顺序：主视觉、精选样品、问题预告
 - 商品页顺序：面包屑、图库、标题与价格及加入购物车 / View demo checkout、合规说明、信任备注、规格、日常使用与摆放、免责声明原文、问答、相关样品。桌面把图库和购买信息排在同一屏，模块顺序没有改
 - 价格和库存以服务器上的商品目录为准。浏览器里自带的单价会被忽略

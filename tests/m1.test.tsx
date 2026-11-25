@@ -54,7 +54,7 @@ describe("M1 bilingual skeleton", () => {
     expect(blessing).toContain(SERVICE_DRAFT_DISCLAIMER);
     expect(blessing).not.toContain("<form");
     expect(blessing).not.toContain("<input");
-    const service = serviceDrafts[0];
+    const service = serviceDrafts.find((item) => item.slug === "wish-card");
     if (!service) throw new Error("missing service");
     const detail = renderToStaticMarkup(<BlessingDetail locale="zh" service={service} />);
     expect(detail).toContain("即将推出");

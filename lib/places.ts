@@ -54,13 +54,117 @@ export function getPlace(slug: string): Place | undefined {
   return places.find((place) => place.slug === slug);
 }
 
+export type ServiceImage = {
+  src: string;
+  webp: string;
+  width: number;
+  height: number;
+  alt: { en: string; zh: string };
+};
+
+export type ServiceOffer = {
+  id: string;
+  label: { en: string; zh: string };
+  detail: { en: string; zh: string };
+};
+
 export type ServiceDraft = {
   slug: string;
   title: { en: string; zh: string };
   summary: { en: string; zh: string };
+  status?: { en: string; zh: string };
+  offers?: ServiceOffer[];
+  images?: ServiceImage[];
+  gaps?: { en: string; zh: string }[];
 };
 
 export const serviceDrafts: ServiceDraft[] = [
+  {
+    slug: "offering-lamps",
+    title: { en: "Offering lamps", zh: "祈福供灯" },
+    summary: {
+      en: "A cultural record of an offering-lamp service. This page only displays it. There is no booking, no payment, and no automatic charge.",
+      zh: "祈福供灯的文化记录。这个页面只做展示。不能预约，不能支付，也不会自动扣费。",
+    },
+    status: {
+      en: "On display. Booking and payment are not open.",
+      zh: "服务展示，暂未开放预约/支付。",
+    },
+    offers: [
+      {
+        id: "once",
+        label: { en: "USD 50, one time", zh: "单次 USD 50" },
+        detail: {
+          en: "One occasion. How many lamps, how long they stay lit, and which day are not confirmed.",
+          zh: "一次。灯的数量、点亮多久、哪一天，都还没有确认。",
+        },
+      },
+      {
+        id: "year",
+        label: { en: "USD 300 for one year, 12 times", zh: "一年 USD 300，共 12 次" },
+        detail: {
+          en: "Once each month, 12 times. USD 300 is the total for that year. It is not charged each month, and it does not renew by itself.",
+          zh: "每个月一次，共 12 次。USD 300 是这一年的总额，不是每月收取，也不会自动续费。",
+        },
+      },
+    ],
+    images: [
+      {
+        src: "/media/offering-lamps/lotus-pair.jpg",
+        webp: "/media/offering-lamps/lotus-pair.webp",
+        width: 1080,
+        height: 500,
+        alt: {
+          en: "Two pink and gold lotus-shaped lamps, cropped close",
+          zh: "两盏粉金莲花灯的近景",
+        },
+      },
+      {
+        src: "/media/offering-lamps/lotus-stands.jpg",
+        webp: "/media/offering-lamps/lotus-stands.webp",
+        width: 1600,
+        height: 624,
+        alt: {
+          en: "Yellow lotus lamp stands on a wooden table",
+          zh: "木桌上的黄色莲花灯",
+        },
+      },
+      {
+        src: "/media/offering-lamps/red-candles.jpg",
+        webp: "/media/offering-lamps/red-candles.webp",
+        width: 430,
+        height: 630,
+        alt: {
+          en: "Two red lamp candles with a small flame-shaped light at each top",
+          zh: "两盏红色灯烛，顶部各有一个火焰形状的小灯",
+        },
+      },
+      {
+        src: "/media/offering-lamps/altar-row.jpg",
+        webp: "/media/offering-lamps/altar-row.webp",
+        width: 1130,
+        height: 260,
+        alt: {
+          en: "A row of small lamps and lotus-shaped lights on a stone ledge",
+          zh: "石台上的一排小灯和莲花灯",
+        },
+      },
+    ],
+    gaps: [
+      {
+        en: "Where this would be done, and who would do it, are not confirmed.",
+        zh: "实际在哪里做、由谁来做，还没有确认。",
+      },
+      {
+        en: "The day of the month is not confirmed.",
+        zh: "每个月的哪一天，还没有确认。",
+      },
+      {
+        en: "Pause, cancel, and refund rules are not confirmed.",
+        zh: "暂停、取消和退款规则，还没有确认。",
+      },
+    ],
+  },
   {
     slug: "wish-card",
     title: { en: "Wish card", zh: "愿卡" },

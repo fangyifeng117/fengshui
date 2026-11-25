@@ -64,8 +64,8 @@ export const themeImages: ThemeImage[] = [
     label: { en: "Atmosphere", zh: "氛围" },
     title: { en: "Lamp light", zh: "灯火" },
     note: {
-      en: "Lit lamps, shown as atmosphere only. No offering service is open.",
-      zh: "灯火只作氛围参考。供灯服务没有开通。",
+      en: "Lit lamps, shown as atmosphere only. The offering-lamp page is a display. Booking and payment are not open.",
+      zh: "灯火只作氛围参考。供灯页是服务展示，预约和支付未开放。",
     },
     alt: {
       en: "Rows of small lit oil lamps in a dark room",

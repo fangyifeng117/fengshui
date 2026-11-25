@@ -10,7 +10,7 @@ export const homeCopy = {
     {
       question: "Are the pictures of real stock?",
       answer:
-        "No. The three home-page pictures are licensed reference photos, not items for sale. Product pages do not show sample photos.",
+        "No. The three home-page pictures are licensed reference photos, not items for sale. Product pages do not show sample photos. Offering-lamp photos are a service display. Booking and payment are not open.",
     },
     {
       question: "Where do I ask a question?",

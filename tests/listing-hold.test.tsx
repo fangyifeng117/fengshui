@@ -65,7 +65,7 @@ describe("withheld sample pictures and prices", () => {
     expect(pages[0]).toContain("Not a sample for sale");
     expect(pages[1]).toContain("风格示意");
     expect(pages[1]).toContain("不是在售样品");
-    expect(pages[1]).toContain("供灯服务没有开通");
+    expect(pages[1]).toContain("预约和支付未开放");
     for (const html of pages.slice(2)) {
       expect(html).not.toContain("<img");
       expect(html).not.toContain("/media/themes/");

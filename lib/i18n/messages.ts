@@ -102,7 +102,7 @@ const en = {
   },
   blessing: {
     title: "Blessing",
-    lede: "Demo. Coming soon. Not for sale.",
+    lede: "Demo. Offering lamps are on display. Booking and payment are not open. Not for sale.",
     noForm: "This page does not collect a name, an email, or a wish.",
     draftNote: "Draft: not on sale yet. The next sentence stays in its required wording.",
   },
@@ -130,7 +130,7 @@ const en = {
     payAnswer: "No. This test preview cannot take payment.",
     pictures: "Are the pictures of real stock?",
     picturesAnswer:
-      "No. The three home-page pictures are licensed reference photos, not items for sale. Product pages do not show sample photos.",
+      "No. The three home-page pictures are licensed reference photos, not items for sale. Product pages do not show sample photos. Offering-lamp photos are a service display. Booking and payment are not open.",
     ask: "Where do I ask a question?",
     askAnswer: "Use the customer-support address.",
     more: "Longer question draft",
@@ -246,7 +246,7 @@ const zh: typeof en = {
   },
   blessing: {
     title: "祈福",
-    lede: "示范。即将推出。不能购买。",
+    lede: "示范。祈福供灯在此展示。预约和支付未开放。不能购买。",
     noForm: "这个页面不收集姓名、邮箱或愿望。",
     draftNote: "草稿：尚未开售。下一句按指定原文保留。",
   },
@@ -273,7 +273,7 @@ const zh: typeof en = {
     pay: "可以付款吗？",
     payAnswer: "不能。这个测试预览不能付款。",
     pictures: "图片是真实库存吗？",
-    picturesAnswer: "不是。首页三张是已许可的参考照片，不是在售商品。商品页不展示样品图。",
+    picturesAnswer: "不是。首页三张是已许可的参考照片，不是在售商品。商品页不展示样品图。供灯照片是服务展示。预约和支付未开放。",
     ask: "去哪里问问题？",
     askAnswer: "使用客户支持地址。",
     more: "较长的问题草稿",
