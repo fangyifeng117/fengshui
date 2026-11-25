@@ -28,6 +28,7 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
         <p>{shown ? service.status?.[locale] : text.comingSoon}</p>
         <p>{text.blessing.lede}</p>
         <p>{service.summary[locale]}</p>
+        {service.scope ? <p>{service.scope[locale]}</p> : null}
         <p>{text.blessing.noForm}</p>
       </header>
       {shown ? (

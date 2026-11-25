@@ -325,6 +325,73 @@ export const products: Product[] = [
     ],
     faq: sharedFaq("pair of stands"),
   },
+  {
+    id: "babao-liuli",
+    slug: "babao-liuli-bracelet",
+    title: "Babao Liuli Bracelet",
+    description:
+      "A liuli bead bracelet. The photograph shows the beads, the fittings, the charm, and the hand holding them. The cultural meaning is a traditional good wish. It is a symbol and not a promised result.",
+    price: 18800,
+    currency: "USD",
+    images: [
+      {
+        src: "/media/products/babao-liuli.jpg",
+        webp: "/media/products/babao-liuli.webp",
+        alt: "A hand holding a liuli bead bracelet with a charm and a paper tag",
+        width: 1280,
+        height: 1330,
+      },
+    ],
+    collection: "beaded-bracelets",
+    seo: {
+      title: "Babao Liuli Bracelet",
+      description: "Babao Liuli Bracelet in liuli. Ten on hand. USD 188. Payment is off.",
+    },
+    sample: true,
+    captureAllowed: false,
+    publicListing: true,
+    illustrativeQuantity: 10,
+    materials: ["liuli"],
+    specs: [
+      { label: "Listing type", value: "Shown photograph and price. Payment is off." },
+      { label: "Material", value: "Liuli" },
+      { label: "On hand", value: "10" },
+      { label: "Size", value: "Not confirmed" },
+      { label: "Craft", value: "Not confirmed" },
+      { label: "Origin", value: "Not confirmed" },
+      {
+        label: "Photograph",
+        value: "Authorized photograph. A paper tag covers part of one bead.",
+      },
+    ],
+    benefits: [
+      "The named material is liuli.",
+      "The photograph keeps the real beads, colors, fittings, charm, and the hand.",
+      "The cultural meaning is a traditional good wish. It is a symbol, not a promised result.",
+    ],
+    useNotes: [
+      "Payment is off, so this page cannot start an order.",
+      "Size, craft, and origin are not confirmed.",
+      "The paper tag stays in the photograph because it covers a bead. The covered part was not redrawn.",
+    ],
+    faq: [
+      {
+        question: "Can I order this bracelet?",
+        answer:
+          "No. The page shows the authorized photograph, USD 188, and 10 on hand. Payment is off, and there is no cart button.",
+      },
+      {
+        question: "Does this listing promise a personal outcome?",
+        answer:
+          "No. The cultural meaning is a traditional good wish. It is a symbol and not a promised result.",
+      },
+      {
+        question: "What does the photograph show?",
+        answer:
+          "The beads, fittings, charm, and the hand holding them. Account marks and the bottom caption were removed. The paper tag covers part of one bead, and that covered part was not redrawn.",
+      },
+    ],
+  },
 ];
 
 export function getCollections(): Collection[] {

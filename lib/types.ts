@@ -1,6 +1,9 @@
 export type ProductImage = {
   src: string;
+  webp?: string;
   alt: string;
+  width?: number;
+  height?: number;
 };
 
 export type ProductSeo = {
@@ -25,6 +28,8 @@ export type Product = {
   seo: ProductSeo;
   sample: boolean;
   captureAllowed: boolean;
+  /** When true, the public shop may show this photo, price, and quantity. Payment stays closed. */
+  publicListing?: boolean;
   illustrativeQuantity: number;
   materials: string[];
   specs: { label: string; value: string }[];

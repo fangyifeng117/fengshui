@@ -8,6 +8,7 @@ import { getCollection } from "@/lib/catalog";
 import { ZH_EXACT_DISCLAIMER, ZH_SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { trustBadges } from "@/lib/home-copy";
 import {
+  displayAlt,
   displayBenefits,
   displayCollectionTitle,
   displayDescription,
@@ -46,6 +47,8 @@ export function ProductDetail({
   const text = copy(locale);
   const collection = getCollection(product.collection);
   const title = displayTitle(product, locale);
+  const shown = product.publicListing === true;
+  const photo = shown ? product.images[0] : undefined;
   const modules: Record<(typeof PRODUCT_MODULE_ORDER)[number], ReactNode> = {
     breadcrumb: (
       <nav className="breadcrumb" aria-label="Breadcrumb">
@@ -60,11 +63,26 @@ export function ProductDetail({
         <span>{title}</span>
       </nav>
     ),
-    gallery: <Gallery label={text.product.pending} />,
+    gallery: photo ? (
+      <Gallery
+        label={text.product.pending}
+        image={{ ...photo, alt: displayAlt(product, 0, locale) }}
+      />
+    ) : (
+      <Gallery label={text.product.pending} />
+    ),
     purchase: (
       <div className="purchase-block">
         <h1>{title}</h1>
-        <p>{text.product.pending}</p>
+        {shown ? (
+          <>
+            <p className="price-large">USD {product.price / 100}</p>
+            <p>{locale === "zh" ? `库存 ${product.illustrativeQuantity} 件` : `${product.illustrativeQuantity} on hand`}</p>
+            <p>{locale === "zh" ? "支付已关闭。这里不能加入购物车。" : "Payment is off. There is no cart button."}</p>
+          </>
+        ) : (
+          <p>{text.product.pending}</p>
+        )}
         <p>{displayDescription(product, locale)}</p>
       </div>
     ),
@@ -83,7 +101,11 @@ export function ProductDetail({
         <h2>{text.product.trust}</h2>
         <ul className="badge-list">
           {(locale === "zh" ? zhTrustBadges : trustBadges)
-            .filter((badge) => badge !== "Illustrative USD price" && badge !== "示意美元价格")
+            .filter((badge) => {
+              if (badge === "Illustrative USD price" || badge === "示意美元价格") return false;
+              if (shown && (badge === "Sample illustration" || badge === "样品图稿")) return false;
+              return true;
+            })
             .map((badge) => (
               <li key={badge}>{badge}</li>
             ))}

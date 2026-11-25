@@ -18,7 +18,12 @@ describe("withheld sample pictures and prices", () => {
     for (const product of products) {
       expect(product.price).toBeGreaterThan(0);
       expect(product.images.length).toBeGreaterThan(0);
-      expect(product.images[0]?.src.startsWith("/illustrations/")).toBe(true);
+      if (product.publicListing) {
+        expect(product.id).toBe("babao-liuli");
+        expect(product.images[0]?.src).toBe("/media/products/babao-liuli.jpg");
+      } else {
+        expect(product.images[0]?.src.startsWith("/illustrations/")).toBe(true);
+      }
     }
 
     const product = getProductBySlug("sample-red-cord-bracelet");
@@ -66,10 +71,23 @@ describe("withheld sample pictures and prices", () => {
     expect(pages[1]).toContain("风格示意");
     expect(pages[1]).toContain("不是在售样品");
     expect(pages[1]).toContain("预约和支付未开放");
-    for (const html of pages.slice(2)) {
+    expect(pages[1]).toContain("八宝琉璃手串");
+    for (const html of pages.slice(2, 8)) {
       expect(html).not.toContain("<img");
       expect(html).not.toContain("/media/themes/");
     }
+    expect(pages[8].match(/<img/g)?.length).toBe(1);
+    expect(pages[8]).toContain("/media/products/babao-liuli.jpg");
+    expect(pages[8]).toContain("USD 188");
+    expect(pages[9].match(/<img/g)?.length).toBe(1);
+    expect(pages[9]).toContain("/media/products/babao-liuli.jpg");
+    expect(pages[9]).toContain("USD 188");
+    expect(pages[9]).not.toContain("$28.00");
+    expect(pages[9]).not.toContain("$30.00");
+    expect(pages[9]).not.toContain("$36.00");
+    expect(pages[9]).not.toContain("$32.00");
+    expect(pages[9]).not.toContain("$54.00");
+    expect(pages[9]).not.toContain("$62.00");
     for (const html of pages) {
       expect(html).not.toMatch(priceLeak);
       expect(html).not.toContain("free");

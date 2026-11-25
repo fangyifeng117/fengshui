@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductDetail } from "@/components/ProductDetail";
 import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
-import { displayTitle } from "@/lib/i18n/display";
+import { displayDescription, displayTitle } from "@/lib/i18n/display";
 import { asLocale } from "@/lib/locale";
 import { copy } from "@/lib/i18n/messages";
 import { absoluteUrl, publicConfig } from "@/lib/public-config";
@@ -22,7 +22,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const active = asLocale(locale);
   return pageMetadata({
     title: active === "zh" ? displayTitle(product, active) : product.seo.title,
-    description: copy(active).product.pending,
+    description: product.publicListing
+      ? active === "zh"
+        ? displayDescription(product, active)
+        : product.seo.description
+      : copy(active).product.pending,
     path: `/products/${product.slug}`,
     locale,
   });
@@ -40,7 +44,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
       <JsonLd
         data={productJsonLd({
           name: displayTitle(product, locale),
-          description: copy(locale).product.pending,
+          description: product.publicListing ? displayDescription(product, locale) : copy(locale).product.pending,
           sku: product.id,
           url,
           brandName: publicConfig.brandName,

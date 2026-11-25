@@ -130,7 +130,7 @@ const en = {
     payAnswer: "No. This test preview cannot take payment.",
     pictures: "Are the pictures of real stock?",
     picturesAnswer:
-      "No. The three home-page pictures are licensed reference photos, not items for sale. Product pages do not show sample photos. Offering-lamp photos are a service display. Booking and payment are not open.",
+      "No. The three home-page pictures are licensed reference photos, not items for sale. The Babao Liuli Bracelet page shows that one authorized photograph and a count of 10. Other product pages do not show sample photos. Offering-lamp photos are a service display. Booking and payment are not open.",
     ask: "Where do I ask a question?",
     askAnswer: "Use the customer-support address.",
     more: "Longer question draft",
@@ -273,7 +273,8 @@ const zh: typeof en = {
     pay: "可以付款吗？",
     payAnswer: "不能。这个测试预览不能付款。",
     pictures: "图片是真实库存吗？",
-    picturesAnswer: "不是。首页三张是已许可的参考照片，不是在售商品。商品页不展示样品图。供灯照片是服务展示。预约和支付未开放。",
+    picturesAnswer:
+      "不是。首页三张是已许可的参考照片，不是在售商品。八宝琉璃手串页展示该件已授权的照片和库存 10。其他商品页不展示样品图。供灯照片是服务展示。预约和支付未开放。",
     ask: "去哪里问问题？",
     askAnswer: "使用客户支持地址。",
     more: "较长的问题草稿",

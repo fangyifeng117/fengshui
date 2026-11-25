@@ -76,6 +76,7 @@ export type ServiceDraft = {
   offers?: ServiceOffer[];
   images?: ServiceImage[];
   gaps?: { en: string; zh: string }[];
+  scope?: { en: string; zh: string };
 };
 
 export const serviceDrafts: ServiceDraft[] = [
@@ -95,16 +96,16 @@ export const serviceDrafts: ServiceDraft[] = [
         id: "once",
         label: { en: "USD 50, one time", zh: "单次 USD 50" },
         detail: {
-          en: "One occasion. How many lamps, how long they stay lit, and which day are not confirmed.",
-          zh: "一次。灯的数量、点亮多久、哪一天，都还没有确认。",
+          en: "One occasion at one place, not both. The proposed day is the 1st of each month. How many lamps, how long they stay lit, the first month, and closure days are not confirmed.",
+          zh: "一次，只在一处，不是两处都做。拟定日期是每月 1 日。灯的数量、点亮多久、从哪一个月开始、遇关闭日怎么办，都还没有确认。",
         },
       },
       {
         id: "year",
         label: { en: "USD 300 for one year, 12 times", zh: "一年 USD 300，共 12 次" },
         detail: {
-          en: "Once each month, 12 times. USD 300 is the total for that year. It is not charged each month, and it does not renew by itself.",
-          zh: "每个月一次，共 12 次。USD 300 是这一年的总额，不是每月收取，也不会自动续费。",
+          en: "Once each month, 12 times, one place each time. USD 300 is the total for that year. It is not charged each month, and it does not renew by itself.",
+          zh: "每个月一次，共 12 次，每次只在一处。USD 300 是这一年的总额，不是每月收取，也不会自动续费。",
         },
       },
     ],
@@ -150,14 +151,22 @@ export const serviceDrafts: ServiceDraft[] = [
         },
       },
     ],
+    scope: {
+      en: "Each occasion is one place. The customer chooses either 天下第一财神庙 or 灵隐寺, not both. The USD 50 occasion and each of the 12 occasions in the USD 300 year use this same rule. Permission to do the lighting there, and permission to film, are not verified. This page is not an official partnership.",
+      zh: "每次只在一处供灯。顾客在天下第一财神庙和灵隐寺中选择一处，不是两处都做。单次 USD 50 和全年 USD 300 的每一次都按这个范围。在当地执行和拍摄的商业许可尚未核实。本页不是官方合作或授权。",
+    },
     gaps: [
       {
-        en: "Where this would be done, and who would do it, are not confirmed.",
-        zh: "实际在哪里做、由谁来做，还没有确认。",
+        en: "Who would do the lighting is not confirmed. The choice of place above is a commercial scope, not a verified permission.",
+        zh: "由谁来供灯还没有确认。上面的地点是商业范围，不是已经核实的许可。",
       },
       {
-        en: "The day of the month is not confirmed.",
-        zh: "每个月的哪一天，还没有确认。",
+        en: "The proposed day is the 1st of each month. The first month, and what happens on a closure day, are not confirmed.",
+        zh: "拟定日期是每月 1 日。从哪一个月开始、遇关闭日怎么办，还没有确认。",
+      },
+      {
+        en: "A private on-site photo or video is a proposed record. It would be delivered only after the person in that record agrees. This page does not collect a name, a wish, or a photo.",
+        zh: "现场照片或视频是拟定中的记录，只在画面中的本人同意后私密交付。这个页面不收集姓名、愿望或照片。",
       },
       {
         en: "Pause, cancel, and refund rules are not confirmed.",

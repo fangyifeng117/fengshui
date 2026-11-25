@@ -31,6 +31,17 @@ describe("offering lamp display", () => {
     expect(chinese).toContain("不是每月收取");
     expect(chinese).toContain("不会自动续费");
     expect(chinese).toContain("服务展示，暂未开放预约/支付");
+    expect(english).toContain("天下第一财神庙");
+    expect(english).toContain("灵隐寺");
+    expect(english).toContain("not both");
+    expect(english).toContain("not verified");
+    expect(english).toContain("1st of each month");
+    expect(chinese).toContain("不是两处");
+    expect(chinese).toContain("尚未核实");
+    expect(chinese).toContain("不是官方合作或授权");
+    expect(chinese).toContain("每月 1 日");
+    expect(index).toContain("天下第一财神庙");
+    expect(index).toContain("灵隐寺");
     expect(english).toContain("Booking and payment are not open.");
     expect(english).toContain(EXACT_DISCLAIMER);
     expect(english).toContain(SERVICE_DRAFT_DISCLAIMER);

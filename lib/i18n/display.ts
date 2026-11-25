@@ -9,6 +9,7 @@ type ZhListing = {
   benefits: string[];
   useNotes: string[];
   noun: string;
+  faq?: Product["faq"];
 };
 
 const sharedPhrases: Record<string, string> = {
@@ -152,6 +153,51 @@ const listings: Record<string, ZhListing> = {
       "因为没有制作过，运输重量未知。",
     ],
   },
+  "babao-liuli": {
+    title: "八宝琉璃手串",
+    description:
+      "琉璃珠手串。照片里是珠子、配件、吊坠和托着它的手。它承载祈福与招财的传统美好祝愿。这是文化象征，不是实际的财富结果。",
+    alts: ["一只手托着琉璃珠手串，上面有吊坠和纸质吊牌"],
+    noun: "琉璃手串",
+    phrases: {
+      "Shown photograph and price. Payment is off.": "展示照片和价格。支付已关闭。",
+      Material: "材料",
+      Liuli: "琉璃",
+      "On hand": "库存",
+      "10": "10 件",
+      Size: "尺寸",
+      Craft: "工艺",
+      Origin: "产地",
+      "Not confirmed": "待确认",
+      "Authorized photograph. A paper tag covers part of one bead.":
+        "已授权照片。纸质吊牌盖住一颗珠子的一部分。",
+    },
+    benefits: [
+      "写明的材料是琉璃。",
+      "照片保留真实的珠子、颜色、配件、吊坠和手。",
+      "它承载祈福与招财的传统美好祝愿。这是文化象征，不是实际的财富结果。",
+    ],
+    useNotes: [
+      "支付已关闭，所以这个页面不能下单。",
+      "尺寸、工艺和产地都待确认。",
+      "纸质吊牌留在照片里，因为它盖住一颗珠子。被挡住的部分没有重画。",
+    ],
+    faq: [
+      {
+        question: "这串手串可以下单吗？",
+        answer: "不能。页面展示已授权的照片、USD 188 和库存 10 件。支付已关闭，也没有购物车按钮。",
+      },
+      {
+        question: "这个列表承诺个人结果吗？",
+        answer: "不承诺。它承载祈福与招财的传统美好祝愿。这是文化象征，不是实际的财富结果。",
+      },
+      {
+        question: "这张照片是这件手串吗？",
+        answer:
+          "是。照片里是珠子、配件、吊坠和托着它的手。账号水印和底部宣传文字已去掉。纸质吊牌盖住一颗珠子的一部分，被挡住的珠面没有重画。",
+      },
+    ],
+  },
 };
 
 const collectionsZh: Record<string, { title: string; description: string }> = {
@@ -210,6 +256,8 @@ export function displayUseNotes(product: Product, locale: Locale): string[] {
 
 export function displayFaq(product: Product, locale: Locale): Product["faq"] {
   if (locale !== "zh") return product.faq;
+  const custom = listings[product.id]?.faq;
+  if (custom) return custom;
   const noun = listings[product.id]?.noun;
   if (!noun) return product.faq;
   return [

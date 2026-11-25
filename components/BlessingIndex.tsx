@@ -34,6 +34,7 @@ export function BlessingIndex({ locale }: { locale: Locale }) {
               {service.offers?.map((offer) => (
                 <p key={offer.id}>{offer.label[locale]}</p>
               ))}
+              {service.scope ? <p>{service.scope[locale]}</p> : null}
             </Link>
           );
         })}
