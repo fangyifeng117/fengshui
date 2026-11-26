@@ -2,6 +2,22 @@ import type { Metadata } from "next";
 import { hrefFor } from "@/lib/locale";
 import { absoluteUrl, publicConfig } from "@/lib/public-config";
 
+/** Document title only. The visible header brand stays 神秘东方. */
+export const SITE_TITLE = {
+  en: "Furui Qifu — Blessings for Your Place",
+  zh: "福瑞祈福，纳福一方",
+} as const;
+
+export function siteTitle(locale?: string): string {
+  return locale === "zh" ? SITE_TITLE.zh : SITE_TITLE.en;
+}
+
+export function documentTitle(pageTitle: string, locale?: string, absolute = false): string {
+  const site = siteTitle(locale);
+  if (absolute || pageTitle === site) return site;
+  return `${pageTitle} — ${site}`;
+}
+
 export function robotsMetadata(): Metadata["robots"] {
   if (publicConfig.indexingApproved) {
     return { index: true, follow: true };
@@ -20,8 +36,9 @@ export function pageMetadata(input: {
   const canonical = absoluteUrl(hrefFor(locale, input.path));
   const en = absoluteUrl(hrefFor("en", input.path));
   const zh = absoluteUrl(hrefFor("zh", input.path));
+  const title = documentTitle(input.title, locale, input.absoluteTitle);
   return {
-    title: input.absoluteTitle ? { absolute: input.title } : input.title,
+    title: { absolute: title },
     description: input.description,
     alternates: {
       canonical,
@@ -29,12 +46,17 @@ export function pageMetadata(input: {
     },
     robots: robotsMetadata(),
     openGraph: {
-      title: input.title,
+      title,
       description: input.description,
       url: canonical,
       siteName: publicConfig.brandName,
       locale: locale === "zh" ? "zh_CN" : "en_US",
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: input.description,
     },
   };
 }

@@ -1,13 +1,14 @@
 import { HomeScreen } from "@/components/HomeScreen";
 import { copy } from "@/lib/i18n/messages";
 import { asLocale } from "@/lib/locale";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, siteTitle } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const text = copy(asLocale(locale));
+  const active = asLocale(locale);
+  const text = copy(active);
   return pageMetadata({
-    title: `${text.home.title} — Demo`,
+    title: siteTitle(active),
     description: text.announcement,
     path: "/",
     locale,

@@ -10,6 +10,9 @@ import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
 import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { HomeScreen } from "@/components/HomeScreen";
+import { generateMetadata as homeMetadata } from "@/app/[locale]/page";
+import { generateMetadata as privacyMetadata } from "@/app/[locale]/legal/privacy/page";
+import { SITE_TITLE } from "@/lib/seo";
 
 describe("page structure", () => {
   it("keeps the product modules in the required order and prints the exact disclaimer", () => {
@@ -39,6 +42,18 @@ describe("page structure", () => {
     expect(html).not.toContain("Add to cart");
     expect(html).not.toContain("/illustrations/");
     expect(html).not.toMatch(/\$\d/);
+  });
+
+  it("uses the site phrase as the document title", async () => {
+    const english = await homeMetadata({ params: Promise.resolve({ locale: "en" }) });
+    const chinese = await homeMetadata({ params: Promise.resolve({ locale: "zh" }) });
+    const privacy = await privacyMetadata({ params: Promise.resolve({ locale: "en" }) });
+    expect(english.title).toEqual({ absolute: SITE_TITLE.en });
+    expect(chinese.title).toEqual({ absolute: SITE_TITLE.zh });
+    expect(english.openGraph && "title" in english.openGraph ? english.openGraph.title : "").toBe(SITE_TITLE.en);
+    expect(privacy.title).toEqual({ absolute: `Privacy — ${SITE_TITLE.en}` });
+    expect(JSON.stringify(english)).not.toContain("Samples — Demo");
+    expect(JSON.stringify(chinese)).not.toContain("样品 — Demo");
   });
 
   it("orders the home page and shows the short footer disclaimer", () => {

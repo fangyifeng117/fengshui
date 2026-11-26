@@ -77,6 +77,7 @@ export type ServiceDraft = {
   images?: ServiceImage[];
   gaps?: { en: string; zh: string }[];
   scope?: { en: string; zh: string };
+  registry?: { en: string; zh: string };
   rules?: { en: string; zh: string }[];
   faq?: { question: { en: string; zh: string }; answer: { en: string; zh: string } }[];
   supplementZh?: string;
@@ -171,8 +172,12 @@ export const serviceDrafts: ServiceDraft[] = [
       },
     ],
     scope: {
-      en: "The customer would choose one venue in Hangzhou, either 天下第一财神庙 or 灵隐寺, not both. Each amount above is a suggested price. It is intended to cover an errand fee, a temple offering fee, and documentation, and those components are not confirmed. None of these periods is a subscription, and none renews by itself. We do not promise that a wish will come true.",
-      zh: "顾客会在杭州的天下第一财神庙和灵隐寺中选择一处，不是两处都做。上面每个金额都是建议价格，打算用于跑腿费、寺庙供灯费用和记录，但这几项尚未分开确认。这些档期都不是订阅，也不会自动续费。我们不承诺愿望会实现。",
+      en: "The customer would choose one venue in Hangzhou, either 天下第一财神庙 (灵顺寺, not 灵隐寺) or 灵隐寺, not both. Each amount above is a suggested price. It is intended to cover an errand fee, a temple offering fee, and documentation, and those components are not confirmed. None of these periods is a subscription, and none renews by itself. We do not promise that a wish will come true.",
+      zh: "顾客会在杭州的天下第一财神庙（灵顺寺，不是灵隐寺）和灵隐寺中选择一处，不是两处都做。上面每个金额都是建议价格，打算用于跑腿费、寺庙供灯费用和记录，但这几项尚未分开确认。这些档期都不是订阅，也不会自动续费。我们不承诺愿望会实现。",
+    },
+    registry: {
+      en: "As part of this errand, we will help record the necessary customer information, such as the name of the person the offering is for, in the registry. This is not an official temple partnership or an official temple-registry guarantee, and it is not a consecration, religious intermediation, or a promise of any outcome. This page does not collect that information now.",
+      zh: "作为代请代办的一部分，我们会协助将供灯人姓名等必要信息写入登记册。这不是寺庙官方合作或官方登记承诺，也不构成开光、宗教中介或任何功效保证。这个页面现在不收集这些信息。",
     },
     rules: [
       {
@@ -205,8 +210,8 @@ export const serviceDrafts: ServiceDraft[] = [
       {
         question: { en: "Do you collect a wish?", zh: "现在收集愿望吗？" },
         answer: {
-          en: "No. This page does not collect a name, an email, or a religious wish.",
-          zh: "不收集。这个页面不收集姓名、邮箱或宗教祈愿。",
+          en: "Not on this page. Booking is closed, so there is no form. If the errand is booked later, we will help record the offeror's name in a registry. We do not collect a religious wish.",
+          zh: "这个页面现在不收集。预约未开放，所以没有表单。以后如果可以预约，代办会协助把供灯人姓名写入登记册。我们不收集宗教祈愿。",
         },
       },
       {

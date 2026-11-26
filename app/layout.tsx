@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Fraunces, Outfit } from "next/font/google";
 import { headers } from "next/headers";
 import { publicConfig } from "@/lib/public-config";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, siteTitle } from "@/lib/seo";
 import "./globals.css";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -11,16 +11,19 @@ const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces" });
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(publicConfig.baseUrl),
-  ...pageMetadata({
-    title: publicConfig.brandName,
-    description:
-      "神秘东方. Payment is off.",
-    path: "/",
-    absoluteTitle: true,
-  }),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = (await headers()).get("X-NEXT-INTL-LOCALE") === "zh" ? "zh" : "en";
+  return {
+    metadataBase: new URL(publicConfig.baseUrl),
+    ...pageMetadata({
+      title: siteTitle(locale),
+      description: locale === "zh" ? "福瑞祈福，纳福一方。支付已关闭。" : "Furui Qifu — Blessings for Your Place. Payment is off.",
+      path: "/",
+      locale,
+      absoluteTitle: true,
+    }),
+  };
+}
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const locale = (await headers()).get("X-NEXT-INTL-LOCALE") === "zh" ? "zh" : "en";

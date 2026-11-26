@@ -29,6 +29,9 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         <MerchantIdentity locale="zh" />
         <p>支付仍关闭。本站不开放账户，不收款，不收集银行卡号。请不要提交宗教祈愿文字、身份证件或支付卡信息。</p>
         <p>
+          供灯代办一旦可以预约，我们可能会收集供灯人姓名，以及安排这次代办、并协助写入登记册所必需的其他信息。这些信息只用于完成该请求，不出售。预约和支付仍未开放，所以本页现在不收集这些信息。
+        </p>
+        <p>
           如果以后保存订单，记录可以包括订单号、商品、金额和支付状态。不保存卡号。付款通知只在去掉付款人敏感字段之后保存。目前没有实时扣款。
         </p>
         <p>没有另行指定数据保护官。隐私问题使用上面的客户服务邮箱。</p>
@@ -45,6 +48,11 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
       <p>
         Payment is off. This site does not open accounts, does not take a charge, and does not collect card numbers. Do
         not submit a religious wish, an identity document, or a payment card.
+      </p>
+      <p>
+        When the lamp errand can be booked, we may collect the offerer&apos;s name and other details strictly necessary
+        to arrange the errand and help record them in the registry. That use is limited to fulfilling the request. We
+        do not sell this data. Booking and payment are still closed, so this page does not collect it yet.
       </p>
       <p>
         If an order record is stored later, it can hold an order id, the lines, the amount, and the payment status. Card

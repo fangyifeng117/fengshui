@@ -50,7 +50,7 @@ const en = {
     slotNote: "Coming soon. Not for sale. No photo or price yet.",
     lampCta: "Request a lamp for home",
     lampNote:
-      "A proposed errand, one venue per order: 天下第一财神庙 (灵顺寺, not 灵隐寺) or 灵隐寺. Proposed from USD 29. Not for sale. Booking and payment are not open.",
+      "A proposed errand, one venue per order: 天下第一财神庙 (灵顺寺, not 灵隐寺) or 灵隐寺. Proposed from USD 29. Not for sale. If booked later, we would help record the offeror's name in a registry. That is not an official temple-registry guarantee. Booking and payment are not open.",
     trustPay: "Payment is off",
     trustPayNote: "This page cannot start an order or a lamp request.",
     trustShip: "Shipping for this bracelet",
@@ -215,7 +215,7 @@ const zh: typeof en = {
     slotNote: "待上架。现在不能购买。还没有照片和价格。",
     lampCta: "为家乡点灯",
     lampNote:
-      "拟定代办，每次只选一处：天下第一财神庙（灵顺寺，不是灵隐寺）或灵隐寺。拟定起步价 USD 29。现在不能购买。预约和支付未开放。",
+      "拟定代办，每次只选一处：天下第一财神庙（灵顺寺，不是灵隐寺）或灵隐寺。拟定起步价 USD 29。现在不能购买。以后如果可以预约，会协助把供灯人姓名写入登记册，这不是寺庙官方登记承诺。预约和支付未开放。",
     trustPay: "支付已关闭",
     trustPayNote: "这个页面不能下单，也不能发起供灯代请。",
     trustShip: "这串手串的配送",

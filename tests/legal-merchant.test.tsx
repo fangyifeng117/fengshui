@@ -29,6 +29,9 @@ describe("merchant legal drafts", () => {
     }
     expect(privacy).toContain("隐私");
     expect(privacy).toContain("不限于美国");
+    expect(privacy).toContain("写入登记册");
+    expect(privacy).toContain("不出售");
+    expect(privacy).not.toContain("<form");
     expect(terms).toContain("全球");
     expect(terms).toContain("拟定展示");
     expect(terms).toContain("不能购买");

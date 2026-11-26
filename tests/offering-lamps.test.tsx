@@ -7,7 +7,7 @@ import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
 import { getServiceDraft } from "@/lib/places";
 
-const banned = ["USD 50", "USD 300", "合作寺庙", "开光", "功德", "保佑", "灵验", "消灾", "改命", "partner temple", "official cooperation", "consecration"];
+const banned = ["USD 50", "USD 300", "合作寺庙", "功德", "保佑", "灵验", "消灾", "改命", "partner temple", "3–7", "3-7"];
 
 describe("offering lamp display", () => {
   it("shows four proposed prices and keeps booking closed", () => {
@@ -41,6 +41,13 @@ describe("offering lamp display", () => {
     expect(english).toContain("Booking and payment are not open.");
     expect(english).toContain("cannot be purchased now");
     expect(english).toContain("We do not promise that a wish will come true.");
+    expect(english).toContain("not an official temple partnership");
+    expect(english).toContain("not a consecration");
+    expect(english).toContain("灵顺寺");
+    expect(chinese).toContain("写入登记册");
+    expect(chinese).toContain("不是寺庙官方合作");
+    expect(chinese).toContain("不构成开光");
+    expect(chinese).toContain("灵顺寺，不是灵隐寺");
     expect(english).toContain(EXACT_DISCLAIMER);
     expect(english).toContain(SERVICE_DRAFT_DISCLAIMER);
     expect(english).toContain("/media/offering-lamps/lotus-pair.jpg");

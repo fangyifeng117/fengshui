@@ -28,6 +28,7 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
         <p>{text.blessing.lede}</p>
         <p>{service.summary[locale]}</p>
         {service.scope ? <p>{service.scope[locale]}</p> : null}
+        {service.registry ? <p>{service.registry[locale]}</p> : null}
         <p>{text.blessing.noForm}</p>
       </header>
       {shown ? (
