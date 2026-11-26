@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExactDisclaimer } from "@/components/ExactDisclaimer";
+import { ShippingPolicy } from "@/components/ShippingPolicy";
 import { SupportEmail } from "@/components/SupportEmail";
 import { getContentPage } from "@/lib/content";
-import { hrefFor } from "@/lib/locale";
+import { asLocale, hrefFor } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -24,6 +25,9 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
   const { locale, slug } = await params;
   const page = getContentPage(slug);
   if (!page) notFound();
+  if (slug === "shipping-returns") {
+    return <ShippingPolicy locale={asLocale(locale)} />;
+  }
   return (
     <article className="page prose-page">
       {locale === "zh" ? <p>以下正文是英文草稿。</p> : null}
@@ -55,7 +59,7 @@ export default async function ContentPage({ params }: { params: Promise<{ locale
             <Link href={hrefFor(locale, "/content/faq")}>Questions</Link>
           </li>
           <li>
-            <Link href={hrefFor(locale, "/content/shipping-returns")}>Shipping and returns (TODO)</Link>
+            <Link href={hrefFor(locale, "/content/shipping-returns")}>Shipping and returns</Link>
           </li>
         </ul>
       ) : null}

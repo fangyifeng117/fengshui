@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { SupportEmail } from "@/components/SupportEmail";
 import { getCollections } from "@/lib/catalog";
+import { merchantIdentity } from "@/lib/merchant";
+import { publicConfig } from "@/lib/public-config";
 import { SHORT_FOOTER_DISCLAIMER, ZH_SHORT_FOOTER_DISCLAIMER } from "@/lib/disclaimer";
 import { displayCollectionTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
@@ -34,6 +36,9 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <Link href={hrefFor(locale, "/content/cultural-notes")}>{text.footer.notes}</Link>
           <Link href={hrefFor(locale, "/about")}>{text.footer.about}</Link>
           <Link href={hrefFor(locale, "/faq")}>{text.footer.faq}</Link>
+          <p>{merchantIdentity.legalName}</p>
+          <p>{merchantIdentity.address}</p>
+          <p>{publicConfig.baseUrl}</p>
         </section>
         <section>
           <h2>{text.footer.contact}</h2>
@@ -41,7 +46,6 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
             {text.footer.supportLead} <SupportEmail />
           </p>
           <p>{text.footer.supportNote}</p>
-          <p>{text.footer.draftFacts}</p>
           <Link href={hrefFor(locale, "/videos")}>{text.footer.videos}</Link>
           <Link href={hrefFor(locale, "/stories")}>{text.footer.stories}</Link>
           <Link href={hrefFor(locale, "/account")}>{text.footer.account}</Link>

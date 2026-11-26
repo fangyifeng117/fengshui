@@ -11,7 +11,6 @@ export function BlessingIndex({ locale }: { locale: Locale }) {
   return (
     <div className="page narrow">
       <header className="section-head">
-        <p>{text.demo}</p>
         <h1>{text.blessing.title}</h1>
         <p>{text.blessing.lede}</p>
         <p>{text.blessing.noForm}</p>

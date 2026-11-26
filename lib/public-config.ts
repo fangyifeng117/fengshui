@@ -13,7 +13,7 @@ export const BRAND_NAME = "神秘东方";
 const DEFAULT_BRAND = BRAND_NAME;
 const DEFAULT_SUPPORT_EMAIL = "fangyifeng117@gmail.com";
 const DEFAULT_BASE = "https://furuiqifu.com";
-export const DEFAULT_ANNOUNCEMENT = "Sample catalog. Payment is off.";
+export const DEFAULT_ANNOUNCEMENT = "Payment is off.";
 
 function supportEmailFromEnv(value: string | undefined): string {
   const trimmed = value?.trim() ?? "";

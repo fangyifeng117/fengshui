@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/locale";
 
 const en = {
-  announcement: "Sample catalog. Payment is off.",
+  announcement: "Payment is off.",
   nav: {
     shop: "Shop",
     collections: "Collections",
@@ -29,8 +29,8 @@ const en = {
     notes: "Cultural notes",
     contact: "Contact",
     supportLead: "Customer support:",
-    supportNote: "Temporary public address for shop questions.",
-    draftFacts: "Draft. Legal entity, phone number, street address, and domain are not confirmed.",
+    supportNote: "Customer service and privacy contact.",
+    draftFacts: "Seller details are on the terms page.",
     fullDisclaimer: "Full disclaimer.",
   },
   home: {
@@ -73,7 +73,7 @@ const en = {
     empty: "The cart is empty.",
     browse: "Browse samples",
     total: "Total",
-    shipping: "Shipping and returns are drafts. This total is the sample item total only.",
+    shipping: "Payment is off. Bracelet shipping is on the shipping page. This total does not place an order.",
     view: "View demo checkout",
     each: "each",
     remove: "Remove",
@@ -83,11 +83,11 @@ const en = {
   },
   checkout: {
     title: "Checkout",
-    closed: "Test preview. Payment is off.",
+    closed: "Payment is off.",
     empty: "The cart is empty.",
     browse: "Browse samples",
     total: "Server total",
-    shipping: "Shipping and returns are drafts. Tax is not calculated.",
+    shipping: "Payment is off. Import duties are not collected here.",
   },
   places: {
     title: "Places",
@@ -102,8 +102,8 @@ const en = {
   },
   blessing: {
     title: "Blessing",
-    lede: "Demo. Offering lamps are on display. Booking and payment are not open. Not for sale.",
-    noForm: "This page does not collect a name, an email, or a wish.",
+    lede: "Offering lamps are a merchant errand on display. Booking and payment are not open. Not for sale.",
+    noForm: "This page does not collect a name, an email, or a religious wish.",
     draftNote: "Draft: not on sale yet. The next sentence stays in its required wording.",
   },
   videos: {
@@ -120,32 +120,32 @@ const en = {
   },
   about: {
     title: "About",
-    lede: "The site name is 神秘东方. This site is a demo.",
+    lede: "The site name is 神秘东方. Payment is off. The seller is named on the terms page.",
     places: "The five places are cultural groupings, not partner monasteries.",
   },
   faq: {
     title: "Questions",
-    lede: "Short answers for this demo. The longer English draft is linked below.",
+    lede: "Short answers. Payment is off.",
     pay: "Can I pay?",
-    payAnswer: "No. This test preview cannot take payment.",
+    payAnswer: "No. Payment is off.",
     pictures: "Are the pictures of real stock?",
     picturesAnswer:
-      "No. The three home-page pictures are licensed reference photos, not items for sale. The Babao Liuli Bracelet page shows that one authorized photograph and a count of 10. Other product pages do not show sample photos. Offering-lamp photos are a service display. Booking and payment are not open.",
+      "No. The three home-page pictures are licensed reference photos, not items for sale. The Babao Liuli Bracelet page shows that one authorized photograph and a count of 10. Other product pages do not show sample photos. Offering-lamp photos show a merchant errand on display. Booking and payment are not open.",
     ask: "Where do I ask a question?",
     askAnswer: "Use the customer-support address.",
     more: "Longer question draft",
   },
   shipping: {
     title: "Shipping and returns",
-    lede: "Shipping, returns, timing, and prices are not confirmed.",
-    more: "Draft notes",
+    lede: "Free tracked shipping for the Babao Liuli Bracelet, from Hangzhou. Payment is off.",
+    more: "Terms",
   },
   comingSoon: "Coming soon",
   demo: "Demo",
 };
 
 const zh: typeof en = {
-  announcement: "样品目录。支付已关闭。",
+  announcement: "支付已关闭。",
   nav: {
     shop: "选购",
     collections: "系列",
@@ -173,8 +173,8 @@ const zh: typeof en = {
     notes: "文化说明",
     contact: "联系",
     supportLead: "客户支持：",
-    supportNote: "临时公开地址，只用于商店问题。",
-    draftFacts: "草稿。法律主体、电话、街道地址和域名都未确认。",
+    supportNote: "客户服务与隐私联系。",
+    draftFacts: "经营者信息在条款页。",
     fullDisclaimer: "Full disclaimer.",
   },
   home: {
@@ -217,7 +217,7 @@ const zh: typeof en = {
     empty: "购物车是空的。",
     browse: "查看样品",
     total: "合计",
-    shipping: "配送和退货仍是草稿。这个合计只包含样品。",
+    shipping: "支付已关闭。手串配送说明在配送页。这个合计不会下单。",
     view: "查看演示结账",
     each: "每件",
     remove: "移除",
@@ -227,11 +227,11 @@ const zh: typeof en = {
   },
   checkout: {
     title: "结账",
-    closed: "测试预览。支付已关闭。",
+    closed: "支付已关闭。",
     empty: "购物车是空的。",
     browse: "查看样品",
     total: "服务器合计",
-    shipping: "配送和退货仍是草稿。没有计算税额。",
+    shipping: "支付已关闭。这里不代收进口关税。",
   },
   places: {
     title: "名山",
@@ -246,8 +246,8 @@ const zh: typeof en = {
   },
   blessing: {
     title: "祈福",
-    lede: "示范。祈福供灯在此展示。预约和支付未开放。不能购买。",
-    noForm: "这个页面不收集姓名、邮箱或愿望。",
+    lede: "祈福供灯是商家代办的展示。预约和支付未开放。不能购买。",
+    noForm: "这个页面不收集姓名、邮箱或宗教祈愿文字。",
     draftNote: "草稿：尚未开售。下一句按指定原文保留。",
   },
   videos: {
@@ -264,25 +264,25 @@ const zh: typeof en = {
   },
   about: {
     title: "关于",
-    lede: "网站名称是神秘东方。这个网站是示范。",
+    lede: "网站名称是神秘东方。支付已关闭。经营者写在条款页。",
     places: "五处名山是文化分组，不是合作寺院。",
   },
   faq: {
     title: "问题",
-    lede: "这个示范的短回答。较长的英文草稿在下面。",
+    lede: "短回答。支付已关闭。",
     pay: "可以付款吗？",
-    payAnswer: "不能。这个测试预览不能付款。",
+    payAnswer: "不能。支付已关闭。",
     pictures: "图片是真实库存吗？",
     picturesAnswer:
-      "不是。首页三张是已许可的参考照片，不是在售商品。八宝琉璃手串页展示该件已授权的照片和库存 10。其他商品页不展示样品图。供灯照片是服务展示。预约和支付未开放。",
+      "不是。首页三张是已许可的参考照片，不是在售商品。八宝琉璃手串页展示该件已授权的照片和库存 10。其他商品页不展示样品图。供灯照片是商家代办的展示。预约和支付未开放。",
     ask: "去哪里问问题？",
     askAnswer: "使用客户支持地址。",
     more: "较长的问题草稿",
   },
   shipping: {
     title: "配送与退货",
-    lede: "配送、退货、时间和价格都未确认。",
-    more: "草稿说明",
+    lede: "八宝琉璃手串从杭州全球包邮。支付已关闭。",
+    more: "条款",
   },
   comingSoon: "即将推出",
   demo: "示范",

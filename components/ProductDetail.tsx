@@ -88,7 +88,7 @@ export function ProductDetail({
     ),
     benefits: (
       <div>
-        <h2>{text.product.about}</h2>
+        <h2>{shown ? (locale === "zh" ? "关于这串手串" : "About this bracelet") : text.product.about}</h2>
         <ul className="plain-list">
           {displayBenefits(product, locale).map((benefit) => (
             <li key={benefit}>{benefit}</li>
@@ -104,6 +104,7 @@ export function ProductDetail({
             .filter((badge) => {
               if (badge === "Illustrative USD price" || badge === "示意美元价格") return false;
               if (shown && (badge === "Sample illustration" || badge === "样品图稿")) return false;
+              if (shown && (badge === "Shipping and returns are drafts" || badge === "配送和退货仍是草稿")) return false;
               return true;
             })
             .map((badge) => (

@@ -34,10 +34,15 @@ describe("offering lamp display", () => {
     expect(english).toContain("天下第一财神庙");
     expect(english).toContain("灵隐寺");
     expect(english).toContain("not both");
-    expect(english).toContain("not verified");
+    expect(english).toContain("merchant errand");
+    expect(english).toContain("not an official temple-operated service");
+    expect(english).toContain("not consecration");
+    expect(english).toContain("fails to perform");
     expect(english).toContain("1st of each month");
     expect(chinese).toContain("不是两处");
-    expect(chinese).toContain("尚未核实");
+    expect(chinese).toContain("商家代办");
+    expect(chinese).toContain("不是开光");
+    expect(chinese).toContain("没有完成代办");
     expect(chinese).toContain("不是官方合作或授权");
     expect(chinese).toContain("每月 1 日");
     expect(index).toContain("天下第一财神庙");

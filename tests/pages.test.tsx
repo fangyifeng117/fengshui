@@ -56,22 +56,25 @@ describe("page structure", () => {
     const footer = renderToStaticMarkup(<Footer />);
     expect(footer).toContain("For decorative &amp; cultural use only — no results guaranteed.");
     expect(footer).toContain("Full disclaimer.");
-    expect(footer).toContain("Draft. Legal entity, phone number, street address, and domain are not confirmed.");
+    expect(footer).toContain("杭州蜂鸟社信息科技有限公司");
+    expect(footer).toContain("浙江省杭州市余杭区五常街道联创街133号1幢5001-1室");
+    expect(footer).not.toContain("not confirmed");
     expect(footer).not.toContain("TODO");
     expect(footer).toContain(`mailto:${publicConfig.supportEmail}`);
     expect(footer).toContain("Customer support:");
-    expect(footer).toContain("Legal entity");
+    expect(footer).toContain("https://furuiqifu.com");
   });
 
-  it("uses the support address for shop questions and does not appoint a privacy contact", () => {
+  it("uses the support address as the privacy contact on the merchant draft", async () => {
     expect(publicConfig.supportEmail).toBe("fangyifeng117@gmail.com");
-    const terms = renderToStaticMarkup(<TermsPage />);
+    const terms = renderToStaticMarkup(await TermsPage({ params: Promise.resolve({ locale: "en" }) }));
     expect(terms).toContain(`mailto:${publicConfig.supportEmail}`);
-    expect(terms).toContain("TODO");
-    const privacy = renderToStaticMarkup(<PrivacyPage />);
-    expect(privacy).toContain("Draft, awaiting confirmation");
-    expect(privacy).toContain("not designated as a privacy contact or a DPO");
-    expect(privacy).toContain("No privacy contact and no data-protection officer have been appointed");
+    expect(terms).toContain("worldwide");
+    expect(terms).not.toContain("TODO");
+    const privacy = renderToStaticMarkup(await PrivacyPage({ params: Promise.resolve({ locale: "en" }) }));
+    expect(privacy).toContain("杭州蜂鸟社信息科技有限公司");
+    expect(privacy).toContain("Privacy questions use the customer-service email above.");
+    expect(privacy).not.toContain("TODO");
   });
 
   it("renders checkout as a closed test preview", () => {
@@ -79,7 +82,7 @@ describe("page structure", () => {
     const html = renderToStaticMarkup(<CheckoutDesk state={closed} />);
     expect(html).toContain('data-payment-state="payments_closed"');
     expect(html).toContain("Payment is off");
-    expect(html).toContain("This test preview cannot take payment.");
+    expect(html).toContain("Payment is off.");
     expect(html).not.toContain("paypal.com/sdk");
   });
 });

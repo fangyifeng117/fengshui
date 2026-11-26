@@ -23,7 +23,6 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
   return (
     <div className="page narrow">
       <header className="section-head">
-        <p>{text.demo}</p>
         <h1>{service.title[locale]}</h1>
         <p>{shown ? service.status?.[locale] : text.comingSoon}</p>
         <p>{text.blessing.lede}</p>
@@ -47,6 +46,16 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
                 <LampFigure key={image.src} image={image} locale={locale} />
               ))}
             </div>
+          ) : null}
+          {service.rules?.length ? (
+            <section>
+              <h2>{locale === "zh" ? "退款" : "Refund"}</h2>
+              <ul className="gap-list">
+                {service.rules.map((rule) => (
+                  <li key={rule.en}>{rule[locale]}</li>
+                ))}
+              </ul>
+            </section>
           ) : null}
           {service.gaps?.length ? (
             <section>

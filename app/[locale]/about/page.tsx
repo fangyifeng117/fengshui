@@ -15,7 +15,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   return (
     <div className="page narrow">
       <header className="section-head">
-        <p>{text.demo}</p>
         <h1>{text.about.title}</h1>
         <p>{text.about.lede}</p>
         <p>{text.about.places}</p>

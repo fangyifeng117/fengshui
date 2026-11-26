@@ -1,27 +1,22 @@
-import Link from "next/link";
-import { copy } from "@/lib/i18n/messages";
-import { asLocale, hrefFor } from "@/lib/locale";
+import { ShippingPolicy } from "@/components/ShippingPolicy";
+import { asLocale } from "@/lib/locale";
 import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const text = copy(asLocale(locale));
-  return pageMetadata({ title: text.shipping.title, description: text.shipping.lede, path: "/shipping", locale });
+  const active = asLocale(locale);
+  return pageMetadata({
+    title: active === "zh" ? "配送与退货" : "Shipping and returns",
+    description:
+      active === "zh"
+        ? "八宝琉璃手串从杭州全球包邮。支付仍关闭。"
+        : "Free tracked shipping for the Babao Liuli Bracelet from Hangzhou. Payment is off.",
+    path: "/shipping",
+    locale,
+  });
 }
 
 export default async function ShippingPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = asLocale((await params).locale);
-  const text = copy(locale);
-  return (
-    <div className="page narrow">
-      <header className="section-head">
-        <p>{text.demo}</p>
-        <h1>{text.shipping.title}</h1>
-        <p>{text.shipping.lede}</p>
-      </header>
-      <p>
-        <Link href={hrefFor(locale, "/content/shipping-returns")}>{text.shipping.more}</Link>
-      </p>
-    </div>
-  );
+  return <ShippingPolicy locale={locale} />;
 }

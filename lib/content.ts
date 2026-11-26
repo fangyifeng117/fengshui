@@ -7,14 +7,14 @@ export const contentPages: ContentPage[] = [
     description: "Draft guide to this demonstration shop: samples, size, care, and unfinished policies.",
     kicker: "Draft",
     paragraphs: [
-      "This guide explains how to read the demonstration shop. Every product page is a sample. Names, materials, prices, and drawings are placeholders, not a merchant catalog.",
-      "This test preview cannot take payment. Creating or capturing an order is closed on the server.",
+      "This guide explains the shop. Sample listings are still samples. The Babao Liuli Bracelet page shows its photograph, USD 188, and 10 on hand. Payment is off.",
+      "Creating or capturing an order is closed on the server.",
     ],
     sections: [
       {
         heading: "Pages in this guide",
         paragraphs: [
-          "Size is a draft method for measuring a wrist. Care is a draft note for cord, beads, and small objects. Cultural notes give general background without telling you what an object will do. Shipping and returns are unfinished on purpose.",
+          "Size is a draft method for measuring a wrist. Care is a draft note for cord, beads, and small objects. Cultural notes give general background without telling you what an object will do. Shipping for the Babao Liuli Bracelet is on the shipping page. Other listings are not shipped.",
         ],
       },
     ],
@@ -103,13 +103,13 @@ export const contentPages: ContentPage[] = [
       {
         heading: "Are the products for sale?",
         paragraphs: [
-          "No. Titles, materials, prices, and pictures are samples. This test preview cannot take payment.",
+          "Payment is off, so nothing on this site can be ordered today. Sample listings stay samples. The Babao Liuli Bracelet shows a price and a count, and offering lamps are a merchant errand on display.",
         ],
       },
       {
         heading: "Why are prices in US dollars?",
         paragraphs: [
-          "The demo is an English-language shop with illustrative USD amounts. Those amounts are not a quote, a cost, or an offer to sell.",
+          "Listed amounts are in USD. Payment is off, so a listed amount is not a charge.",
         ],
       },
       {
@@ -121,7 +121,7 @@ export const contentPages: ContentPage[] = [
       {
         heading: "Where do I ask a shop question?",
         paragraphs: [
-          "Use the customer-support address shown on this page and in the footer. It is a temporary public address for shop questions. Phone, street address, domain, and legal entity remain TODO.",
+          "Use the customer-service and privacy address shown on this page and in the footer. The seller, domain, and registered address are on the terms page. No phone number is published.",
         ],
       },
       {
@@ -135,23 +135,22 @@ export const contentPages: ContentPage[] = [
   {
     slug: "shipping-returns",
     title: "Shipping and returns",
-    description: "Unfinished shipping and return notes. Nothing here is a delivery or refund promise.",
-    kicker: "TODO",
+    description: "Free tracked shipping for the Babao Liuli Bracelet from Hangzhou. Payment is off.",
+    kicker: "Merchant draft",
     paragraphs: [
-      "TODO. This demonstration store does not ship orders and does not accept returns. A carrier, origin address, delivery window, shipping price, return window, and return address have not been set.",
-      "Do not send anything to anyone because of this page. Nothing here promises delivery, a replacement, or a refund.",
+      "This note covers the Babao Liuli Bracelet only. It ships from Hangzhou, China. Tracked shipping worldwide is free. Other listings are samples and are not shipped. Payment is off, so this page does not start an order.",
     ],
     sections: [
       {
-        heading: "Shipping — draft / TODO",
+        heading: "Dispatch and delivery",
         paragraphs: [
-          "No origin country is confirmed for a future merchant. No rate card is connected. Checkout shows the sample item total only and labels shipping as not calculated.",
+          "After an order is accepted, dispatch from Hangzhou is planned in 1–3 business days. Delivery to major regions is estimated at 7–15 business days after dispatch. Remote regions can take longer. These are estimates, not a guarantee. The recipient pays import duties and taxes.",
         ],
       },
       {
-        heading: "Returns — draft / TODO",
+        heading: "Returns",
         paragraphs: [
-          "No return window is offered. No refund method is offered. Captured payment does not happen for demo items, and this software does not send refunds or payouts on its own.",
+          "Returns go to the registered address on the terms page. An unused bracelet may be returned. Unless it is defective or not as described, the buyer pays the return shipping. Statutory rights stay in place.",
         ],
       },
     ],

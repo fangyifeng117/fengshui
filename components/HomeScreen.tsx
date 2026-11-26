@@ -24,7 +24,7 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
             </Link>
           </div>
         </div>
-        <p className="hero-note">{text.product.pending}</p>
+        <p className="hero-note">{text.checkout.closed}</p>
       </section>
       <section data-section="featured" aria-label={text.home.title}>
         <div className="product-grid">

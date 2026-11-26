@@ -77,6 +77,7 @@ export type ServiceDraft = {
   images?: ServiceImage[];
   gaps?: { en: string; zh: string }[];
   scope?: { en: string; zh: string };
+  rules?: { en: string; zh: string }[];
 };
 
 export const serviceDrafts: ServiceDraft[] = [
@@ -84,8 +85,8 @@ export const serviceDrafts: ServiceDraft[] = [
     slug: "offering-lamps",
     title: { en: "Offering lamps", zh: "祈福供灯" },
     summary: {
-      en: "A cultural record of an offering-lamp service. This page only displays it. There is no booking, no payment, and no automatic charge.",
-      zh: "祈福供灯的文化记录。这个页面只做展示。不能预约，不能支付，也不会自动扣费。",
+      en: "A merchant errand for a lamp offering. This page only displays it. There is no booking, no payment, and no automatic charge. It is not available for purchase.",
+      zh: "供灯代办。这个页面只做展示。不能预约，不能支付，也不会自动扣费。现在不能购买。",
     },
     status: {
       en: "On display. Booking and payment are not open.",
@@ -152,25 +153,23 @@ export const serviceDrafts: ServiceDraft[] = [
       },
     ],
     scope: {
-      en: "Each occasion is one place. The customer chooses either 天下第一财神庙 or 灵隐寺, not both. The USD 50 occasion and each of the 12 occasions in the USD 300 year use this same rule. Permission to do the lighting there, and permission to film, are not verified. This page is not an official partnership.",
-      zh: "每次只在一处供灯。顾客在天下第一财神庙和灵隐寺中选择一处，不是两处都做。单次 USD 50 和全年 USD 300 的每一次都按这个范围。在当地执行和拍摄的商业许可尚未核实。本页不是官方合作或授权。",
+      en: "This is a merchant errand. The shop helps the customer request a lamp offering at one Hangzhou venue the customer chooses, either 天下第一财神庙 or 灵隐寺, not both, and documents the visit. It is not an official temple-operated service, not a partnership, and not consecration. No spiritual, health, or financial result is guaranteed. The USD 50 occasion and each of the 12 occasions in the USD 300 year follow this one-place rule. Booking and payment are not open. This page does not collect a religious wish.",
+      zh: "这是商家代办。网站按顾客的选择，在杭州的天下第一财神庙或灵隐寺中的一处代为申请供灯并记录到访，不是两处都做。这不是寺院官方服务，不是合作，也不是开光。不保证灵性、健康或财务结果。单次 USD 50 和全年 USD 300 的每一次都按这个范围。预约和支付未开放。本页不收集宗教祈愿文字。本页不是官方合作或授权。",
     },
-    gaps: [
+    rules: [
       {
-        en: "Who would do the lighting is not confirmed. The choice of place above is a commercial scope, not a verified permission.",
-        zh: "由谁来供灯还没有确认。上面的地点是商业范围，不是已经核实的许可。",
+        en: "After the errand has been performed, that occasion is not refunded. If the merchant fails to perform it, that occasion is refunded. Statutory rights stay in place.",
+        zh: "代办已经完成的那一次不退。商家没有完成代办的，退还该次费用。法定权利仍然保留。",
       },
+    ],
+    gaps: [
       {
         en: "The proposed day is the 1st of each month. The first month, and what happens on a closure day, are not confirmed.",
         zh: "拟定日期是每月 1 日。从哪一个月开始、遇关闭日怎么办，还没有确认。",
       },
       {
-        en: "A private on-site photo or video is a proposed record. It would be delivered only after the person in that record agrees. This page does not collect a name, a wish, or a photo.",
-        zh: "现场照片或视频是拟定中的记录，只在画面中的本人同意后私密交付。这个页面不收集姓名、愿望或照片。",
-      },
-      {
-        en: "Pause, cancel, and refund rules are not confirmed.",
-        zh: "暂停、取消和退款规则，还没有确认。",
+        en: "The person who attends is not named on this page. A record of the visit would be delivered only after the person in that record agrees. This page does not collect a name, a religious wish, or a photo.",
+        zh: "到场的人没有写在这个页面上。到访记录只在画面中的本人同意后交付。这个页面不收集姓名、宗教祈愿文字或照片。",
       },
     ],
   },

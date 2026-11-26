@@ -68,13 +68,13 @@ export function describeCheckout(input: {
       state: "empty",
       buttonLabel: "Cart is empty",
       disabled: true,
-      detail: "Test preview. Payment is off.",
+      detail: "Payment is off.",
     };
   }
   return {
     state: "payments_closed",
     buttonLabel: "Payment is off",
     disabled: true,
-    detail: "This test preview cannot take payment.",
+    detail: "Payment is off.",
   };
 }

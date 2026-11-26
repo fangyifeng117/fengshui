@@ -371,6 +371,7 @@ export const products: Product[] = [
     ],
     useNotes: [
       "Payment is off, so this page cannot start an order.",
+      "When an order is accepted, this bracelet ships from Hangzhou with tracked shipping included worldwide. Dispatch is planned in 1–3 business days. Major regions are estimated at 7–15 business days after dispatch, longer for remote regions. That timing is an estimate. The recipient pays import duties. Unused pieces may be returned; the buyer pays return shipping unless the piece is defective or not as described.",
       "Size, craft, and origin are not confirmed.",
       "The paper tag stays in the photograph because it covers a bead. The covered part was not redrawn.",
     ],
