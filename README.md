@@ -47,7 +47,7 @@ npm run build
 ## 已实现
 
 - 固定路由仍可用：`/`、`/products`、`/products/[slug]`、`/collections/[slug]`、`/cart`、`/checkout`、`/order/success`、`/order/cancel`、`/content/[slug]`、`/legal/disclaimer`、`/legal/privacy`、`/legal/terms`、`/api/webhooks/paypal`。英文不带前缀。中文是 `/zh` 下的同一路径
-- M1 草稿页：`/temples`、`/temples/[slug]`、`/blessing`、`/blessing/[slug]`、`/videos`、`/stories`、`/account`、`/about`、`/faq`、`/shipping`，以及对应的 `/zh` 路径。五处名山只是文化分类，雪窦山地域标成待核实。相关样品写 inspired-by，不是真实来源。祈福供灯在 `/blessing/offering-lamps` 展示两个价格。每次由顾客在天下第一财神庙和灵隐寺中选择一处，单次和全年 12 次都是每次一处。执行和拍摄许可未核实，预约和支付未开放，没有收集表单。八宝琉璃手串在 `/products/babao-liuli-bracelet` 展示照片、USD 188 和库存 10，支付仍关闭。其余祈福草稿仍是 Coming soon，其余样品仍不展示图和价格
+- M1 草稿页：`/temples`、`/temples/[slug]`、`/blessing`、`/blessing/[slug]`、`/videos`、`/stories`、`/account`、`/about`、`/faq`、`/shipping`，以及对应的 `/zh` 路径。五处名山只是文化分类，雪窦山地域标成待核实。相关样品写 inspired-by，不是真实来源。祈福供灯在 `/blessing/offering-lamps` 展示四档拟定价格（一天灯 USD 29、七天灯 USD 49、四十九天灯 USD 99、常年灯 USD 199），不是在售。顾客在天下第一财神庙和灵隐寺中选择一处。拍摄许可未核实，预约和支付未开放，没有收集表单。八宝琉璃手串在 `/products/babao-liuli-bracelet` 展示照片、USD 188 和库存 10，支付仍关闭。其余祈福草稿仍是 Coming soon，其余样品仍不展示图和价格
 - 首页顺序：主视觉、精选样品、问题预告
 - 商品页顺序：面包屑、图库、标题与价格及加入购物车 / View demo checkout、合规说明、信任备注、规格、日常使用与摆放、免责声明原文、问答、相关样品。桌面把图库和购买信息排在同一屏，模块顺序没有改
 - 价格和库存以服务器上的商品目录为准。浏览器里自带的单价会被忽略

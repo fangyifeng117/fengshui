@@ -30,8 +30,10 @@ describe("merchant legal drafts", () => {
     expect(privacy).toContain("隐私");
     expect(privacy).toContain("不限于美国");
     expect(terms).toContain("全球");
-    expect(terms).toContain("不是开光");
-    expect(terms).toContain("没有完成代办");
+    expect(terms).toContain("拟定展示");
+    expect(terms).toContain("不能购买");
+    expect(terms).not.toContain("USD 50");
+    expect(terms).not.toContain("USD 300");
     expect(shipping).toContain("1–3");
     expect(shipping).toContain("7–15");
     expect(shipping).toContain("包邮");

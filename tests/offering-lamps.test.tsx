@@ -7,54 +7,60 @@ import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
 import { getServiceDraft } from "@/lib/places";
 
+const banned = ["USD 50", "USD 300", "合作寺庙", "开光", "功德", "保佑", "灵验", "消灾", "改命", "partner temple", "official cooperation", "consecration"];
+
 describe("offering lamp display", () => {
-  it("shows both prices on the lamp page and keeps booking closed", () => {
+  it("shows four proposed prices and keeps booking closed", () => {
     const service = getServiceDraft("offering-lamps");
     if (!service) throw new Error("missing offering lamps");
     const english = renderToStaticMarkup(<BlessingDetail locale="en" service={service} />);
     const chinese = renderToStaticMarkup(<BlessingDetail locale="zh" service={service} />);
     const index = renderToStaticMarkup(<BlessingIndex locale="zh" />);
     for (const html of [english, chinese, index]) {
-      expect(html).toContain("USD 50");
-      expect(html).toContain("USD 300");
-      expect(html).toContain("12");
-      expect(html).not.toContain("USD 25");
-      expect(html).not.toContain("每月 300");
-      expect(html).not.toContain("大雄宝殿");
-      expect(html).not.toContain("功德");
+      expect(html).toContain("USD 29");
+      expect(html).toContain("USD 49");
+      expect(html).toContain("USD 99");
+      expect(html).toContain("USD 199");
+      expect(html).toContain("天下第一财神庙");
+      expect(html).toContain("灵隐寺");
+      for (const phrase of banned) expect(html).not.toContain(phrase);
       expect(html).not.toContain("<form");
       expect(html).not.toContain("<button");
       expect(html).not.toContain("<input");
+      expect(html).not.toContain("大雄宝殿");
     }
-    expect(english).toContain("not charged each month");
-    expect(english).toContain("does not renew by itself");
-    expect(chinese).toContain("不是每月收取");
-    expect(chinese).toContain("不会自动续费");
-    expect(chinese).toContain("服务展示，暂未开放预约/支付");
-    expect(english).toContain("天下第一财神庙");
-    expect(english).toContain("灵隐寺");
+    expect(english).toContain("Proposed");
+    expect(english).toContain("1-day lamp");
+    expect(english).toContain("7-day lamp");
+    expect(english).toContain("49-day lamp");
+    expect(english).toContain("annual lamp");
     expect(english).toContain("not both");
-    expect(english).toContain("merchant errand");
-    expect(english).toContain("not an official temple-operated service");
-    expect(english).toContain("not consecration");
-    expect(english).toContain("fails to perform");
-    expect(english).toContain("1st of each month");
-    expect(chinese).toContain("不是两处");
-    expect(chinese).toContain("商家代办");
-    expect(chinese).toContain("不是开光");
-    expect(chinese).toContain("没有完成代办");
-    expect(chinese).toContain("不是官方合作或授权");
-    expect(chinese).toContain("每月 1 日");
-    expect(index).toContain("天下第一财神庙");
-    expect(index).toContain("灵隐寺");
+    expect(english).toContain("not a subscription");
+    expect(english).toContain("does not renew by itself");
+    expect(english).toContain("not confirmed");
     expect(english).toContain("Booking and payment are not open.");
+    expect(english).toContain("cannot be purchased now");
+    expect(english).toContain("We do not promise that a wish will come true.");
     expect(english).toContain(EXACT_DISCLAIMER);
     expect(english).toContain(SERVICE_DRAFT_DISCLAIMER);
     expect(english).toContain("/media/offering-lamps/lotus-pair.jpg");
     expect(english).toContain("/media/offering-lamps/lotus-stands.webp");
     expect(english).toContain("/media/offering-lamps/red-candles.jpg");
     expect(english).toContain("/media/offering-lamps/altar-row.jpg");
+    expect(chinese).toContain("拟定");
+    expect(chinese).toContain("一天灯");
+    expect(chinese).toContain("七天灯");
+    expect(chinese).toContain("四十九天灯");
+    expect(chinese).toContain("常年灯");
+    expect(chinese).toContain("不是两处");
+    expect(chinese).toContain("不会自动续费");
+    expect(chinese).toContain("尚未确认");
+    expect(chinese).toContain("现在不能购买");
+    expect(chinese).toContain("我们不承诺愿望会实现");
+    expect(chinese).toContain(EXACT_DISCLAIMER);
+    expect(chinese).toContain(SERVICE_DRAFT_DISCLAIMER);
     expect(index).toContain('href="/zh/blessing/offering-lamps"');
+    expect(index).toContain("寺庙供灯代请服务");
   });
 
   it("does not put the lamp price or photos on a sample product", () => {
@@ -63,7 +69,9 @@ describe("offering lamp display", () => {
     const html = renderToStaticMarkup(
       <ProductDetail product={product} related={getRelatedProducts(product)} locale="zh" />,
     );
+    expect(html).not.toContain("USD 29");
     expect(html).not.toContain("USD 50");
+    expect(html).not.toContain("USD 199");
     expect(html).not.toContain("USD 300");
     expect(html).not.toContain("/media/offering-lamps/");
     expect(html).not.toContain("<img");

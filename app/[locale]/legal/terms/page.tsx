@@ -30,9 +30,8 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         <MerchantIdentity locale="zh" />
         <p>支付仍关闭，所以本站今天不接受订单。八宝琉璃手串标价 USD 188，库存 10。其他列表是样品，不是出售要约。</p>
         <p>
-          祈福供灯是商家代办的展示：按顾客选择，在杭州的天下第一财神庙或灵隐寺中的一处代为申请供灯并记录到访。这不是寺院官方服务，不是合作，也不是开光。不保证灵性、健康或财务结果。预约和支付未开放，本页不收集宗教祈愿文字。
+          供灯代请只是拟定展示，现在不能购买。顾客会在杭州的天下第一财神庙和灵隐寺中选择一处。我们代为申请并记录到访。我们不是寺庙，也不主持宗教仪式。预约和支付未开放。本页不收集姓名、邮箱或祈愿。退款文字仍是草稿，尚未确认。法定权利仍然保留。支付关闭，所以本页不能发起购买或退款。
         </p>
-        <p>代办已经完成的那一次不退。商家没有完成代办的，退还该次费用。法定权利仍然保留。这项服务现在不能购买。</p>
         <p>
           八宝琉璃手串从杭州发出，全球包邮并提供追踪。接受订单后计划 1–3 个工作日发出。发货后主要地区预计 7–15
           个工作日，偏远地区可能更久，这是估计不是保证。进口关税和税费由收件人承担。未使用的手串可以退回注册地址；除非有缺陷或与描述不符，退货运费由买方承担。
@@ -56,14 +55,11 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         10 on hand. Other listings are samples and are not offers to sell.
       </p>
       <p>
-        Offering lamps are a merchant errand on display. The merchant helps the customer request a lamp offering at one
-        Hangzhou venue the customer chooses, either 天下第一财神庙 or 灵隐寺, and documents the visit. It is not an
-        official temple-operated service, not a partnership, and not consecration. No spiritual, health, or financial
-        result is guaranteed. Booking and payment are not open. This site does not collect religious wish text.
-      </p>
-      <p>
-        After that errand has been performed, that occasion is not refunded. If the merchant fails to perform it, that
-        occasion is refunded. Statutory rights stay in place. The service is not available for purchase.
+        A lamp request is a proposed display and cannot be purchased now. The customer would choose one Hangzhou venue,
+        either 天下第一财神庙 or 灵隐寺. We would request the offering and record the visit. We are not a temple, and we
+        do not perform a religious ceremony. Booking and payment are not open. This page does not collect a name, an
+        email, or a wish. Refund wording is a draft and is not confirmed. Statutory rights stay in place. Payment is
+        off, so this page cannot start a purchase or a refund.
       </p>
       <p>
         The Babao Liuli Bracelet ships from Hangzhou with free tracked shipping worldwide. After an order is accepted,

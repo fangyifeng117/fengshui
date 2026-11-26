@@ -47,9 +47,22 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
               ))}
             </div>
           ) : null}
+          {service.faq?.length ? (
+            <section>
+              <h2>{locale === "zh" ? "问题" : "Questions"}</h2>
+              <div className="faq-list">
+                {service.faq.map((item) => (
+                  <details key={item.question.en}>
+                    <summary>{item.question[locale]}</summary>
+                    <p>{item.answer[locale]}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ) : null}
           {service.rules?.length ? (
             <section>
-              <h2>{locale === "zh" ? "退款" : "Refund"}</h2>
+              <h2>{locale === "zh" ? "退款草稿" : "Refund draft"}</h2>
               <ul className="gap-list">
                 {service.rules.map((rule) => (
                   <li key={rule.en}>{rule[locale]}</li>
@@ -74,6 +87,7 @@ export function BlessingDetail({ locale, service }: { locale: Locale; service: S
       {shown ? null : <p>{text.blessing.draftNote}</p>}
       <ExactDisclaimer translation={locale === "zh" ? ZH_EXACT_DISCLAIMER : undefined} />
       <ServiceDisclaimer translation={locale === "zh" ? ZH_SERVICE_DRAFT_DISCLAIMER : undefined} />
+      {service.supplementZh ? <p lang="zh">{service.supplementZh}</p> : null}
     </div>
   );
 }

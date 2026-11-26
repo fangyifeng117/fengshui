@@ -102,7 +102,7 @@ const en = {
   },
   blessing: {
     title: "Blessing",
-    lede: "Offering lamps are a merchant errand on display. Booking and payment are not open. Not for sale.",
+    lede: "The lamp periods below are proposed. Booking and payment are not open. Not for sale.",
     noForm: "This page does not collect a name, an email, or a religious wish.",
     draftNote: "Draft: not on sale yet. The next sentence stays in its required wording.",
   },
@@ -246,7 +246,7 @@ const zh: typeof en = {
   },
   blessing: {
     title: "祈福",
-    lede: "祈福供灯是商家代办的展示。预约和支付未开放。不能购买。",
+    lede: "下面的供灯档期是拟定展示。预约和支付未开放。不能购买。",
     noForm: "这个页面不收集姓名、邮箱或宗教祈愿文字。",
     draftNote: "草稿：尚未开售。下一句按指定原文保留。",
   },
