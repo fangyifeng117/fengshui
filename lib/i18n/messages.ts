@@ -41,7 +41,7 @@ const en = {
     kicker: "Proposed display · Payment is off",
     heroTitle: "Your wish, back home",
     heroSub:
-      "We plan to request a lamp offering in China for the place you come from or your family's home, and to record the visit. This is not an official temple service and not a partnership. This page does not collect a wish, and it does not promise a name in a registry. Booking and payment are not open.",
+      "We plan to request a lamp offering in China for the place you come from or your family's home, and to record the visit. This is not an official temple service and not a partnership. This page does not collect a wish. Booking and payment are not open.",
     shopBracelet: "Shop the bracelet",
     featureMeta: "Liuli · 10 on hand · Payment is off",
     gridTitle: "Bracelets",
@@ -206,7 +206,7 @@ const zh: typeof en = {
     kicker: "拟定展示 · 支付未开放",
     heroTitle: "你的心愿，回到家乡",
     heroSub:
-      "我们计划按你的出发地或祖籍，在中国境内代为申请供灯并记录到访。这不是寺庙官方服务，也不是合作。本页不收集祈愿，也不承诺把名字写入登记册。预约和支付未开放。",
+      "我们计划按你的出发地或祖籍，在中国境内代为申请供灯并记录到访。这不是寺庙官方服务，也不是合作。本页不收集祈愿。预约和支付未开放。",
     shopBracelet: "选购手串",
     featureMeta: "琉璃 · 库存 10 · 支付已关闭",
     gridTitle: "手串",
