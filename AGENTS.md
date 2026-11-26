@@ -85,7 +85,7 @@ t21u 粘贴稿中的 M2–M7（商品系统、支付、祈福服务、视频交�
 
 **[用户已确定]** 八宝琉璃手串可以在商品页展示已授权并经代码修复的照片、USD 188 和库存 10。材料只写琉璃。尺寸、工艺、产地未确认。纸质吊牌盖住的珠面没有重画。支付和加购关闭。英文不把祈福与招财写成结果保证。修复记录在 `docs/media/babao-liuli.md`。
 
-**[用户已确定]** 羊年红绳（金红缠绕）/ Year of the Goat Red String (Gold-and-Red Coil) 可以上架，slug `goat-year-red-string-coiled`，价格 USD 30，材料编织红绳。数量未提供，页面不写库存数字。`sample` 为 true，`captureAllowed` 为 false。图库只用两张已授权的金红缠绕手腕照片，没有吊坠。公开目录里还没有这两张原图时，页面不输出空图片地址，也不用生成图代替。每件包含一次代为安排的上香过程影像，按代请代办来写，不写具体寺庙，不开光，不承诺登记册或任何结果。这条红绳不享受手串的包邮，运费未确认。另外两种计划中的绳子这次不上架。记录在 `docs/media/goat-year-red-string.md`。
+**[用户已确定]** 羊年红绳（金红缠绕）/ Year of the Goat Red String (Gold-and-Red Coil) 可以上架，slug `goat-year-red-string-coiled`，价格 USD 30，材料编织红绳。数量未提供，页面不写库存数字。`sample` 为 true，`captureAllowed` 为 false。图库只用两张已授权的金红缠绕手腕照片，没有吊坠。这两张 JPEG 已放在 `public/media/products/`，都是 1125×2000。缺文件时页面不输出空图片地址，也不用生成图代替。每件包含一次代为安排的上香过程影像，按代请代办来写，不写具体寺庙，不开光，不承诺登记册或任何结果。这条红绳不享受手串的包邮，运费未确认。另外两种计划中的绳子这次不上架。记录在 `docs/media/goat-year-red-string.md`。
 
 ### 4.4 经营事实不得虚构
 

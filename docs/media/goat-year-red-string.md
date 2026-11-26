@@ -2,12 +2,12 @@
 
 图库只应使用这两张已授权照片，都是同一条金红缠绕红绳，没有吊坠。一张背景是书法，一张背景是绿植。不要换成带寺庙牌匾、路人脸或佛像、雕像的照片，也不要另做生成图。书法背景里的文字不抄进商品说明，也不写成许愿或结果。
 
-公开路径只留给这两张：
+公开文件是这两张已授权 JPEG，1125×2000，原图字节原样放入仓库：
 
-- `public/media/products/goat-year-red-string-coiled-calligraphy.jpg` 和 `.webp`
-- `public/media/products/goat-year-red-string-coiled-greenery.jpg` 和 `.webp`
+- `public/media/products/goat-year-red-string-coiled-calligraphy.jpg`（室内，书法背景）和同像素转出的 `.webp`
+- `public/media/products/goat-year-red-string-coiled-greenery.jpg`（室外，绿植背景）和同像素转出的 `.webp`
 
-页面只在对应文件存在时输出图片地址。文件还没放进 `public/media/products/` 时，图库用原来的占位，不指向空文件，也不用生成图代替。
+`.webp` 只是同一张 JPEG 的格式转换，不是另一张照片。页面只在对应文件存在时输出图片地址。缺文件时图库用原来的占位，不指向空文件，也不用生成图代替。
 
 页面可以写的事实：名称是羊年红绳（金红缠绕）/ Year of the Goat Red String (Gold-and-Red Coil)，材料是编织红绳，价格 USD 30。数量、尺寸和配送都未确认。支付关闭。每件包含一次代为安排的上香过程影像，这是代请代办，不是寺庙官方服务、合作、开光或登记册承诺，也不保证任何结果。页面不写具体寺庙名称。
 

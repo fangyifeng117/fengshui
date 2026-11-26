@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { HomeScreen } from "@/components/HomeScreen";
@@ -22,6 +23,15 @@ describe("Year of the Goat red string", () => {
       "/media/products/goat-year-red-string-coiled-calligraphy.jpg",
       "/media/products/goat-year-red-string-coiled-greenery.jpg",
     ]);
+    for (const image of product.images) {
+      const bytes = readFileSync(`public${image.src}`);
+      expect(imageFilePresent(image.src)).toBe(true);
+      expect(bytes[0]).toBe(0xff);
+      expect(bytes[1]).toBe(0xd8);
+      expect(bytes.length).toBeGreaterThan(100_000);
+      expect(image.width).toBe(1125);
+      expect(image.height).toBe(2000);
+    }
 
     const english = renderToStaticMarkup(
       <ProductDetail product={product} related={getRelatedProducts(product)} />,
@@ -39,12 +49,8 @@ describe("Year of the Goat red string", () => {
       expect(html).not.toContain("灵隐寺");
       expect(html).not.toContain("灵顺寺");
       expect(html).not.toContain("USD 188");
-      const ready = product.images.every((image) => imageFilePresent(image.src));
-      expect(html.match(/<img/g)?.length ?? 0).toBe(ready ? product.images.length : 0);
-      for (const image of product.images) {
-        if (ready) expect(html).toContain(image.src);
-        else expect(html).not.toContain(image.src);
-      }
+      expect(html.match(/<img/g)?.length).toBe(2);
+      for (const image of product.images) expect(html).toContain(image.src);
     }
     expect(english).toContain("Year of the Goat Red String (Gold-and-Red Coil)");
     expect(english).toContain("Quantity not confirmed");
@@ -61,8 +67,12 @@ describe("Year of the Goat red string", () => {
     expect(chinese).not.toContain("包邮");
 
     const home = renderToStaticMarkup(<HomeScreen locale="zh" />);
+    const homeEn = renderToStaticMarkup(<HomeScreen />);
     expect(home).toContain("羊年红绳（金红缠绕）");
     expect(home).toContain("USD 30");
+    expect(home).toContain("/media/products/goat-year-red-string-coiled-calligraphy.jpg");
+    expect(homeEn).toContain("Year of the Goat Red String (Gold-and-Red Coil)");
+    expect(homeEn).toContain("/media/products/goat-year-red-string-coiled-calligraphy.jpg");
     expect(home).toContain("待上架");
     expect(home).not.toContain("本命年");
     expect(home).not.toContain("已上新");
