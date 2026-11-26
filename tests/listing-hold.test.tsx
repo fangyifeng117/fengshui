@@ -90,11 +90,27 @@ describe("withheld sample pictures and prices", () => {
     expect(pages[9]).not.toContain("$62.00");
     for (const html of pages) {
       expect(html).not.toMatch(priceLeak);
-      expect(html).not.toContain("free");
       expect(html).not.toContain("免费");
       expect(html).not.toContain("BRAND_NAME");
       expect(html).not.toContain("大雄宝殿");
+      expect(html).not.toContain("$79");
+      expect(html).not.toContain("$19");
+      expect(html).not.toContain("本命年");
+      expect(html).not.toContain("已上新");
     }
+    for (const html of pages.slice(2)) {
+      expect(html).not.toContain("free");
+    }
+    expect(pages[0]).toContain("Free tracked shipping");
+    expect(pages[0]).toContain("USD 188");
+    expect(pages[0]).toContain("USD 29");
+    expect(pages[0]).toContain("Coming soon");
+    expect(pages[0]).toContain("7–15");
+    expect(pages[1]).toContain("待上架");
+    expect(pages[1]).toContain("USD 188");
+    expect(pages[1]).toContain("为家乡点灯");
+    expect(pages[1]).toContain("灵顺寺");
+    expect(pages[1]).not.toContain("学业款");
 
     const quote = quoteCart(products, { id: "cart_test", version: 0, lines: [{ productId: product.id, quantity: 1 }] });
     const payload = publicCartPayload(quote, "cart_test", 0);
