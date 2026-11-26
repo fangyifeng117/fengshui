@@ -49,7 +49,7 @@ describe("Babao Liuli Bracelet", () => {
     expect(chinese).toContain("待确认");
     expect(english.match(/<img/g)?.length).toBe(1);
 
-    for (const other of products.filter((item) => item.id !== product.id)) {
+    for (const other of products.filter((item) => item.id !== product.id && item.id !== "goat-year-red-string")) {
       const html = renderToStaticMarkup(<ProductCard product={other} />);
       expect(html).not.toContain("<img");
       expect(html).not.toContain("USD 188");

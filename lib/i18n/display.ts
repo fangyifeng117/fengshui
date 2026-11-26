@@ -199,6 +199,53 @@ const listings: Record<string, ZhListing> = {
       },
     ],
   },
+  "goat-year-red-string": {
+    title: "羊年红绳（金红缠绕）",
+    description:
+      "金红编织绳，缠绕，没有吊坠。羊年只标年份。它是文化与装饰用的绳子。每件包含一次代为安排的上香过程影像，由我们代请代办。这不是寺庙官方服务，不是合作，不是开光，也不是登记册承诺，并且不保证任何结果。",
+    alts: [
+      "手腕上的金红缠绕编织绳，背景是书法",
+      "同一条金红缠绕编织绳戴在手腕上，背景是绿植",
+    ],
+    noun: "红绳",
+    phrases: {
+      "Shown photographs and price. Payment is off. Sample listing.": "展示照片和价格。支付已关闭。样品列表。",
+      Material: "材料",
+      "Braided cord": "编织红绳",
+      Quantity: "数量",
+      Size: "尺寸",
+      "Not confirmed": "未确认",
+      Photograph: "照片",
+      "Two authorized wrist photographs of the gold-and-red coil. No pendant.":
+        "两张已授权的手腕照片，都是金红缠绕。没有吊坠。",
+    },
+    benefits: [
+      "绳子是金红编织并缠绕的，没有吊坠。",
+      "这里写明的材料是编织红绳。",
+      "名称里的年份是文化标记，不是任何结果的保证。",
+    ],
+    useNotes: [
+      "支付已关闭，所以这个页面不能下单。",
+      "这条红绳的运费和时效尚未确认。八宝琉璃手串的配送说明不适用于它。",
+      "每件包含一次代为安排的上香过程影像，由我们代请代办。这不是寺庙官方服务，不是合作，不是开光，也不是登记册承诺，并且不保证任何结果。",
+      "尺寸未确认。没有吊坠。",
+    ],
+    faq: [
+      {
+        question: "这条红绳可以下单吗？",
+        answer: "不能。这个页面标价 USD 30。数量未确认。支付已关闭，也没有购物车按钮。",
+      },
+      {
+        question: "这个列表承诺个人结果吗？",
+        answer:
+          "不承诺。这是文化与装饰用的绳子。上香过程影像是代请代办。这不是寺庙官方服务，不是合作，不是开光，也不是登记册承诺，并且不保证任何结果。",
+      },
+      {
+        question: "这两张照片拍的是什么？",
+        answer: "同一条金红缠绕的绳子戴在手腕上。一张背景是书法，一张背景是绿植。没有吊坠。",
+      },
+    ],
+  },
 };
 
 const collectionsZh: Record<string, { title: string; description: string }> = {

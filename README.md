@@ -47,7 +47,7 @@ npm run build
 ## 已实现
 
 - 固定路由仍可用：`/`、`/products`、`/products/[slug]`、`/collections/[slug]`、`/cart`、`/checkout`、`/order/success`、`/order/cancel`、`/content/[slug]`、`/legal/disclaimer`、`/legal/privacy`、`/legal/terms`、`/api/webhooks/paypal`。英文不带前缀。中文是 `/zh` 下的同一路径
-- M1 草稿页：`/temples`、`/temples/[slug]`、`/blessing`、`/blessing/[slug]`、`/videos`、`/stories`、`/account`、`/about`、`/faq`、`/shipping`，以及对应的 `/zh` 路径。五处名山只是文化分类，雪窦山地域标成待核实。相关样品写 inspired-by，不是真实来源。祈福供灯在 `/blessing/offering-lamps` 展示四档拟定价格（一天灯 USD 29、七天灯 USD 49、四十九天灯 USD 99、常年灯 USD 199），不是在售。顾客在天下第一财神庙和灵隐寺中选择一处。拍摄许可未核实，预约和支付未开放，没有收集表单。八宝琉璃手串在 `/products/babao-liuli-bracelet` 展示照片、USD 188 和库存 10，支付仍关闭。其余祈福草稿仍是 Coming soon，其余样品仍不展示图和价格
+- M1 草稿页：`/temples`、`/temples/[slug]`、`/blessing`、`/blessing/[slug]`、`/videos`、`/stories`、`/account`、`/about`、`/faq`、`/shipping`，以及对应的 `/zh` 路径。五处名山只是文化分类，雪窦山地域标成待核实。相关样品写 inspired-by，不是真实来源。祈福供灯在 `/blessing/offering-lamps` 展示四档拟定价格（一天灯 USD 29、七天灯 USD 49、四十九天灯 USD 99、常年灯 USD 199），不是在售。顾客在天下第一财神庙和灵隐寺中选择一处。拍摄许可未核实，预约和支付未开放，没有收集表单。八宝琉璃手串在 `/products/babao-liuli-bracelet` 展示照片、USD 188 和库存 10，支付仍关闭。羊年红绳（金红缠绕）在 `/products/goat-year-red-string-coiled` 标价 USD 30，数量和配送未确认，支付仍关闭。图库只使用两张已授权的金红缠绕手腕照片；公开目录里还没有文件时，页面不输出空图片地址。另外两种绳子不上架。首页红绳待上架位换成这一条，另外两个手串位仍是 Coming soon。其余样品仍不展示图和价格
 - 首页顺序：主视觉、精选样品、问题预告
 - 商品页顺序：面包屑、图库、标题与价格及加入购物车 / View demo checkout、合规说明、信任备注、规格、日常使用与摆放、免责声明原文、问答、相关样品。桌面把图库和购买信息排在同一屏，模块顺序没有改
 - 价格和库存以服务器上的商品目录为准。浏览器里自带的单价会被忽略
@@ -98,7 +98,7 @@ PayPal 账户已经开立，但 client id、secret、webhook id 和要使用的�
 - 标价只是演示用的整数美分，不是售价
 - 库存数字只为了演示扣减，不是仓库库存
 - 没有获得使用权的商品照片，页面上是原创 SVG，并标明 sample
-- 八宝琉璃手串的配送草稿是杭州发出、全球包邮追踪；收件人承担关税。其他样品不发货
+- 八宝琉璃手串的配送草稿是杭州发出、全球包邮追踪；收件人承担关税。羊年红绳的运费未确认，不适用这段包邮。其他样品不发货
 - 客服与隐私使用公开邮箱。法律主体和注册地址在法律页。电话仍未公布
 - 隐私联系人和数据保护负责人尚未指定
 - 商品照片和视频尚未替换；本仓库没有导入历史素材

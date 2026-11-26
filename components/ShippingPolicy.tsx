@@ -14,7 +14,7 @@ export function ShippingPolicy({ locale }: { locale: Locale }) {
         <MerchantIdentity locale="zh" />
         <h2>八宝琉璃手串</h2>
         <p>
-          下面的配送只适用于八宝琉璃手串。从{merchantIdentity.dispatchZh}发出。面向顾客的全球配送包邮，并提供物流追踪。其他样品列表不发货。
+          下面的配送只适用于八宝琉璃手串。从{merchantIdentity.dispatchZh}发出。面向顾客的全球配送包邮，并提供物流追踪。羊年红绳（金红缠绕）标价 USD 30，它的运费和时效尚未确认，上面的包邮不适用于它。其余样品图稿不发货。
         </p>
         <p>接受订单之后，计划在 1–3 个工作日内从杭州发出。</p>
         <p>发货后，主要地区预计 7–15 个工作日送达。偏远地区可能更久。这是估计，不是保证。</p>
@@ -35,7 +35,9 @@ export function ShippingPolicy({ locale }: { locale: Locale }) {
       <h2>Babao Liuli Bracelet</h2>
       <p>
         This shipping note covers the Babao Liuli Bracelet only. It ships from {merchantIdentity.dispatchEn}. Tracked
-        shipping to customers worldwide is free. Other listings are samples and are not shipped.
+        shipping to customers worldwide is free. The Year of the Goat red string is listed at USD 30. Its shipping cost
+        and timing are not confirmed, and the free tracked shipping above does not cover it. Other sample drawings are
+        not shipped.
       </p>
       <p>After an order is accepted, dispatch from Hangzhou is planned in 1–3 business days.</p>
       <p>

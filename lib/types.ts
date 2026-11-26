@@ -28,8 +28,10 @@ export type Product = {
   seo: ProductSeo;
   sample: boolean;
   captureAllowed: boolean;
-  /** When true, the public shop may show this photo, price, and quantity. Payment stays closed. */
+  /** When true, the public shop may show this photo and price. Payment stays closed. */
   publicListing?: boolean;
+  /** When false, the public page must not show a stock count. */
+  quantityKnown?: boolean;
   illustrativeQuantity: number;
   materials: string[];
   specs: { label: string; value: string }[];

@@ -393,6 +393,78 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "goat-year-red-string",
+    slug: "goat-year-red-string-coiled",
+    title: "Year of the Goat Red String (Gold-and-Red Coil)",
+    description:
+      "A braided gold-and-red cord, coiled, with no pendant. The name Year of the Goat marks the year. It is a cultural and decorative cord. Each cord includes one arranged incense-offering process video. We carry that out as an errand. It is not an official temple service, a partnership, a consecration, or a registry promise, and it does not guarantee any outcome.",
+    price: 3000,
+    currency: "USD",
+    images: [
+      {
+        src: "/media/products/goat-year-red-string-coiled-calligraphy.jpg",
+        webp: "/media/products/goat-year-red-string-coiled-calligraphy.webp",
+        alt: "A wrist wearing a gold-and-red coiled braided cord, with calligraphy in the background",
+        width: 1280,
+        height: 1706,
+      },
+      {
+        src: "/media/products/goat-year-red-string-coiled-greenery.jpg",
+        webp: "/media/products/goat-year-red-string-coiled-greenery.webp",
+        alt: "A wrist wearing the same gold-and-red coiled braided cord, with greenery in the background",
+        width: 1280,
+        height: 1706,
+      },
+    ],
+    collection: "cord-bracelets",
+    seo: {
+      title: "Year of the Goat Red String (Gold-and-Red Coil)",
+      description:
+        "Year of the Goat red string, gold-and-red coil, braided cord. USD 30. Quantity not confirmed. Payment is off.",
+    },
+    sample: true,
+    captureAllowed: false,
+    publicListing: true,
+    quantityKnown: false,
+    illustrativeQuantity: 0,
+    materials: ["braided cord"],
+    specs: [
+      { label: "Listing type", value: "Shown photographs and price. Payment is off. Sample listing." },
+      { label: "Material", value: "Braided cord" },
+      { label: "Quantity", value: "Not confirmed" },
+      { label: "Size", value: "Not confirmed" },
+      { label: "Photograph", value: "Two authorized wrist photographs of the gold-and-red coil. No pendant." },
+    ],
+    benefits: [
+      "The cord is braided in gold and red and coiled, with no pendant.",
+      "The material named here is braided cord.",
+      "The year in the name is a cultural mark. It is not a promise of any outcome.",
+    ],
+    useNotes: [
+      "Payment is off, so this page cannot start an order.",
+      "Shipping cost and timing for this cord are not confirmed. The shipping note for the Babao Liuli Bracelet does not cover this cord.",
+      "Each cord includes one arranged incense-offering process video. We carry that out as an errand. It is not an official temple service, a partnership, a consecration, or a registry promise, and it does not guarantee any outcome.",
+      "Size is not confirmed. There is no pendant.",
+    ],
+    faq: [
+      {
+        question: "Can I order this cord?",
+        answer:
+          "No. The price on this page is USD 30. Quantity is not confirmed. Payment is off, and there is no cart button.",
+      },
+      {
+        question: "Does this listing promise a personal outcome?",
+        answer:
+          "No. The cord is cultural and decorative. The incense-offering video is an errand. It is not an official temple service, a partnership, a consecration, or a registry promise, and it does not guarantee any outcome.",
+      },
+      {
+        question: "What do the photographs show?",
+        answer:
+          "The same gold-and-red coiled cord on a wrist, once with calligraphy in the background and once with greenery. There is no pendant.",
+      },
+    ],
+  },
 ];
 
 export function getCollections(): Collection[] {
@@ -424,12 +496,13 @@ export function collectionTitle(slug: string): string {
 }
 
 export function getRelatedProducts(product: Product, limit = 3): Product[] {
-  const same = products.filter(
-    (item) => item.collection === product.collection && item.id !== product.id,
-  );
-  const others = products.filter(
-    (item) => item.collection !== product.collection && item.id !== product.id,
-  );
+  const pool = products.filter((item) => {
+    if (item.id === product.id) return false;
+    if (product.publicListing !== true && item.publicListing === true) return false;
+    return true;
+  });
+  const same = pool.filter((item) => item.collection === product.collection);
+  const others = pool.filter((item) => item.collection !== product.collection);
   return [...same, ...others].slice(0, limit);
 }
 

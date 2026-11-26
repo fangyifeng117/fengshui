@@ -9,6 +9,7 @@ import ProductsPage from "@/app/[locale]/products/page";
 import { publicCartPayload, quoteCart } from "@/lib/cart";
 import { getProductBySlug, getProducts, getRelatedProducts, products } from "@/lib/catalog";
 import { copy } from "@/lib/i18n/messages";
+import { imageFilePresent } from "@/lib/media";
 import { productJsonLd } from "@/lib/seo";
 
 const priceLeak = /\$\d|\b\d+\.\d{2}\b|\/illustrations\/|unitAmountCents|amountCents|"price"/;
@@ -19,8 +20,7 @@ describe("withheld sample pictures and prices", () => {
       expect(product.price).toBeGreaterThan(0);
       expect(product.images.length).toBeGreaterThan(0);
       if (product.publicListing) {
-        expect(product.id).toBe("babao-liuli");
-        expect(product.images[0]?.src).toBe("/media/products/babao-liuli.jpg");
+        expect(["babao-liuli", "goat-year-red-string"]).toContain(product.id);
       } else {
         expect(product.images[0]?.src.startsWith("/illustrations/")).toBe(true);
       }
@@ -76,12 +76,21 @@ describe("withheld sample pictures and prices", () => {
       expect(html).not.toContain("<img");
       expect(html).not.toContain("/media/themes/");
     }
-    expect(pages[8].match(/<img/g)?.length).toBe(1);
+    const shopPhotos = products
+      .filter((item) => item.publicListing && item.images[0] && imageFilePresent(item.images[0].src))
+      .map((item) => item.images[0]?.src);
+    expect(pages[8].match(/<img/g)?.length).toBe(shopPhotos.length);
+    expect(pages[9].match(/<img/g)?.length).toBe(shopPhotos.length);
+    for (const src of shopPhotos) {
+      expect(pages[8]).toContain(src);
+      expect(pages[9]).toContain(src);
+    }
     expect(pages[8]).toContain("/media/products/babao-liuli.jpg");
     expect(pages[8]).toContain("USD 188");
-    expect(pages[9].match(/<img/g)?.length).toBe(1);
+    expect(pages[8]).toContain("USD 30");
     expect(pages[9]).toContain("/media/products/babao-liuli.jpg");
     expect(pages[9]).toContain("USD 188");
+    expect(pages[9]).toContain("USD 30");
     expect(pages[9]).not.toContain("$28.00");
     expect(pages[9]).not.toContain("$30.00");
     expect(pages[9]).not.toContain("$36.00");

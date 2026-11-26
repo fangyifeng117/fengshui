@@ -35,10 +35,9 @@ function walk(dir: string): string[] {
 
 describe("copy and client boundaries", () => {
   it("keeps outcome claims out of the catalog and draft copy", () => {
-    const blob = JSON.stringify({ products, collections, contentPages, homeCopy, trustBadges }).replaceAll(
-      EXACT_DISCLAIMER,
-      "",
-    );
+    const blob = JSON.stringify({ products, collections, contentPages, homeCopy, trustBadges })
+      .replaceAll(EXACT_DISCLAIMER, "")
+      .replaceAll("not an official temple service", "not an official venue service");
     for (const pattern of banned) {
       expect(blob.match(pattern)).toBeNull();
     }

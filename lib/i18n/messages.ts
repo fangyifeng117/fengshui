@@ -47,6 +47,7 @@ const en = {
     gridTitle: "Bracelets",
     slotBracelet: "Bracelet",
     slotCord: "Red string",
+    cordMeta: "Braided cord · Quantity not confirmed · Payment is off",
     slotNote: "Coming soon. Not for sale. No photo or price yet.",
     lampCta: "Request a lamp for home",
     lampNote:
@@ -151,7 +152,7 @@ const en = {
     payAnswer: "No. Payment is off.",
     pictures: "Are the pictures of real stock?",
     picturesAnswer:
-      "No. The three home-page pictures are licensed reference photos, not items for sale. The Babao Liuli Bracelet page shows that one authorized photograph and a count of 10. Other product pages do not show sample photos. Offering-lamp photos show a merchant errand on display. Booking and payment are not open.",
+      "No. The three home-page pictures are licensed reference photos, not items for sale. The Babao Liuli Bracelet page shows that one authorized photograph and a count of 10. The Year of the Goat red string is listed at USD 30. Its quantity is not confirmed. Other sample pages do not show sample photos. Offering-lamp photos show a merchant errand on display. Booking and payment are not open.",
     ask: "Where do I ask a question?",
     askAnswer: "Use the customer-support address.",
     more: "Longer question draft",
@@ -212,6 +213,7 @@ const zh: typeof en = {
     gridTitle: "手串",
     slotBracelet: "手串",
     slotCord: "红绳",
+    cordMeta: "编织红绳 · 数量未确认 · 支付已关闭",
     slotNote: "待上架。现在不能购买。还没有照片和价格。",
     lampCta: "为家乡点灯",
     lampNote:
@@ -316,7 +318,7 @@ const zh: typeof en = {
     payAnswer: "不能。支付已关闭。",
     pictures: "图片是真实库存吗？",
     picturesAnswer:
-      "不是。首页三张是已许可的参考照片，不是在售商品。八宝琉璃手串页展示该件已授权的照片和库存 10。其他商品页不展示样品图。供灯照片是商家代办的展示。预约和支付未开放。",
+      "不是。首页三张是已许可的参考照片，不是在售商品。八宝琉璃手串页展示该件已授权的照片和库存 10。羊年红绳标价 USD 30，数量未确认。其他样品页不展示样品图。供灯照片是商家代办的展示。预约和支付未开放。",
     ask: "去哪里问问题？",
     askAnswer: "使用客户支持地址。",
     more: "较长的问题草稿",
