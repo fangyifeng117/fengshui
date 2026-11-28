@@ -1,6 +1,6 @@
 # 文化饰品示范店
 
-英文为主、中文为 `/zh` 的 Next.js 示范店。页头名称是 **神秘东方**。文档标题是「福瑞祈福，纳福一方」和 “Furui Qifu — Blessings for Your Place”。这不是商标注册结论。千愿 / QIANYUAN 没有写成当前品牌。本轮只加了双语骨架、五处名山的文化分类草稿，以及首页三张已许可的参考图。没有接入支付、数据库或追踪。商品页仍不展示样品图和价格。
+英文为主、中文为 `/zh` 的 Next.js 示范店。页头名称是 **东方福瑞**，口号是「护佑一生」。文档标题是「东方福瑞，护佑一生」和 “Dongfang Furui — Blessings for a Lifetime”。这不是商标注册结论。千愿 / QIANYUAN 没有写成当前品牌。本轮只加了双语骨架、五处名山的文化分类草稿，以及首页三张已许可的参考图。没有接入支付、数据库或追踪。商品页仍不展示样品图和价格。
 
 这不是一家正在营业的商店。商品名称、材质、价格和图片都标明为 sample。结账不会真正收款。
 
@@ -33,7 +33,7 @@ npm run build
 
 | 变量 | 空白时的行为 |
 | --- | --- |
-| `NEXT_PUBLIC_BRAND_NAME` | 空白时页头显示「神秘东方」。文档标题不使用 Demo |
+| `NEXT_PUBLIC_BRAND_NAME` | 空白时页头显示「东方福瑞」。文档标题不使用 Demo |
 | `NEXT_PUBLIC_BASE_URL` | 空白时 canonical 使用 `https://furuiqifu.com` |
 | `NEXT_PUBLIC_ANNOUNCEMENT` | 显示默认的示范公告 |
 | `NEXT_PUBLIC_SUPPORT_EMAIL` | 空白时使用已批准的临时公开客服邮箱 `fangyifeng117@gmail.com`。只用于店铺问题，不是隐私或 DPO 联系人 |

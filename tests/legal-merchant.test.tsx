@@ -56,7 +56,8 @@ describe("merchant legal drafts", () => {
     for (const html of [home, about, detail]) {
       expect(html).not.toContain(merchantIdentity.legalName);
     }
-    expect(about).toContain("神秘东方");
+    expect(about).toContain("东方福瑞");
+    expect(about).not.toContain("神秘东方");
     expect(detail).toContain("杭州");
     expect(detail).not.toContain("<button");
   });

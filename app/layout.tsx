@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(publicConfig.baseUrl),
     ...pageMetadata({
       title: siteTitle(locale),
-      description: locale === "zh" ? "福瑞祈福，纳福一方。支付已关闭。" : "Furui Qifu — Blessings for Your Place. Payment is off.",
+      description: locale === "zh" ? `${siteTitle(locale)}。支付已关闭。` : `${siteTitle(locale)}. Payment is off.`,
       path: "/",
       locale,
       absoluteTitle: true,

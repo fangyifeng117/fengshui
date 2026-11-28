@@ -9,7 +9,7 @@ export type PublicConfig = {
 };
 
 /** User-chosen site name. Both locales show these characters. This is not a trademark clearance. */
-export const BRAND_NAME = "神秘东方";
+export const BRAND_NAME = "东方福瑞";
 const DEFAULT_BRAND = BRAND_NAME;
 const DEFAULT_SUPPORT_EMAIL = "fangyifeng117@gmail.com";
 const DEFAULT_BASE = "https://furuiqifu.com";

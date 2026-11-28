@@ -22,6 +22,7 @@ export async function Header({ locale = "en" }: { locale?: Locale }) {
       <div className="header-inner">
         <Link className="wordmark" href={hrefFor(locale, "/")}>
           <span>{publicConfig.brandName}</span>
+          <small>{text.brand.slogan}</small>
         </Link>
         <nav className="nav" aria-label="Primary">
           <Link href={hrefFor(locale, "/products")}>{text.nav.shop}</Link>

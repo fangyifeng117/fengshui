@@ -1,12 +1,14 @@
+import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { CheckoutDesk } from "@/components/CheckoutDesk";
 import { Footer } from "@/components/Footer";
 import PrivacyPage from "@/app/[locale]/legal/privacy/page";
 import TermsPage from "@/app/[locale]/legal/terms/page";
-import { publicConfig } from "@/lib/public-config";
+import { BRAND_NAME, publicConfig } from "@/lib/public-config";
+import { copy } from "@/lib/i18n/messages";
 import { ProductDetail, PRODUCT_MODULE_ORDER } from "@/components/ProductDetail";
-import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
+import { getProductBySlug, getProducts, getRelatedProducts } from "@/lib/catalog";
 import { describeCheckout } from "@/lib/commerce/present";
 import { EXACT_DISCLAIMER, SERVICE_DRAFT_DISCLAIMER } from "@/lib/disclaimer";
 import { HomeScreen } from "@/components/HomeScreen";
@@ -54,6 +56,24 @@ describe("page structure", () => {
     expect(privacy.title).toEqual({ absolute: `Privacy — ${SITE_TITLE.en}` });
     expect(JSON.stringify(english)).not.toContain("Samples — Demo");
     expect(JSON.stringify(chinese)).not.toContain("样品 — Demo");
+    expect(SITE_TITLE.en).toBe("Dongfang Furui — Blessings for a Lifetime");
+    expect(SITE_TITLE.zh).toBe("东方福瑞，护佑一生");
+    expect(publicConfig.brandName).toBe(BRAND_NAME);
+    expect(BRAND_NAME).toBe("东方福瑞");
+    expect(copy("en").brand.slogan).toBe("护佑一生");
+    expect(copy("zh").brand.slogan).toBe("护佑一生");
+    expect(JSON.stringify(english)).not.toContain("神秘东方");
+    expect(JSON.stringify(english)).not.toContain("Furui Qifu");
+    const css = readFileSync("app/globals.css", "utf8");
+    expect(css).toContain("#4c1d6e");
+    expect(css).toContain("#6b3a8c");
+    expect(css).toContain("#2e1144");
+    expect(css).toContain("#fac775");
+    expect(css).not.toContain("#791f1f");
+    expect(css).not.toContain("#a32d2d");
+    expect(css).not.toContain("#501313");
+    expect(JSON.stringify(getProducts())).not.toContain("护佑一生");
+    expect(JSON.stringify(getProducts())).not.toContain("神秘东方");
   });
 
   it("orders the home page and shows the short footer disclaimer", () => {

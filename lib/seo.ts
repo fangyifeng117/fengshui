@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { hrefFor } from "@/lib/locale";
 import { absoluteUrl, publicConfig } from "@/lib/public-config";
 
-/** Document title only. The visible header brand stays 神秘东方. */
+/** Document title only. The visible header brand stays 东方福瑞. */
 export const SITE_TITLE = {
-  en: "Furui Qifu — Blessings for Your Place",
-  zh: "福瑞祈福，纳福一方",
+  en: "Dongfang Furui — Blessings for a Lifetime",
+  zh: "东方福瑞，护佑一生",
 } as const;
 
 export function siteTitle(locale?: string): string {
