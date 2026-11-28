@@ -2,9 +2,6 @@ import type { Locale } from "@/lib/locale";
 
 const en = {
   announcement: "Payment is off.",
-  brand: {
-    slogan: "护佑一生",
-  },
   nav: {
     shop: "Shop",
     collections: "Collections",
@@ -145,7 +142,7 @@ const en = {
   },
   about: {
     title: "About",
-    lede: "The site name is 东方福瑞. Payment is off. The seller is named on the terms page.",
+    lede: "The site name is 福瑞祈福. Payment is off. The seller is named on the terms page.",
     places: "The five places are cultural groupings, not partner monasteries.",
   },
   faq: {
@@ -171,9 +168,6 @@ const en = {
 
 const zh: typeof en = {
   announcement: "支付已关闭。",
-  brand: {
-    slogan: "护佑一生",
-  },
   nav: {
     shop: "选购",
     collections: "系列",
@@ -314,7 +308,7 @@ const zh: typeof en = {
   },
   about: {
     title: "关于",
-    lede: "网站名称是东方福瑞。支付已关闭。经营者写在条款页。",
+    lede: "网站名称是福瑞祈福。支付已关闭。经营者写在条款页。",
     places: "五处名山是文化分组，不是合作寺院。",
   },
   faq: {

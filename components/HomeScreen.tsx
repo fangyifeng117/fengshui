@@ -50,7 +50,7 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
                   </dt>
                   <dd>
                     {detail}
-                    {closed ? `${/[.。]$/.test(detail) ? "" : " "}${closed}` : ""}
+                    {closed ? `${/。$/.test(detail) ? "" : " "}${closed}` : ""}
                   </dd>
                 </div>
               );

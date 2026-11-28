@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLockup } from "@/components/BrandLockup";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { quoteCart } from "@/lib/cart";
 import { getCollections, products } from "@/lib/catalog";
@@ -21,8 +22,7 @@ export async function Header({ locale = "en" }: { locale?: Locale }) {
       {announcement ? <p className="announcement">{announcement}</p> : null}
       <div className="header-inner">
         <Link className="wordmark" href={hrefFor(locale, "/")}>
-          <span>{publicConfig.brandName}</span>
-          <small>{text.brand.slogan}</small>
+          <BrandLockup />
         </Link>
         <nav className="nav" aria-label="Primary">
           <Link href={hrefFor(locale, "/products")}>{text.nav.shop}</Link>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SupportEmail } from "@/components/SupportEmail";
 import { getCollections } from "@/lib/catalog";
 import { merchantIdentity } from "@/lib/merchant";
-import { publicConfig } from "@/lib/public-config";
+import { BRAND_LATIN, BRAND_NAME, COPYRIGHT_LINE, publicConfig } from "@/lib/public-config";
 import { SHORT_FOOTER_DISCLAIMER, ZH_SHORT_FOOTER_DISCLAIMER } from "@/lib/disclaimer";
 import { displayCollectionTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
@@ -60,6 +60,10 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <Link href={hrefFor(locale, "/legal/disclaimer")}>完整免责声明。</Link>
         </p>
       ) : null}
+      <p className="footer-brand">
+        {BRAND_NAME} · {BRAND_LATIN}
+      </p>
+      <p className="footer-copy">{COPYRIGHT_LINE}</p>
     </footer>
   );
 }

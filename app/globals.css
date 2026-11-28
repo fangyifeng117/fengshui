@@ -65,8 +65,22 @@ p { margin: 0; }
 .site-header { border-bottom: 1px solid var(--line); background: var(--ivory); position: sticky; top: 0; z-index: 4; }
 .header-inner, .page, .site-footer { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.6rem; }
-.wordmark { display: grid; gap: 0.05rem; text-decoration: none; font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "WenQuanYi Micro Hei", var(--display), serif; font-size: 1.35rem; line-height: 1.15; }
-.wordmark small { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.12em; color: var(--cinnabar); }
+.wordmark { text-decoration: none; color: inherit; }
+.wordmark-lockup { display: flex; align-items: center; gap: 0.55rem; min-height: 44px; }
+.brand-seal {
+  display: inline-grid;
+  place-items: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 8px;
+  background: var(--cinnabar);
+  color: var(--gold);
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "WenQuanYi Micro Hei", var(--display), serif;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.wordmark-text { display: grid; gap: 0.05rem; font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "WenQuanYi Micro Hei", var(--display), serif; font-size: 1.2rem; line-height: 1.1; color: var(--heading); }
+.wordmark small { font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.14em; color: var(--cinnabar); }
 .nav { display: flex; align-items: center; gap: 0.2rem; }
 .nav > a, .nav summary {
   text-decoration: none;
@@ -303,6 +317,8 @@ p { margin: 0; }
 .footer-grid h2 { font-size: 1.2rem; margin-bottom: 0.4rem; }
 .footer-grid a { text-decoration: none; min-height: 36px; display: inline-flex; align-items: center; }
 .footer-disclaimer { margin-top: 1.5rem; max-width: 40rem; }
+.footer-brand { margin: 1.25rem 0 0; color: var(--heading); letter-spacing: 0.08em; font-size: 0.92rem; }
+.footer-copy { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.92rem; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 @media (max-width: 900px) {
   .hero, .product-grid, .place-grid, .trust-grid, .filters, .footer-grid, .home-grid, .home-trust { grid-template-columns: 1fr 1fr; }

@@ -8,8 +8,15 @@ export type PublicConfig = {
   supportEmail: string;
 };
 
-/** User-chosen site name. Both locales show these characters. This is not a trademark clearance. */
-export const BRAND_NAME = "东方福瑞";
+/** Customer-facing Chinese brand. Not a trademark clearance, and not the legal entity. */
+export const BRAND_NAME = "福瑞祈福";
+/** English brand used in titles and the copyright line. */
+export const BRAND_NAME_EN = "Furui Blessings";
+/** Latin subtitle under the header name. */
+export const BRAND_LATIN = "FURUI BLESSINGS";
+/** Trade name for the footer copyright line only. Not a substitute for the company. */
+export const TRADE_NAME = "文福瑞";
+export const COPYRIGHT_LINE = `© 2026 ${TRADE_NAME} · ${BRAND_NAME_EN} · furuiqifu.com`;
 const DEFAULT_BRAND = BRAND_NAME;
 const DEFAULT_SUPPORT_EMAIL = "fangyifeng117@gmail.com";
 const DEFAULT_BASE = "https://furuiqifu.com";

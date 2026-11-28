@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { hrefFor } from "@/lib/locale";
-import { absoluteUrl, publicConfig } from "@/lib/public-config";
+import { absoluteUrl, BRAND_NAME, BRAND_NAME_EN, publicConfig } from "@/lib/public-config";
 
-/** Document title only. The visible header brand stays 东方福瑞. */
+/** Homepage document title. Both locales use the Chinese and English names. */
 export const SITE_TITLE = {
-  en: "Dongfang Furui — Blessings for a Lifetime",
-  zh: "东方福瑞，护佑一生",
+  en: `${BRAND_NAME} | ${BRAND_NAME_EN}`,
+  zh: `${BRAND_NAME} | ${BRAND_NAME_EN}`,
 } as const;
 
 export function siteTitle(locale?: string): string {
@@ -15,7 +15,7 @@ export function siteTitle(locale?: string): string {
 export function documentTitle(pageTitle: string, locale?: string, absolute = false): string {
   const site = siteTitle(locale);
   if (absolute || pageTitle === site) return site;
-  return `${pageTitle} — ${site}`;
+  return `${pageTitle} | ${site}`;
 }
 
 export function robotsMetadata(): Metadata["robots"] {
@@ -49,7 +49,7 @@ export function pageMetadata(input: {
       title,
       description: input.description,
       url: canonical,
-      siteName: publicConfig.brandName,
+      siteName: BRAND_NAME,
       locale: locale === "zh" ? "zh_CN" : "en_US",
       type: "website",
     },
