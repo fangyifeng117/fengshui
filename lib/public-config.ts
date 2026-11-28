@@ -1,0 +1,63 @@
+export type PublicConfig = {
+  brandName: string;
+  baseUrl: string;
+  announcement: string;
+  indexingApproved: boolean;
+  locale: "en";
+  currency: "USD";
+  supportEmail: string;
+};
+
+/** Customer-facing Chinese brand. Not a trademark clearance, and not the legal entity. */
+export const BRAND_NAME = "福瑞祈福";
+/** English brand used in titles and the copyright line. */
+export const BRAND_NAME_EN = "Furui Blessings";
+/** Latin subtitle under the header name. */
+export const BRAND_LATIN = "FURUI BLESSINGS";
+/** Trade name for the footer copyright line only. Not a substitute for the company. */
+export const TRADE_NAME = "文福瑞";
+export const COPYRIGHT_LINE = `© 2026 ${TRADE_NAME} · ${BRAND_NAME_EN} · furuiqifu.com`;
+const DEFAULT_BRAND = BRAND_NAME;
+const DEFAULT_SUPPORT_EMAIL = "fangyifeng117@gmail.com";
+const DEFAULT_BASE = "https://furuiqifu.com";
+export const DEFAULT_ANNOUNCEMENT = "Payment is off.";
+
+function supportEmailFromEnv(value: string | undefined): string {
+  const trimmed = value?.trim() ?? "";
+  if (!trimmed) return DEFAULT_SUPPORT_EMAIL;
+  if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(trimmed)) {
+    return DEFAULT_SUPPORT_EMAIL;
+  }
+  return trimmed;
+}
+
+function orDefault(value: string | undefined, fallback: string): string {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : fallback;
+}
+
+function normalizeBaseUrl(value: string | undefined): string {
+  const raw = orDefault(value, DEFAULT_BASE);
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return DEFAULT_BASE;
+    return url.origin;
+  } catch {
+    return DEFAULT_BASE;
+  }
+}
+
+export const publicConfig: PublicConfig = {
+  brandName: orDefault(process.env.NEXT_PUBLIC_BRAND_NAME, DEFAULT_BRAND),
+  baseUrl: normalizeBaseUrl(process.env.NEXT_PUBLIC_BASE_URL),
+  announcement: orDefault(process.env.NEXT_PUBLIC_ANNOUNCEMENT, DEFAULT_ANNOUNCEMENT),
+  indexingApproved: process.env.SITE_INDEXING_APPROVED === "true",
+  locale: "en",
+  currency: "USD",
+  supportEmail: supportEmailFromEnv(process.env.NEXT_PUBLIC_SUPPORT_EMAIL),
+};
+
+export function absoluteUrl(path: string): string {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalized, publicConfig.baseUrl).toString();
+}

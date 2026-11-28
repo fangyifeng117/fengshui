@@ -1,0 +1,160 @@
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it } from "vitest";
+import { CartEditor } from "@/components/CartEditor";
+import { HomeScreen } from "@/components/HomeScreen";
+import { OrderStatusPanel } from "@/components/OrderStatusPanel";
+import { ProductCard } from "@/components/ProductCard";
+import { ProductDetail } from "@/components/ProductDetail";
+import ProductsPage from "@/app/[locale]/products/page";
+import { publicCartPayload, quoteCart } from "@/lib/cart";
+import { getProductBySlug, getProducts, getRelatedProducts, products } from "@/lib/catalog";
+import { copy } from "@/lib/i18n/messages";
+import { imageFilePresent } from "@/lib/media";
+import { productJsonLd } from "@/lib/seo";
+
+const priceLeak = /\$\d|\b\d+\.\d{2}\b|\/illustrations\/|unitAmountCents|amountCents|"price"/;
+
+describe("withheld sample pictures and prices", () => {
+  it("keeps the catalog prices and image paths while the public pages omit both", async () => {
+    for (const product of products) {
+      expect(product.price).toBeGreaterThan(0);
+      expect(product.images.length).toBeGreaterThan(0);
+      if (product.publicListing) {
+        expect(["babao-liuli", "goat-year-red-string"]).toContain(product.id);
+      } else {
+        expect(product.images[0]?.src.startsWith("/illustrations/")).toBe(true);
+      }
+    }
+
+    const product = getProductBySlug("sample-red-cord-bracelet");
+    if (!product) throw new Error("missing product");
+    const pages = [
+      renderToStaticMarkup(<HomeScreen />),
+      renderToStaticMarkup(<HomeScreen locale="zh" />),
+      renderToStaticMarkup(<ProductCard product={product} />),
+      renderToStaticMarkup(<ProductCard product={product} locale="zh" />),
+      renderToStaticMarkup(<ProductDetail product={product} related={getRelatedProducts(product)} />),
+      renderToStaticMarkup(<ProductDetail product={product} related={getRelatedProducts(product)} locale="zh" />),
+      renderToStaticMarkup(
+        <CartEditor locale="en" items={[{ productId: product.id, slug: product.slug, title: product.title, quantity: 1 }]} />,
+      ),
+      renderToStaticMarkup(
+        <CartEditor locale="zh" items={[{ productId: product.id, slug: product.slug, title: "样品红绳手串", quantity: 1 }]} />,
+      ),
+      renderToStaticMarkup(
+        await ProductsPage({
+          params: Promise.resolve({ locale: "en" }),
+          searchParams: Promise.resolve({ under: "30" }),
+        }),
+      ),
+      renderToStaticMarkup(
+        await ProductsPage({
+          params: Promise.resolve({ locale: "zh" }),
+          searchParams: Promise.resolve({}),
+        }),
+      ),
+    ];
+    expect(pages[4]).toContain('data-module="gallery"');
+    expect(pages[4]).toContain("Details to be confirmed");
+    expect(pages[5]).toContain("商品资料待确认");
+    expect(pages[8]).toContain("Sample Decorative Object");
+    expect(pages[8]).not.toContain("$30");
+    expect(pages[0]).toContain("/media/themes/roof.jpg");
+    expect(pages[0]).toContain("/media/themes/bracelet.jpg");
+    expect(pages[0]).toContain("wrist-sized bead bracelet");
+    expect(pages[0]).not.toContain("hanging from a stick");
+    expect(pages[1]).toContain("手腕尺寸珠串");
+    expect(pages[1]).not.toContain("木珠串");
+    expect(pages[0]).toContain("/media/themes/lamps.jpg");
+    expect(pages[0]).toContain("Style reference");
+    expect(pages[0]).toContain("Not a sample for sale");
+    expect(pages[1]).toContain("风格示意");
+    expect(pages[1]).toContain("不是在售样品");
+    expect(pages[1]).toContain("预约和支付未开放");
+    expect(pages[1]).toContain("八宝琉璃手串");
+    for (const html of pages.slice(2, 8)) {
+      expect(html).not.toContain("<img");
+      expect(html).not.toContain("/media/themes/");
+    }
+    const shopPhotos = products
+      .filter((item) => item.publicListing && item.images[0] && imageFilePresent(item.images[0].src))
+      .map((item) => item.images[0]?.src);
+    expect(pages[8].match(/<img/g)?.length).toBe(shopPhotos.length);
+    expect(pages[9].match(/<img/g)?.length).toBe(shopPhotos.length);
+    for (const src of shopPhotos) {
+      expect(pages[8]).toContain(src);
+      expect(pages[9]).toContain(src);
+    }
+    expect(pages[8]).toContain("/media/products/babao-liuli.jpg");
+    expect(pages[8]).toContain("USD 188");
+    expect(pages[8]).toContain("USD 30");
+    expect(pages[9]).toContain("/media/products/babao-liuli.jpg");
+    expect(pages[9]).toContain("USD 188");
+    expect(pages[9]).toContain("USD 30");
+    expect(pages[9]).not.toContain("$28.00");
+    expect(pages[9]).not.toContain("$30.00");
+    expect(pages[9]).not.toContain("$36.00");
+    expect(pages[9]).not.toContain("$32.00");
+    expect(pages[9]).not.toContain("$54.00");
+    expect(pages[9]).not.toContain("$62.00");
+    for (const html of pages) {
+      expect(html).not.toMatch(priceLeak);
+      expect(html).not.toContain("免费");
+      expect(html).not.toContain("BRAND_NAME");
+      expect(html).not.toContain("大雄宝殿");
+      expect(html).not.toContain("$79");
+      expect(html).not.toContain("$19");
+      expect(html).not.toContain("本命年");
+      expect(html).not.toContain("已上新");
+    }
+    for (const html of pages.slice(2)) {
+      expect(html).not.toContain("free");
+    }
+    expect(pages[0]).toContain("Free tracked shipping");
+    expect(pages[0]).toContain("USD 188");
+    expect(pages[0]).toContain("USD 29");
+    expect(pages[0]).toContain("Coming soon");
+    expect(pages[0]).toContain("7–15");
+    expect(pages[1]).toContain("待上架");
+    expect(pages[1]).toContain("USD 188");
+    expect(pages[1]).toContain("为家乡点灯");
+    expect(pages[1]).toContain("灵顺寺");
+    expect(pages[1]).not.toContain("学业款");
+
+    const quote = quoteCart(products, { id: "cart_test", version: 0, lines: [{ productId: product.id, quantity: 1 }] });
+    const payload = publicCartPayload(quote, "cart_test", 0);
+    expect(JSON.stringify(payload)).not.toMatch(/amount|price|2800|currency/);
+    expect(payload.items[0]?.quantity).toBe(1);
+
+    const jsonLd = productJsonLd({
+      name: product.title,
+      description: copy("en").product.pending,
+      sku: product.id,
+      url: "http://127.0.0.1:3000/products/sample-red-cord-bracelet",
+      brandName: "BRAND_NAME",
+    });
+    expect(JSON.stringify(jsonLd)).not.toMatch(/offers|image|28\.00/);
+
+    const status = renderToStaticMarkup(
+      <OrderStatusPanel
+        heading="Not paid"
+        pendingLabel="Details to be confirmed"
+        view={{
+          found: true,
+          paid: false,
+          mock: false,
+          status: "created",
+          amountCents: 2800,
+          currency: "USD",
+          mode: "sandbox",
+          items: [],
+          ignoredQueryClaims: [],
+        }}
+      />,
+    );
+    expect(status).toContain("Details to be confirmed");
+    expect(status).not.toContain("28");
+    expect(status).not.toContain("$");
+    expect(getProducts()).toHaveLength(products.length);
+  });
+});
