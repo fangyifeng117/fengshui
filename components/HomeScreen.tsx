@@ -6,7 +6,7 @@ import { displayAlt, displayTitle } from "@/lib/i18n/display";
 import { copy } from "@/lib/i18n/messages";
 import { hrefFor, type Locale } from "@/lib/locale";
 import { presentImages } from "@/lib/media";
-import { places } from "@/lib/places";
+import { getServiceDraft, places } from "@/lib/places";
 import { themeImages } from "@/lib/theme-images";
 
 const slots = ["bracelet-a", "bracelet-b", "cord"] as const;
@@ -26,6 +26,9 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
   const cordHref = hrefFor(locale, `/products/${cord.slug}`);
   const cordPhoto = presentImages(cord.images)[0];
   const lampHref = hrefFor(locale, "/blessing/offering-lamps");
+  const offers = getServiceDraft("offering-lamps")?.offers;
+  if (!offers?.length) throw new Error("missing lamp offers");
+  const notForSale = locale === "zh" ? "现在不能购买" : "not for sale";
   return (
     <div className="page">
       <section className="home-hero" data-section="hero">
@@ -33,23 +36,27 @@ export function HomeScreen({ locale = "en" }: { locale?: Locale }) {
           <p className="kicker">{text.home.kicker}</p>
           <h1>{text.home.heroTitle}</h1>
           <p className="lede">{text.home.heroSub}</p>
-          <div className="cta-row">
-            <Link className="button" href={productHref}>
-              {text.home.shopBracelet}
-            </Link>
-          </div>
         </div>
-        <Link className="home-feature-card" href={productHref}>
-          {photo ? (
-            <picture>
-              <source srcSet={photo.webp} type="image/webp" />
-              <img src={photo.src} width={photo.width} height={photo.height} alt={displayAlt(bracelet, 0, locale)} />
-            </picture>
-          ) : null}
-          <strong>{displayTitle(bracelet, locale)}</strong>
-          <p className="home-price">USD 188</p>
-          <p>{text.home.featureMeta}</p>
-        </Link>
+        <aside className="hero-fees" aria-labelledby="hero-fees-title">
+          <h2 id="hero-fees-title">{text.home.feeOptions}</h2>
+          <dl>
+            {offers.map((offer) => {
+              const detail = offer.detail[locale];
+              const closed = detail.toLowerCase().includes(notForSale) ? "" : locale === "zh" ? "现在不能购买。" : "Not for sale.";
+              return (
+                <div key={offer.id}>
+                  <dt>
+                    <Link href={lampHref}>{offer.label[locale]}</Link>
+                  </dt>
+                  <dd>
+                    {detail}
+                    {closed ? `${/[.。]$/.test(detail) ? "" : " "}${closed}` : ""}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+        </aside>
       </section>
       <section data-section="featured" aria-label={text.home.gridTitle}>
         <h2>{text.home.gridTitle}</h2>
